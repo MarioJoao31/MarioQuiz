@@ -1,5 +1,5 @@
 const express = require('express');
-const router = require.Router();
+const router = express.Router();
 
 //@rout get api/posts
 //@desc test rout
