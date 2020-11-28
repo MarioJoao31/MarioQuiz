@@ -1,0 +1,3 @@
+{
+    "mongoURI": "mongodb+srv://marioadmin:marioadmin@devconnector.c1mc6.mongodb.net/MarioQuiz?retryWrites=true&w=majority"
+}
