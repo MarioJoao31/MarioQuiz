@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const { chec, validationResult, check }= require('express-validator/check');
+const { chec, validationResult, check }= require('express-validator');
 
 
 //express-validator para validar post para a bd
