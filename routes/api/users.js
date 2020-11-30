@@ -1,6 +1,8 @@
 const express = require('express');
 const gravatar = require('gravatar');
 const bcrypt = require('bcryptjs');
+const jwt = require('jsonwebtoken');
+const config = require('config');
 const router = express.Router();
 const { chec, validationResult, check }= require('express-validator');
 
@@ -36,7 +38,11 @@ router.post('/',[
         if(user){
            return res.status(400).json({ errors: [{msg: 'User ja existente'}] });
         }
+       
         
+
+
+
         // Get User gravatar (foto de email)
         const avatar= gravatar.url(email, {
             s: '200',
@@ -51,6 +57,9 @@ router.post('/',[
             password
         });
 
+
+
+
           // encrypt password
         const salt = await bcrypt.genSalt(10);
 
@@ -58,10 +67,26 @@ router.post('/',[
 
         await user.save();
 
+
+
+
         //Return jsonwebtoken
-
-
-        res.send('User registado');
+        const payload={
+            user: {
+                id: user.id
+            }
+        };
+        
+        jwt.sign(
+            payload,
+             config.get('jwtSecret'), 
+             {expiresIn: 36000},
+             (err, token) =>{
+                 if(err) throw(err);
+                 res.json({token});
+             }
+            );
+             
     }catch(err){
         console.error(err.message);
         res.status(500).send('server Error');
@@ -70,7 +95,7 @@ router.post('/',[
         
 
     console.log(req.body);
-    res.send('User route')
+    
 });
 
-module.exports =router;
+module.exports = router;
