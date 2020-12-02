@@ -12,7 +12,7 @@ const connectDB = async () => {
             useFindAndModify: false
             
         });
-        console.log("mongoDB connected...");
+        console.log("MarioQuiz accessed!!");
     }catch (err){
         console.error(err.message);
         // Exit process with failure
