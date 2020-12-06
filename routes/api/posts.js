@@ -6,6 +6,7 @@ const auth = require('../../middleware/auth');
 const Post = require('../../models/Post');
 const Profile = require('../../models/Profile');
 const User = require('../../models/User');
+const checkObjectId = require('../../middleware/checkObjectId');
 
 //@rout Post api/posts
 //@desc Cria uma sala 
@@ -111,20 +112,19 @@ router.delete("/:id",auth , async (req,res) => {
 //@desc Like a sala 
 //@access private 
 
-router.put('/like/:id',auth ,async (req, res) =>{
+router.put('/like/:id',[auth, checkObjectId('id')],async (req, res) =>{
     try {
         const post = await Post.findById(req.params.id);
 
         //checka a ver se ja foi dado like na sala
-        const previousLike = 
-            post.likes.find( like => like.user.toString() === req.user.id);
-        if (previousLike) {
-             return res.status(400).json({ msg: 'Post already liked' });
+        if(post.likes.filter(like => like.user.toString() === req.user.id).length > 0){
+            return res.status(400).json({msg: 'Ja deu like na sala'});
         }
 
-        post.likes.get({user: req.user.id});
+        post.likes.unshift({ user: req.user.id },{});
 
         await post.save();
+
         res.json(post.likes);
 
     } catch (err) {
