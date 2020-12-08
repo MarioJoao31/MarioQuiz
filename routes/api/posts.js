@@ -147,15 +147,15 @@ router.put('/unlike/:id',auth,async (req, res) =>{
         }
         
     
-        const removeIndex = post.likes
-        .map(like => like.user.toString())
-        .IndexOf(req.user.id);
+         // remove the like
+        post.likes = post.likes.filter(
+        ({ user }) => user.toString() !== req.user.id
+        );
 
-        post.likes.splice(removeIndex,1);
-        
         await post.save();
     
         return res.json(post.likes);
+        
           } catch (err) {
         console.error(err.message);
         res.status(500).send('Server Error');
