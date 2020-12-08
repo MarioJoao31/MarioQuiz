@@ -203,5 +203,40 @@ router.post(
     }
   );
 
+  
+//@rout Delete api/posts/Comment/:id/:comment_id
+//@desc elimina comentario  
+//@access private 
+router.delete("/:id/:comment_id",auth , async (req,res) => {
+    try {
+        const post = await Post.findById(req.params.id);
+        
+        //pull comentario 
+        const comment= post.comments.find(comment => comment.id === req.params.comment_id);
+        // ve se comentario existe
+        if(!comment){
+            return res.status(404).json({msg: 'comentario nao existe'});
+        }
+
+        //checka user
+        if(comment.user.toString()!== req.user.id){
+            return res.status(404).json({msg :'User nao tem autorizacao'})
+        }
+
+        post.comments = post.comments.filter(
+            ({ id }) => id !== req.params.comment_id
+          );
+        
+        await post.save();
+
+        res.json(post.comments);
+
+    } catch (err) {
+        console.error(err.message);
+        res.status(500).send('Server Error');
+      }
+});
+
+
 
 module.exports = router;
