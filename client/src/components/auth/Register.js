@@ -19,6 +19,7 @@ const Register = ({setAlert}) => {
     const onChange = e => setFormData ({ ...formData, [e.target.name]: e.target.value });
 
     const onSubmit = async e =>{
+
       e.preventDefault();
       if(password !== password2){
         setAlert('password nao e igual','danger');
@@ -91,12 +92,14 @@ const Register = ({setAlert}) => {
         Already have an account? <Link to='/login'>Sign In</Link>
       </p>
       </>
-    )
-}
+    );
+};
 
 Register.propTypes = {
   setAlert: PropTypes.func.isRequired
 };
+
+
 
 
 export default connect ( null , {setAlert} )(Register);
