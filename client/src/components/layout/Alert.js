@@ -20,4 +20,3 @@ const mapStateToProps = (state) => ({
 
 
 export default connect(mapStateToProps)(Alert);
-//connect(mapStateToProps)(Alert)
