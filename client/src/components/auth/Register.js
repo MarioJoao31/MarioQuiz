@@ -28,10 +28,10 @@ const Register = ({ setAlert, register, isAuthenticated }) => {
     }
   };
 
-  // if (isAuthenticated) {
-  //  return <Redirect to='/dashboard' />;
-  // }
-
+   if (isAuthenticated) {
+    return <Redirect to='/dashboard' />;
+   }
+   
   return (
     <>
       <h1 className='large text-primary'>Sign Up</h1>

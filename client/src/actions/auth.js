@@ -8,8 +8,8 @@ import {
   AUTH_ERROR,
   LOGIN_SUCCESS,
   LOGIN_FAIL,
+  LOGOUT,
 } from "./types";
-
 
 //LOAD USER
 export const loadUser = () => async (dispatch) => {
@@ -36,6 +36,7 @@ export const register = (formData) => async (dispatch) => {
       type: REGISTER_SUCCESS,
       payload: res.data,
     });
+
     dispatch(loadUser());
   } catch (err) {
     const errors = err.response.data.errors;
@@ -49,6 +50,8 @@ export const register = (formData) => async (dispatch) => {
     });
   }
 };
+
+// LOGIN PASSA A INFORMACAO E ATIVA OS ALERTAS
 
 export const login = (email, password) => async (dispatch) => {
   const body = { email, password };
@@ -74,3 +77,7 @@ export const login = (email, password) => async (dispatch) => {
     });
   }
 };
+
+//logout  /clear
+
+export const logout = () => ({ type: LOGOUT });
