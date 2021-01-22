@@ -21,6 +21,8 @@ const Register = ({ setAlert, register, isAuthenticated }) => {
 
   const onSubmit = async (e) => {
     e.preventDefault();
+    
+
     if (password !== password2) {
       setAlert("password nao e igual", "danger");
     } else {
