@@ -1,5 +1,5 @@
 import api from "../utils/api";
-import { setAlert } from "./alert";
+
 
 import { GET_PROFILE, PROFILE_ERROR } from "./types";
 

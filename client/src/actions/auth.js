@@ -9,21 +9,24 @@ import {
   LOGIN_SUCCESS,
   LOGIN_FAIL,
   LOGOUT,
+  CLEAR_PROFILE,
 } from "./types";
 
 //LOAD USER
 export const loadUser = () => async (dispatch) => {
-  try {
-    const res = await api.get("/auth");
+  if (localStorage.token) {
+    try {
+      const res = await api.get("/auth");
 
-    dispatch({
-      type: USER_LOADED,
-      payload: res.data,
-    });
-  } catch (err) {
-    dispatch({
-      type: AUTH_ERROR,
-    });
+      dispatch({
+        type: USER_LOADED,
+        payload: res.data,
+      });
+    } catch (err) {
+      dispatch({
+        type: AUTH_ERROR,
+      });
+    }
   }
 };
 
@@ -80,4 +83,7 @@ export const login = (email, password) => async (dispatch) => {
 
 //logout  /clear
 
-export const logout = () => ({ type: LOGOUT });
+export const logout = () => (dispatch) => {
+  dispatch({ type: CLEAR_PROFILE });
+  dispatch({ type: LOGOUT });
+};
