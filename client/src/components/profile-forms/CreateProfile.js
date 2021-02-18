@@ -1,4 +1,5 @@
 import React, { Fragment, useState } from "react";
+import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 
@@ -13,7 +14,7 @@ const CreateProfile = (props) => {
     website: "",
   });
 
-  cosnt[(displaySocialInputs, toggleSocialInputs)] = useState(false);
+  const [displaySocialInputs, toggleSocialInputs] = useState(false);
 
   const {
     location,
@@ -90,11 +91,9 @@ const CreateProfile = (props) => {
           <small className='form-text'>Tell us a little about yourself</small>
         </div>
 
-
-
         <div className='my-2'>
           <button
-            onclick={() => toggleSocialInputs(!displaySocialInputs)}
+            onClick={() => toggleSocialInputs(!displaySocialInputs)}
             type='button'
             className='btn btn-light'
           >
@@ -102,6 +101,7 @@ const CreateProfile = (props) => {
           </button>
           <span>Optional</span>
         </div>
+
         {displaySocialInputs && (
           <Fragment>
             <div className='form-group social-input'>
@@ -128,12 +128,13 @@ const CreateProfile = (props) => {
               <i className='fab fa-instagram fa-2x'></i>
               <input type='text' placeholder='Instagram URL' name='instagram' />
             </div>
-            <input type='submit' className='btn btn-primary my-1' />
-            <a className='btn btn-light my-1' href='dashboard.html'>
-              Go Back
-            </a>
           </Fragment>
         )}
+
+        <input type='submit' className='btn btn-primary my-1' />
+        <Link className='btn btn-light my-1' to='/dashboard'>
+          Go Back
+        </Link>
       </form>
     </Fragment>
   );
