@@ -24,9 +24,6 @@ const ProfileSchema= new mongoose.Schema({
       bio: {
         type: String
       },
-      githubusername: {
-        type: String
-      },
       experience: [
         {
           title: {
@@ -64,9 +61,6 @@ const ProfileSchema= new mongoose.Schema({
           type: String
         },
         facebook: {
-          type: String
-        },
-        linkedin: {
           type: String
         },
         instagram: {

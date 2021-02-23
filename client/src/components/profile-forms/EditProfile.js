@@ -1,11 +1,15 @@
-import React, { Fragment, useState } from "react";
+import React, { Fragment, useState, useEffect } from "react";
 import { Link, withRouter } from "react-router-dom";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
+import { createProfile, getCurrentProfile } from "../../actions/profile";
 
-import { createProfile } from "../../actions/profile";
-
-const CreateProfile = ({ createProfile, history }) => {
+const EditProfile = ({
+  profile: { profile, loading },
+  createProfile,
+  getCurrentProfile,
+  history,
+}) => {
   const [formData, setFormData] = useState({
     status: "",
     location: "",
@@ -20,6 +24,15 @@ const CreateProfile = ({ createProfile, history }) => {
   });
 
   const [displaySocialInputs, toggleSocialInputs] = useState(false);
+
+  useEffect(() => {
+      getCurrentProfile();
+
+      setFormData({
+        company: loading || !profile.company ? '' : profile.company,
+          
+      });
+  });
 
   const {
     status,
@@ -187,8 +200,16 @@ const CreateProfile = ({ createProfile, history }) => {
   );
 };
 
+const mapStateToProps = (state = {
+  createProfile: PropTypes.func.isRequired,
+  getCurrentProfile: PropTypes.func.isRequired,
+  profile: PropTypes.object.isRequired,
+});
+
 CreateProfile.propTypes = {
   createProfile: PropTypes.func.isRequired,
 };
 
-export default connect(null, { createProfile })(withRouter(CreateProfile));
+export default connect(mapStateToProps, { createProfile, getCurrentProfile })(
+  withRouter(EditProfile)
+);
