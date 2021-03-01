@@ -26,13 +26,21 @@ const EditProfile = ({
   const [displaySocialInputs, toggleSocialInputs] = useState(false);
 
   useEffect(() => {
-      getCurrentProfile();
+    getCurrentProfile();
 
-      setFormData({
-        company: loading || !profile.company ? '' : profile.company,
-          
-      });
-  });
+    setFormData({
+      company: loading || !profile.company ? "" : profile.company,
+      location: loading || !profile.location ? "" : profile.location,
+      website: loading || !profile.website ? "" : profile.website,
+      status: loading || !profile.status ? "" : profile.status,
+      skills: loading || !profile.skills ? "" : profile.skills.join(","),
+      youtube: loading || !profile.youtube ? "" : profile.youtube,
+      twitter: loading || !profile.twitter ? "" : profile.twitter,
+      facebook: loading || !profile.facebook ? "" : profile.facebook,
+      instagram: loading || !profile.instagram ? "" : profile.instagram,
+      bio: loading || !profile.bio ? "" : profile.bio,
+    });
+  }, [loading]);
 
   const {
     status,
@@ -52,15 +60,14 @@ const EditProfile = ({
 
   const onSubmit = (e) => {
     e.preventDefault();
-    createProfile(formData, history);
+    createProfile(formData, history, true);
   };
 
   return (
     <Fragment>
-      <h1 className='large text-primary'>Create Your Profile</h1>
+      <h1 className='large text-primary'>Edita o teu Perfil</h1>
       <p className='lead'>
-        <i className='fas fa-user'></i> Let's get some information to make your
-        profile stand out
+        <i className='fas fa-user'></i> Fala sobre ti e as tuas habilidades!
       </p>
       <small>* = Campos Obrigatorios</small>
       <form className='form' onSubmit={onSubmit}>
@@ -200,15 +207,15 @@ const EditProfile = ({
   );
 };
 
-const mapStateToProps = (state = {
+EditProfile.propTypes = {
   createProfile: PropTypes.func.isRequired,
   getCurrentProfile: PropTypes.func.isRequired,
   profile: PropTypes.object.isRequired,
-});
-
-CreateProfile.propTypes = {
-  createProfile: PropTypes.func.isRequired,
 };
+
+const mapStateToProps = (state) => ({
+  profile: state.profile,
+});
 
 export default connect(mapStateToProps, { createProfile, getCurrentProfile })(
   withRouter(EditProfile)

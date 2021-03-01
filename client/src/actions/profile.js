@@ -1,7 +1,13 @@
 import api from "../utils/api";
 import { setAlert } from "./alert";
 
-import { GET_PROFILE, PROFILE_ERROR } from "./types";
+import {
+  CLEAR_PROFILE,
+  GET_PROFILE,
+  GET_PROFILES,
+  PROFILE_ERROR,
+  ACCOUNT_DELETED,
+} from "./types";
 
 //get current users profile
 
@@ -11,6 +17,42 @@ export const getCurrentProfile = () => async (dispatch) => {
 
     dispatch({
       type: GET_PROFILE,
+      payload: res.data,
+    });
+  } catch (err) {
+    dispatch({
+      type: PROFILE_ERROR,
+      payload: { msg: err.response.statusText, status: err.response.status },
+    });
+  }
+};
+
+// GET todos os perfies
+export const getProfiles = () => async (dispatch) => {
+  dispatch({ type: CLEAR_PROFILE });
+
+  try {
+    const res = await api.get("/profile");
+
+    dispatch({
+      type: GET_PROFILES,
+      payload: res.data,
+    });
+  } catch (err) {
+    dispatch({
+      type: PROFILE_ERROR,
+      payload: { msg: err.response.statusText, status: err.response.status },
+    });
+  }
+};
+
+// GET perfil pelo o id
+export const getProfileById = (userId) => async (dispatch) => {
+  try {
+    const res = await api.get(`/profile/user/${userId}`);
+
+    dispatch({
+      type: GET_PROFILES,
       payload: res.data,
     });
   } catch (err) {
@@ -55,5 +97,25 @@ export const createProfile = (formData, history, edit = false) => async (
       type: PROFILE_ERROR,
       payload: { msg: err.response.statusText, status: err.response.status },
     });
+  }
+};
+
+//eliminar conta
+
+export const deleteAccount = () => async (dispatch) => {
+  if (window.confirm("Are you sure? This can NOT be undone!")) {
+    try {
+      await api.delete("/profile");
+
+      dispatch({ type: CLEAR_PROFILE });
+      dispatch({ type: ACCOUNT_DELETED });
+
+      dispatch(setAlert("Your account has been permanently deleted"));
+    } catch (err) {
+      dispatch({
+        type: PROFILE_ERROR,
+        payload: { msg: err.response.statusText, status: err.response.status },
+      });
+    }
   }
 };
