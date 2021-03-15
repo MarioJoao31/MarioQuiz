@@ -40,7 +40,7 @@ const EditProfile = ({
       instagram: loading || !profile.instagram ? "" : profile.instagram,
       bio: loading || !profile.bio ? "" : profile.bio,
     });
-  }, [loading]);
+  }, [loading, getCurrentProfile]);
 
   const {
     status,

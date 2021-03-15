@@ -31,7 +31,7 @@ router.get('/me',auth,async (req,res)=>{
 
 
 
-//@rout get api/profile/
+//@rout POST api/profile/
 //@desc cria ou da update no perfil do user
 //@access Private
 

@@ -7,10 +7,14 @@ import { logout } from "../../actions/auth";
 export const Navbar = ({ auth: { isAuthenticated, loading }, logout }) => {
   const authLinks = (
     <ul>
-       <li>
-        <Link to='/profiles'>
-          Profiles
-        </Link>
+      <li>
+        <Link to='/profiles'>Profiles</Link>
+      </li>
+      <li>
+        <Link to='/posts'>Posts</Link>
+      </li>
+      <li>
+        <Link to='/quizes'>Quizes</Link>
       </li>
       <li>
         <Link to='/dashboard'>
@@ -30,9 +34,7 @@ export const Navbar = ({ auth: { isAuthenticated, loading }, logout }) => {
   const guestLinks = (
     <ul>
       <li>
-        <Link to='/profiles'>
-          Profiles
-        </Link>
+        <Link to='/profiles'>Profiles</Link>
       </li>
       <li>
         <Link to='/register'>Register</Link>
@@ -50,7 +52,8 @@ export const Navbar = ({ auth: { isAuthenticated, loading }, logout }) => {
           <i className='fas fa-code'></i> Tinder Quiz
         </Link>
       </h1>
-      {!loading && (<Fragment> {isAuthenticated ? authLinks : guestLinks} </Fragment>
+      {!loading && (
+        <Fragment> {isAuthenticated ? authLinks : guestLinks} </Fragment>
       )}
     </nav>
   );

@@ -8,7 +8,7 @@ import { getProfiles } from "../../actions/profile";
 const Profiles = ({ getProfiles, profile: { profiles, loading } }) => {
   useEffect(() => {
     getProfiles();
-  }, []);
+  }, [getProfiles]);
 
   return (
     <Fragment>
@@ -42,7 +42,7 @@ Profiles.propTypes = {
 };
 
 const mapStateToProps = (state) => ({
-  profiles: state.profile,
+  profile: state.profile,
 });
 
 export default connect(mapStateToProps, { getProfiles })(Profiles);
