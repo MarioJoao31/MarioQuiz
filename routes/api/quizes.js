@@ -60,10 +60,10 @@ router.post(
       return res.status(400).json({ error: errors.array() });
     }
 
-    /*//check user a ver se é igual se for avança
+    //check user a ver se é igual se for avança
     if (quiz.user.toString() !== req.user.id) {
       return res.status(401).json({ msg: "user não autorizado" });
-    } */
+    } 
 
     try {
       const quiz = await Quiz.findById(req.params.id);

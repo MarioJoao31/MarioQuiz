@@ -1,0 +1,32 @@
+[33m5e06398[m[33m ([m[1;36mHEAD -> [m[1;32mMarioQuiz[m[33m, [m[1;31morigin/master[m[33m)[m HEAD@{0}: checkout: moving from MarioQuiz to MarioQuiz
+[33m5e06398[m[33m ([m[1;36mHEAD -> [m[1;32mMarioQuiz[m[33m, [m[1;31morigin/master[m[33m)[m HEAD@{1}: checkout: moving from MarioQuiz to MarioQuiz
+[33m5e06398[m[33m ([m[1;36mHEAD -> [m[1;32mMarioQuiz[m[33m, [m[1;31morigin/master[m[33m)[m HEAD@{2}: reset: moving to origin/master
+[33ma3c026d[m HEAD@{3}: commit: add quiz back end and routes
+[33mb67157e[m HEAD@{4}: commit: people can se profiles, every thing about profiles
+[33m72e2700[m HEAD@{5}: commit: Inseri o perfil e estou a acabar o editar o perfil
+[33m659ef99[m HEAD@{6}: commit: create profile almost complet
+[33m1ef9fb4[m HEAD@{7}: commit: Criar perfil/ gif the loading navbar in landing broken
+[33me95fcc8[m HEAD@{8}: commit: dashboard gif loading
+[33mcc9a54f[m HEAD@{9}: commit: get_profile done
+[33m35a5162[m HEAD@{10}: commit: Protected dashboard
+[33m1bf78a5[m HEAD@{11}: commit: login feito registar feito
+[33md49c0c2[m HEAD@{12}: commit: can register a user with token
+[33med1a75c[m HEAD@{13}: commit: Error fixed dos Auth
+[33ma224bd9[m HEAD@{14}: commit: Error, can't get the user_loaded because the token doesnt save
+[33mda2df02[m HEAD@{15}: commit: alerts já funcionam
+[33m70d9b57[m HEAD@{16}: commit: ALerts começei a fazer mas tenho um erro no state no Alert
+[33m4d26b4a[m HEAD@{17}: commit: do html consegui dat submit para bd
+[33m9e6a7c4[m HEAD@{18}: commit: aplicacao de input no html
+[33me9d712f[m HEAD@{19}: commit: routes for html
+[33mcb00d3d[m HEAD@{20}: commit: moving with the hmtl
+[33mae8f093[m HEAD@{21}: commit: shit done
+[33m83459c2[m HEAD@{22}: commit: cleaning src front
+[33mf38fa64[m HEAD@{23}: commit: Client add na front end
+[33m6542602[m HEAD@{24}: commit: remover comentarios feito !!
+[33m4c24638[m HEAD@{25}: commit: add comentarios as sala
+[33mcdb2a4d[m HEAD@{26}: commit: Unlike done
+[33m122af3e[m HEAD@{27}: commit: unlike done
+[33m68eb692[m HEAD@{28}: commit: fuck tutorial
+[33md5cc6de[m HEAD@{29}: commit: Likes ja funcionam
+[33mc8a703a[m HEAD@{30}: commit: objectid middleware
+[33m9aad3f6[m HEAD@{31}: commit: tentar meter likes, mas tenho problema na funcao unshitf
