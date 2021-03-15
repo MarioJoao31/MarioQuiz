@@ -5,22 +5,25 @@ const QuizSchema = new Schema({
   user: {
     type: Schema.Types.ObjectId,
   },
-
-  question_text: {
-    type: String,
-    required: true,
-  },
-  question_type: {
-    type: String,
-    required: true,
-  },
   name: {
     type: String,
   },
   avatar: {
     type: String,
   },
-  
+
+  title: {
+    type: String,
+    required: true,
+  },
+  category: {
+    type: String,
+    required: true,
+  },
+  difficulty: {
+    type: String,
+    required: true,
+  },
 
   question_possibility: [
     {

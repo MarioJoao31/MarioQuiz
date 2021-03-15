@@ -18,8 +18,8 @@ router.post(
   [
     auth,
     [
-      check("question_text", "Texto da pergunta!").notEmpty(),
-      check("question_type", "Tipo de pergunta!").notEmpty(),
+      check("title", "titulo da pergunta!").notEmpty(),
+      check("category", "categoria da pergunta!").notEmpty(),
     ],
   ],
   async (req, res) => {
@@ -32,8 +32,9 @@ router.post(
       const user = await User.findById(req.user.id).select("-password");
       //FIXME:Pode ser preciso voltar aqui quando eu tiver ja a fazer o front end do quiz, não sei se tenho de aceitar aqui as questions_possabilities e correct_answer!!
       const newQuiz = new Quiz({
-        question_text: req.body.question_text,
-        question_type: req.body.question_type,
+        title: req.body.title,
+        category: req.body.category,
+        difficulty: req.body.difficulty,
         name: user.name,
         avatar: user.avatar,
         user: req.user.id,
