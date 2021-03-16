@@ -49,44 +49,6 @@ router.post(
   }
 );
 
-//@rout Post api/quizes/question/:id
-//@desc Cria uma pergunta no quiz
-//@access private
-router.post("/question/:id", [auth], async (req, res) => {
-  const errors = validationResult(req);
-  if (!errors.isEmpty()) {
-    return res.status(400).json({ error: errors.array() });
-  }
-  const user = await User.findById(req.user.id).select("-password");
-
-  //check user a ver se é igual se for avança
-  if (quiz.user.toString() !== req.user.id) {
-    return res.status(401).json({ msg: "user não autorizado" });
-  }
-
-  try {
-    const quiz = await Quiz.findById(req.params.id);
-
-    if (!quiz) {
-      return res.status(401).json({ msg: "nao foi encontrado o quiz" });
-    }
-
-    const newQuestion = {
-      correct_answer: req.body.correct_answer,
-      incorrect_answer: req.body.incorrect_answer,
-    };
-
-    quiz.question_possibility.unshift(newQuestion);
-
-    await quiz.save();
-
-    res.json(quiz.question_possibility);
-  } catch (err) {
-    console.error(err.message);
-    res.status(500).send("Server error ao criar a sala");
-  }
-});
-
 // @route    GET api/quizes
 // @desc     Get all quizes
 // @access   Private
@@ -266,7 +228,84 @@ router.delete("/:id/:comment_id", auth, async (req, res) => {
     res.json(quiz.comments);
   } catch (err) {
     console.error(err.message);
-    res.status(500).send("Server Error");
+    res.status(500).send("Server Error comentario");
+  }
+});
+
+//        ---------------------  PERGUNTAS
+
+//@rout Post api/quizes/question/:id
+//@desc Cria uma pergunta no quiz
+//@access private
+router.post("/question/:id", [auth], async (req, res) => {
+  const errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    return res.status(400).json({ error: errors.array() });
+  }
+  const user = await User.findById(req.user.id).select("-password");
+
+  /*//check user a ver se é igual se for avança
+  if (quiz.user.toString() !== req.user.id) {
+    return res.status(401).json({ msg: "user não autorizado" });
+  }*/
+
+  try {
+    const quiz = await Quiz.findById(req.params.id);
+
+    if (!quiz) {
+      return res.status(401).json({ msg: "nao foi encontrado o quiz" });
+    }
+
+    const newQuestion = {
+      correct_answer: req.body.correct_answer,
+      incorrect_answer: req.body.incorrect_answer,
+    };
+
+    quiz.question_possibility.unshift(newQuestion);
+
+    await quiz.save();
+
+    res.json(quiz.question_possibility);
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send("Server error ao criar a sala");
+  }
+});
+
+//@rout Delete api/quizes/question/:id/:question_id
+//@desc elimina comentario
+//@access private
+
+router.delete("/question/:id/:question_id", auth, async (req, res) => {
+  try {
+    const quiz = await Quiz.findById(req.params.id);
+
+    //pull pergunta
+    const question = quiz.question_possibility.find(
+      (question) => question.id === req.params.question_id
+    );
+
+
+    // ve se comentario existe
+    if (!question) {
+      return res.status(404).json({ msg: "Pergunta nao existe no quiz!" });
+    }
+
+    //checka user
+    if (quiz.user.toString() !== req.user.id) {
+      return res.status(404).json({ msg: "User nao tem autorização" });
+    }
+
+    quiz.question_possibility = quiz.question_possibility.filter(
+      ({ id }) => id !== req.params.question_id
+    );
+
+    await quiz.save();
+
+    res.json(quiz.question_possibility);
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send("Server Error 123");
   }
 });
 
