@@ -30,7 +30,7 @@ router.post(
 
     try {
       const user = await User.findById(req.user.id).select("-password");
-      //FIXME:Pode ser preciso voltar aqui quando eu tiver ja a fazer o front end do quiz, não sei se tenho de aceitar aqui as questions_possabilities e correct_answer!!
+
       const newQuiz = new Quiz({
         title: req.body.title,
         category: req.body.category,
@@ -52,44 +52,40 @@ router.post(
 //@rout Post api/quizes/question/:id
 //@desc Cria uma pergunta no quiz
 //@access private
-router.post(
-  "/question/:id",
-  [auth, [check("answer", "Falta preencher a answer").notEmpty()]],
-  async (req, res) => {
-    const errors = validationResult(req);
-    if (!errors.isEmpty()) {
-      return res.status(400).json({ error: errors.array() });
-    }
-
-    //check user a ver se é igual se for avança
-    if (quiz.user.toString() !== req.user.id) {
-      return res.status(401).json({ msg: "user não autorizado" });
-    } 
-
-    try {
-      const quiz = await Quiz.findById(req.params.id);
-
-      if (!quiz) {
-        return res.status(401).json({ msg: "nao foi encontrado o quiz" });
-      }
-
-      const newQuestion = {
-        answer: req.body.answer,
-      };
-
-      //FIXME: nao esta a funcionar inserir uma pergunta
-
-      quiz.question_possibility.unshift(newQuestion);
-
-      await quiz.save();
-
-      res.json(quiz.question_possibility);
-    } catch (err) {
-      console.error(err.message);
-      res.status(500).send("Server error ao criar a sala");
-    }
+router.post("/question/:id", [auth], async (req, res) => {
+  const errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    return res.status(400).json({ error: errors.array() });
   }
-);
+  const user = await User.findById(req.user.id).select("-password");
+
+  //check user a ver se é igual se for avança
+  if (quiz.user.toString() !== req.user.id) {
+    return res.status(401).json({ msg: "user não autorizado" });
+  }
+
+  try {
+    const quiz = await Quiz.findById(req.params.id);
+
+    if (!quiz) {
+      return res.status(401).json({ msg: "nao foi encontrado o quiz" });
+    }
+
+    const newQuestion = {
+      correct_answer: req.body.correct_answer,
+      incorrect_answer: req.body.incorrect_answer,
+    };
+
+    quiz.question_possibility.unshift(newQuestion);
+
+    await quiz.save();
+
+    res.json(quiz.question_possibility);
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send("Server error ao criar a sala");
+  }
+});
 
 // @route    GET api/quizes
 // @desc     Get all quizes

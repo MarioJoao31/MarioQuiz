@@ -27,10 +27,10 @@ const QuizSchema = new Schema({
 
   question_possibility: [
     {
-      answer: {
+      correct_answer: {
         type: String,
       },
-      correct_answer: {
+      incorrect_answer: {
         type: String,
       },
     },
