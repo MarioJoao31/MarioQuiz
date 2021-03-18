@@ -109,7 +109,7 @@ router.delete("/:id", auth, async (req, res) => {
   }
 });
 
-//TODO: tenho de acabar de fazer o resto da rotas para o quiz para começar a fazer o FrontEnd
+// ------------------------ LIKES DE QUIZES --------------------
 
 //@rout PUT api/quizes/like/:id
 //@desc Like a quiz
@@ -161,6 +161,8 @@ router.put("/unlike/:id", auth, async (req, res) => {
     res.status(500).send("Server Error");
   }
 });
+
+// ----------------------------- COMENTARIOS ---------------------
 
 //@rout POST api/posts/Comment/:id
 //@desc Comenta a sala
@@ -232,7 +234,7 @@ router.delete("/:id/:comment_id", auth, async (req, res) => {
   }
 });
 
-//        ---------------------  PERGUNTAS
+//        ---------------------  PERGUNTAS ----------
 
 //@rout Post api/quizes/question/:id
 //@desc Cria uma pergunta no quiz
@@ -284,7 +286,6 @@ router.delete("/question/:id/:question_id", auth, async (req, res) => {
     const question = quiz.question_possibility.find(
       (question) => question.id === req.params.question_id
     );
-
 
     // ve se comentario existe
     if (!question) {

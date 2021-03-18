@@ -4,7 +4,9 @@ import {
     QUIZ_ERROR,
     GET_QUIZES
      } from "./types";
-
+     
+     
+     // GET Quizes
   export const getQuizes = () => async dispatch => {
     try {
         const res = await api.get('/quizes');
