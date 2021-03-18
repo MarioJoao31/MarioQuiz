@@ -573,36 +573,7 @@ button {
   .post button {
     padding: 0.3rem 0.4rem;
   }
+   /*  CSS DO MENU */
 
-  /* QUIZ PAGE */
-
-  .quiz-item {
-    display: grid;
-    gap: 1rem 2rem;
-    max-width: 25rem;
-  }
-
-  .section-center {
-    width: 90vw;
-    margin: 0 auto;
-    max-width: 1170px;
-    display: grid;
-    gap: 3rem 2rem;
-    justify-items: center;
-  }
-
-  .item-info header {
-    display: flex;
-    justify-content: space-between;
-    border-bottom: 0.5px dotted var(--clr-grey-5);
-  }
-
-  .price {
-    color: var(--clr-gold);
-  }
-  .item-text {
-    margin-bottom: 0;
-    padding-top: 1rem;
-  }
 
 }
