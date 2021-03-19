@@ -3,10 +3,13 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import Moment from "react-moment";
-// TODO:adicionar aqui depois de fazer a base de dados do quiz.
+import { addLike, removeLike } from "../../actions/quiz";
+// TODO:TEnho de adicionar a as funcoes onClick para like e dislike
 //
 
 const QuizItem = ({
+  addLike,
+  removeLike,
   auth,
   quiz: {
     _id,
@@ -22,64 +25,44 @@ const QuizItem = ({
     upload_at,
   },
 }) => (
-  <section className='menu'>
-    <div className='title'>
-      <h2>our menu</h2>
-      <div className='underline'></div>
+  <div className='post bg-white p-1 my-1'>
+    <div>
+      <a href='profile.html'>
+        <img className='round-img' src={avatar} alt='' />
+        <h4>{title}</h4>
+      </a>
     </div>
 
-    <div className='btn-container'>
-      <button type='button' className='filter-btn' data-id='all'>
-        all
+    <div>
+      <p className='my-1'>{category}</p>
+      <p className='post-date'>
+        Feito no dia <Moment format='DD/MM/YYYY'>{upload_at}</Moment>
+      </p>
+
+      <button type='button' className='btn btn-light'>
+        <i className='fas fa-thumbs-up'></i>
+        <span> {likes.length > 0 && <span>{likes.length}</span>}</span>
       </button>
-      <button type='button' className='filter-btn' data-id='breakfast'>
-        breakfast
+
+      <button type='button' className='btn btn-light'>
+        <i className='fas fa-thumbs-down'></i>
       </button>
-    </div>
 
-    <div className='section-center'>
-      <article className='menu-item'>
-        <div className='item-info'>
-          <header>
-            <h4>buttermilk pancakes</h4>
-            <h4 className='price'>$15</h4>
-          </header>
-          <p className='item-text'>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit.
-            Repudiandae, sint quam. Et reprehenderit fugiat nesciunt inventore
-            laboriosam excepturi! Quo, officia.
-          </p>
-        </div>
-      </article>
-    </div>
-  </section>
-);
-
-{
-  /*
-  <div className='section-center'>
-    <article className='quiz-item'>
-      <div className='item-info'>
-        <header>
-          <h4 className='my-1'>{title}</h4>
-          <h4 className='price'> {category} </h4>
-          <h4 className='price'> {difficulty} </h4>
-        </header>
-      </div>
-
-      
-      <p className='item-text'>{comments}</p>
-      <p className='item-text'>{upload_at}</p>
-      
       <Link to={`/quizes/${_id}`} className='btn btn-primary'>
         Comentarios{" "}
         {comments.length > 0 && (
           <span className='comment-count'>{comments.length}</span>
         )}
       </Link>
-    </article>
-  </div>*/
-}
+
+      {!auth.loading && user === auth.user._id && (
+        <button type='button' className='btn btn-danger'>
+          <i className='fas fa-times'></i>
+        </button>
+      )}
+    </div>
+  </div>
+);
 
 QuizItem.propTypes = {
   quiz: PropTypes.object.isRequired,
@@ -90,4 +73,4 @@ const mapStateToProps = (state) => ({
   auth: state.auth,
 });
 
-export default connect(mapStateToProps, {})(QuizItem);
+export default connect(mapStateToProps, { addLike, removeLike })(QuizItem);
