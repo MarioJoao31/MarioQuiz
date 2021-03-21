@@ -4,10 +4,10 @@ const initialState = {
   posts: [],
   post: null,
   loading: true,
-  error: {},
+  error: {}
 };
 
-function postReducer (state = initialState, action) {
+function postReducer(state = initialState, action) {
   const { type, payload } = action;
 
   switch (type) {
@@ -22,16 +22,15 @@ function postReducer (state = initialState, action) {
       return {
         ...state,
         error: payload,
-        loading: false,
+        loading: false
       };
-
     case UPDATE_LIKES:
       return {
         ...state,
         posts: state.posts.map((post) =>
           post._id === payload.id ? { ...post, likes: payload.likes } : post
         ),
-        loading: false,
+        loading: false
       };
     default:
       return state;

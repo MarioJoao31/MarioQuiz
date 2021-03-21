@@ -1,5 +1,5 @@
 import api from "../utils/api";
-import { setAlert } from "./alert";
+
 import { QUIZ_ERROR, GET_QUIZES, UPDATE_LIKES } from "./types";
 
 // GET Quizes

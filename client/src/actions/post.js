@@ -1,5 +1,5 @@
 import api from "../utils/api";
-import { setAlert } from "./alert";
+
 import { GET_POSTS, POST_ERROR, UPDATE_LIKES } from "./types";
 
 export const getPosts = () => async (dispatch) => {
