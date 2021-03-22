@@ -7,7 +7,6 @@ const initialState = {
   error: {},
 };
 
-
 function quizReducer(state = initialState, action) {
   const { type, payload } = action;
 
@@ -29,7 +28,7 @@ function quizReducer(state = initialState, action) {
     case UPDATE_LIKES:
       return {
         ...state,
-        quizes: state.quiz.map((quiz) =>
+        quizes: state.quizes.map((quiz) =>
           quiz._id === payload.id ? { ...quiz, likes: payload.likes } : quiz
         ),
         loading: false,
