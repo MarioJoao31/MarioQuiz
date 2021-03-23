@@ -1,4 +1,5 @@
-import { GET_QUIZES, QUIZ_ERROR, UPDATE_LIKES } from "../actions/types";
+import { GET_QUIZES, QUIZ_ERROR, UPDATE_LIKES, DELETE_QUIZ } from "../actions/types";
+
 
 const initialState = {
   quizes: [],
@@ -17,7 +18,12 @@ function quizReducer(state = initialState, action) {
         quizes: payload,
         loading: false,
       };
-
+      case DELETE_QUIZ:
+        return {
+          ...state,
+          posts: state.quizes.filter((quiz) => quiz._id !== payload),
+          loading: false,
+        };  
     case QUIZ_ERROR:
       return {
         ...state,

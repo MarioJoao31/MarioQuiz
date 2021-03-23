@@ -1,15 +1,17 @@
-import React from "react";
+import React, { Fragment } from "react";
 import PropTypes from "prop-types";
-import { connect } from "react-redux";
 import { Link } from "react-router-dom";
+
 import Moment from "react-moment";
-import { addLike, removeLike } from "../../actions/quiz";
+import { connect } from "react-redux";
+import { addLike, removeLike, deleteQuiz } from "../../actions/quiz";
 // TODO:TEnho de adicionar a as funcoes onClick para like e dislike
 //
 
 const QuizItem = ({
   addLike,
   removeLike,
+  deleteQuiz,
   auth,
   quiz: {
     _id,
@@ -38,14 +40,23 @@ const QuizItem = ({
       <p className='post-date'>
         Feito no dia <Moment format='DD/MM/YYYY'>{upload_at}</Moment>
       </p>
-
-      <button type='button' className='btn btn-light'>
-        <i className='fas fa-thumbs-up'></i>
-        <span> {likes.length > 0 && <span>{likes.length}</span>}</span>
+    
+      <Fragment>
+      <button
+        onClick={() => addLike(_id)}
+        type='button'
+        className='btn btn-light'
+      >
+        <i className='fas fa-thumbs-up' />{" "}
+        <span>{likes.length > 0 && <span>{likes.length}</span>}</span>
       </button>
 
-      <button type='button' className='btn btn-light'>
-        <i className='fas fa-thumbs-down'></i>
+      <button
+        onClick={() => removeLike(_id)}
+        type='button'
+        className='btn btn-light'
+      >
+        <i className='fas fa-thumbs-down' />
       </button>
 
       <Link to={`/quizes/${_id}`} className='btn btn-primary'>
@@ -56,21 +67,31 @@ const QuizItem = ({
       </Link>
 
       {!auth.loading && user === auth.user._id && (
-        <button type='button' className='btn btn-danger'>
+        <button
+          onClick={(e) => deleteQuiz(_id)}
+          type='button'
+          className='btn btn-danger'
+        >
           <i className='fas fa-times'></i>
         </button>
       )}
-    </div>
+      </Fragment>
+      </div>
   </div>
 );
 
 QuizItem.propTypes = {
   quiz: PropTypes.object.isRequired,
   auth: PropTypes.object.isRequired,
+  addLike: PropTypes.func.isRequired,
+  removeLike: PropTypes.func.isRequired,
+  deleteQuiz: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({
   auth: state.auth,
 });
 
-export default connect(mapStateToProps, { addLike, removeLike })(QuizItem);
+export default connect(mapStateToProps, { addLike, removeLike, deleteQuiz })(
+  QuizItem
+);
