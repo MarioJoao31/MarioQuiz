@@ -136,6 +136,7 @@ img {
   margin-right: 0.5rem;
   transition: opacity 0.2s ease-in;
   outline: none;
+  border-radius: 8px;
 }
 
 .badge {
@@ -159,7 +160,7 @@ img {
 .bg-primary,
 .badge-primary,
 .alert-primary {
-  background: #FACC25;
+  background: #facc25;
   color: #fff;
 }
 
@@ -323,7 +324,6 @@ button {
 .navbar a:hover {
   color: #facc25;
 }
-
 
 .navbar .welcome span {
   margin-right: 0.6rem;
@@ -573,7 +573,5 @@ button {
   .post button {
     padding: 0.3rem 0.4rem;
   }
-   /*  CSS DO MENU */
-
-
+  /*  CSS DO MENU */
 }

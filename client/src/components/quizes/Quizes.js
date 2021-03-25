@@ -4,6 +4,7 @@ import Spinner from "../layout/Spinner";
 import { getQuizes } from "../../actions/quiz";
 import { connect } from "react-redux";
 import QuizItem from "./QuizItem";
+import QuizForm from "./QuizForm";
 
 const Quizes = ({ getQuizes, quiz: { quizes, loading } }) => {
   useEffect(() => {
@@ -18,11 +19,12 @@ const Quizes = ({ getQuizes, quiz: { quizes, loading } }) => {
       <p className='lead'>
         <i className='fas fa-user'></i>Bem vindo ao Quizes
       </p>
-      {/* Quiz Form */}
+      <QuizForm />
       <div className='posts'>
         {quizes.map((quiz) => (
           <QuizItem key={quiz._id} quiz={quiz} />
-        ))};
+        ))}
+        ;
       </div>
     </Fragment>
   );

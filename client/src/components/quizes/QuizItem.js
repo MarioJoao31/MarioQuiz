@@ -29,54 +29,55 @@ const QuizItem = ({
 }) => (
   <div className='post bg-white p-1 my-1'>
     <div>
-      <a href='profile.html'>
+      <Link to={`/profile/${user}`}>
         <img className='round-img' src={avatar} alt='' />
-        <h4>{title}</h4>
-      </a>
+        <h4>{name}</h4>
+      </Link>
     </div>
 
     <div>
+      <p className='my-1'>{title}</p>
       <p className='my-1'>{category}</p>
       <p className='post-date'>
         Feito no dia <Moment format='DD/MM/YYYY'>{upload_at}</Moment>
       </p>
-    
+
       <Fragment>
-      <button
-        onClick={() => addLike(_id)}
-        type='button'
-        className='btn btn-light'
-      >
-        <i className='fas fa-thumbs-up' />{" "}
-        <span>{likes.length > 0 && <span>{likes.length}</span>}</span>
-      </button>
-
-      <button
-        onClick={() => removeLike(_id)}
-        type='button'
-        className='btn btn-light'
-      >
-        <i className='fas fa-thumbs-down' />
-      </button>
-
-      <Link to={`/quizes/${_id}`} className='btn btn-primary'>
-        Comentarios{" "}
-        {comments.length > 0 && (
-          <span className='comment-count'>{comments.length}</span>
-        )}
-      </Link>
-
-      {!auth.loading && user === auth.user._id && (
         <button
-          onClick={(e) => deleteQuiz(_id)}
+          onClick={() => addLike(_id)}
           type='button'
-          className='btn btn-danger'
+          className='btn btn-light'
         >
-          <i className='fas fa-times'></i>
+          <i className='fas fa-thumbs-up' />{" "}
+          <span>{likes.length > 0 && <span>{likes.length}</span>}</span>
         </button>
-      )}
+
+        <button
+          onClick={() => removeLike(_id)}
+          type='button'
+          className='btn btn-light'
+        >
+          <i className='fas fa-thumbs-down' />
+        </button>
+
+        <Link to={`/quizes/${_id}`} className='btn btn-primary'>
+          Comentarios{" "}
+          {comments.length > 0 && (
+            <span className='comment-count'>{comments.length}</span>
+          )}
+        </Link>
+
+        {!auth.loading && user === auth.user._id && (
+          <button
+            onClick={(e) => deleteQuiz(_id)}
+            type='button'
+            className='btn btn-danger'
+          >
+            <i className='fas fa-times'></i>
+          </button>
+        )}
       </Fragment>
-      </div>
+    </div>
   </div>
 );
 
