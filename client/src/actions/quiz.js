@@ -1,7 +1,13 @@
 import api from "../utils/api";
 import { setAlert } from "./alert";
 
-import { QUIZ_ERROR, GET_QUIZES, UPDATE_LIKES, DELETE_QUIZ } from "./types";
+import {
+  QUIZ_ERROR,
+  GET_QUIZES,
+  UPDATE_LIKES,
+  DELETE_QUIZ,
+  ADD_QUIZ,
+} from "./types";
 
 // GET Quizes
 export const getQuizes = () => async (dispatch) => {
@@ -57,7 +63,7 @@ export const removeLike = (id) => async (dispatch) => {
 // REMOVE quiz
 export const deleteQuiz = (id) => async (dispatch) => {
   try {
-     await api.delete(`/quizes/${id}`);
+    await api.delete(`/quizes/${id}`);
 
     dispatch({
       type: DELETE_QUIZ,
@@ -65,6 +71,31 @@ export const deleteQuiz = (id) => async (dispatch) => {
     });
 
     dispatch(setAlert("Quiz Removido", "success"));
+  } catch (err) {
+    dispatch({
+      type: QUIZ_ERROR,
+      payload: { msg: err.response.statusText, status: err.response.status },
+    });
+  }
+};
+
+// ADICIONAR quiz
+export const addQuiz = (formData) => async (dispatch) => {
+  const config = {
+    headers: {
+      "Content-Type": "application/json",
+    },
+  };
+
+  try {
+    const res = await api.post(`/quizes`, formData, config);
+
+    dispatch({
+      type: ADD_QUIZ,
+      payload: res.data,
+    });
+
+    dispatch(setAlert("Quiz Adicionado", "success"));
   } catch (err) {
     dispatch({
       type: QUIZ_ERROR,
