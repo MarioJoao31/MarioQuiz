@@ -38,6 +38,7 @@ const QuizItem = ({
     <div>
       <p className='my-1'>{title}</p>
       <p className='my-1'>{category}</p>
+      <p className='my-1'>{difficulty}</p>
       <p className='post-date'>
         Feito no dia <Moment format='DD/MM/YYYY'>{upload_at}</Moment>
       </p>

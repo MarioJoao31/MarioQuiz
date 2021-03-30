@@ -6,6 +6,7 @@ const Quiz = require("../../models/Quiz");
 const User = require("../../models/User");
 const auth = require("../../middleware/auth");
 const checkObjectId = require("../../middleware/checkObjectId");
+const { setAlert } = require("../../client/src/actions/alert");
 
 //TODO: ACABAR AQUI A MERDA DAS ROUTES PARA O QUIZ
 
@@ -25,6 +26,7 @@ router.post(
   async (req, res) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
+      
       return res.status(400).json({ error: errors.array() });
     }
 

@@ -4,6 +4,7 @@ import { setAlert } from "./alert";
 import {
   QUIZ_ERROR,
   GET_QUIZES,
+  GET_QUIZ,
   UPDATE_LIKES,
   DELETE_QUIZ,
   ADD_QUIZ,
@@ -96,6 +97,24 @@ export const addQuiz = (formData) => async (dispatch) => {
     });
 
     dispatch(setAlert("Quiz Adicionado", "success"));
+  } catch (err) {
+    dispatch(setAlert("Preenche os espaços todos!!", "danger"));
+    dispatch({
+      type: QUIZ_ERROR,
+      payload: { msg: err.response.statusText, status: err.response.status },
+    });
+  }
+};
+
+// GET Quiz
+export const getQuiz = id => async (dispatch) => {
+  try {
+    const res = await api.get(`/quizes/${id}`);
+
+    dispatch({
+      type: GET_QUIZ,
+      payload: res.data,
+    });
   } catch (err) {
     dispatch({
       type: QUIZ_ERROR,

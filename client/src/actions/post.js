@@ -9,6 +9,7 @@ import {
   ADD_POST,
 } from "./types";
 
+// GET POSTS
 export const getPosts = () => async (dispatch) => {
   try {
     const res = await api.get("/posts");
@@ -24,6 +25,7 @@ export const getPosts = () => async (dispatch) => {
     });
   }
 };
+
 // ADICIONA LIKE
 export const addLike = (id) => async (dispatch) => {
   try {
@@ -94,6 +96,23 @@ export const addPost = (formData) => async (dispatch) => {
     });
 
     dispatch(setAlert("Post Adicionado", "success"));
+  } catch (err) {
+    dispatch({
+      type: POST_ERROR,
+      payload: { msg: err.response.statusText, status: err.response.status },
+    });
+  }
+};
+
+// GET POST
+export const getPost = id => async (dispatch) => {
+  try {
+    const res = await api.get(`/posts/${id}`);
+
+    dispatch({
+      type: GET_POST,
+      payload: res.data,
+    });
   } catch (err) {
     dispatch({
       type: POST_ERROR,

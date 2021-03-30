@@ -4,6 +4,7 @@ import {
   UPDATE_LIKES,
   DELETE_QUIZ,
   ADD_QUIZ,
+  GET_QUIZ,
 } from "../actions/types";
 
 const initialState = {
@@ -23,6 +24,12 @@ function quizReducer(state = initialState, action) {
         quizes: payload,
         loading: false,
       };
+    case GET_QUIZ:
+      return{
+          ...state,
+          quiz: payload,
+          loading: false
+      }  
     case ADD_QUIZ:
       return {
         ...state,
