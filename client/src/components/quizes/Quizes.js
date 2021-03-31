@@ -24,7 +24,6 @@ const Quizes = ({ getQuizes, quiz: { quizes, loading } }) => {
         {quizes.map((quiz) => (
           <QuizItem key={quiz._id} quiz={quiz} />
         ))}
-        ;
       </div>
     </Fragment>
   );

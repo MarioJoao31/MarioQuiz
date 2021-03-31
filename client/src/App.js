@@ -12,7 +12,9 @@ import EditProfile from "./components/profile-forms/EditProfile";
 import Profiles from "./components/profiles/Profiles";
 import Profile from "./components/profile/Profile";
 import Posts from "./components/posts/Posts";
+import Post from "./components/post/Post";
 import Quizes from "./components/quizes/Quizes";
+import Quiz from "./components/quiz/Quiz";
 
 //redux
 import { Provider } from "react-redux";
@@ -35,6 +37,7 @@ const App = () => {
 
   return (
     <Provider store={store}>
+      
       <Router>
         <Fragment>
           <Navbar />
@@ -57,16 +60,10 @@ const App = () => {
                 path='/edit-profile'
                 component={EditProfile}
               />
-              <PrivateRoute
-                exact
-                path='/quizes'
-                component={Quizes}
-              />
-              <PrivateRoute
-                exact
-                path='/posts'
-                component={Posts}
-              />
+              <PrivateRoute exact path='/quizes' component={Quizes} />
+              <PrivateRoute exact path='/quizes/:id' component={Quiz} />
+              <PrivateRoute exact path='/posts' component={Posts} />
+              <PrivateRoute exact path='/posts/:id' component={Post} />
             </Switch>
           </section>
         </Fragment>

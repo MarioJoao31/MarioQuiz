@@ -38,7 +38,6 @@ const QuizForm = ({ addQuiz }) => {
           value={title}
           onChange={(e) => setTitle(e.target.value)}
         ></input>
-        
         //TODO: FAZER ESTA MERDA METER O NOME ESCOLHIDO PELO O MENU NO menuWorld
         <Menu vertical>
           <Dropdown item text={menuWord}>

@@ -1,12 +1,12 @@
 import React, { Fragment } from "react";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
+import { connect } from "react-redux";
 
 import Moment from "react-moment";
-import { connect } from "react-redux";
 import { addLike, removeLike, deleteQuiz } from "../../actions/quiz";
-// TODO:TEnho de adicionar a as funcoes onClick para like e dislike
-//
+import Quiz from "../quiz/Quiz";
+//TODO: tenho de fazer aqui a merda das perguntas, tenho de arranjar maneira de ir buscar as perguntas e maneira de como fazer o resultado. Ja vi um tutorial.
 
 const QuizItem = ({
   addLike,
@@ -21,11 +21,12 @@ const QuizItem = ({
     title,
     category,
     difficulty,
-    question_possibility,
+    question_possibility: { correct_answer, incorrect_answer },
     likes,
     comments,
     upload_at,
   },
+  showActions,
 }) => (
   <div className='post bg-white p-1 my-1'>
     <div>
@@ -44,43 +45,58 @@ const QuizItem = ({
       </p>
 
       <Fragment>
-        <button
-          onClick={() => addLike(_id)}
-          type='button'
-          className='btn btn-light'
-        >
-          <i className='fas fa-thumbs-up' />{" "}
-          <span>{likes.length > 0 && <span>{likes.length}</span>}</span>
-        </button>
+        <div className='container2'>
+          <h2 className='text-2xl  m-2'>PERGUNTA BLABLABLAL</h2>
 
-        <button
-          onClick={() => removeLike(_id)}
-          type='button'
-          className='btn btn-light'
-        >
-          <i className='fas fa-thumbs-down' />
-        </button>
-
-        <Link to={`/quizes/${_id}`} className='btn btn-primary'>
-          Comentarios{" "}
-          {comments.length > 0 && (
-            <span className='comment-count'>{comments.length}</span>
-          )}
-        </Link>
-
-        {!auth.loading && user === auth.user._id && (
-          <button
-            onClick={(e) => deleteQuiz(_id)}
-            type='button'
-            className='btn btn-danger'
-          >
-            <i className='fas fa-times'></i>
-          </button>
-        )}
+          <div className='flex flex-wrap mt-4 space-x-4'>
+            <button className='w-1/4 p-4 m-3 space-x-4'>Resposta</button>
+            <button className='w-1/4 p-4 m-3'>Resposta</button>
+          </div>
+        </div>
       </Fragment>
+
+      {showActions && (
+        <Fragment>
+          <button
+            onClick={() => addLike(_id)}
+            type='button'
+            className='btn btn-light'
+          >
+            <i className='fas fa-thumbs-up' />{" "}
+            <span>{likes.length > 0 && <span>{likes.length}</span>}</span>
+          </button>
+
+          <button
+            onClick={() => removeLike(_id)}
+            type='button'
+            className='btn btn-light'
+          >
+            <i className='fas fa-thumbs-down' />
+          </button>
+
+          <Link to={`/quizes/${_id}`} className='btn btn-primary'>
+            Fazer Quiz{" "}
+            {comments.length > 0 && (
+              <span className='comment-count'>{comments.length} </span>
+            )}
+          </Link>
+
+          {!auth.loading && user === auth.user._id && (
+            <button
+              onClick={(e) => deleteQuiz(_id)}
+              type='button'
+              className='btn btn-danger'
+            >
+              <i className='fas fa-times'></i>
+            </button>
+          )}
+        </Fragment>
+      )}
     </div>
   </div>
 );
+
+QuizItem.defaultProps = { showActions: true };
 
 QuizItem.propTypes = {
   quiz: PropTypes.object.isRequired,

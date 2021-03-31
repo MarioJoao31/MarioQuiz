@@ -4,6 +4,7 @@ import { setAlert } from "./alert";
 import {
   DELETE_POST,
   GET_POSTS,
+  GET_POST,
   POST_ERROR,
   UPDATE_LIKES,
   ADD_POST,
@@ -105,7 +106,7 @@ export const addPost = (formData) => async (dispatch) => {
 };
 
 // GET POST
-export const getPost = id => async (dispatch) => {
+export const getPost = (id) => async (dispatch) => {
   try {
     const res = await api.get(`/posts/${id}`);
 
