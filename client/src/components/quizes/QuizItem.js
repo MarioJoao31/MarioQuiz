@@ -6,6 +6,7 @@ import { connect } from "react-redux";
 import Moment from "react-moment";
 import { addLike, removeLike, deleteQuiz } from "../../actions/quiz";
 import Quiz from "../quiz/Quiz";
+
 //TODO: tenho de fazer aqui a merda das perguntas, tenho de arranjar maneira de ir buscar as perguntas e maneira de como fazer o resultado. Ja vi um tutorial.
 
 const QuizItem = ({
@@ -48,10 +49,38 @@ const QuizItem = ({
         <div className='container2'>
           <h2 className='text-2xl  m-2'>PERGUNTA BLABLABLAL</h2>
 
-          <div className='flex flex-wrap mt-4 space-x-4'>
-            <button className='w-1/4 p-4 m-3 space-x-4'>Resposta</button>
-            <button className='w-1/4 p-4 m-3'>Resposta</button>
+          <div className='col-md-6'>
+            <div className='btn-group mb-2 mb-md-0 btn-block'>
+              <button type='button' className='btn btn-outline-primary'>
+                Outline Button es pergunta pode ser muito muito grande
+              </button>
+              <button type='button' className='btn btn-outline-primary'>
+                Outline Button Outline ButtonOutline ButtonOutline ButtonOutline
+                ButtonOutline Button
+              </button>
+            </div>
           </div>
+        </div>
+        <div className='grid cols-2 gap-6 mt-4'>
+          <button
+            type='button'
+            className='bg-white p-4 text-purple-800 font-semibold rounded shadow mb-4'
+          >
+            Outline Button Outline ButtonOutline ButtonOutline ButtonOutline
+            ButtonOutline Button
+          </button>
+          <button type='button' className='bg-white p-4'>
+            Outline Button Outline ButtonOutline ButtonOutline ButtonOutline
+            ButtonOutline Button
+          </button>
+          <button type='button' className='bg-white p-4'>
+            Outline Button Outline ButtonOutline ButtonOutline ButtonOutline
+            ButtonOutline Button
+          </button>
+          <button type='button' className='bg-white p-4'>
+            Outline Button Outline ButtonOutline ButtonOutline ButtonOutline
+            ButtonOutline Button
+          </button>
         </div>
       </Fragment>
 

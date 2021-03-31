@@ -45,7 +45,8 @@ img {
 
 .container2 {
   background-color: #ffc800af;
-  
+  justify-content: center;
+
   max-width: 1100px;
   margin: auto;
   overflow: hidden;
