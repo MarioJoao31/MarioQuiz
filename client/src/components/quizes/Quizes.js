@@ -22,7 +22,7 @@ const Quizes = ({ getQuizes, quiz: { quizes, loading } }) => {
       <QuizForm />
       <div className='posts'>
         {quizes.map((quiz) => (
-          <QuizItem key={quiz._id} quiz={quiz} />
+          <QuizItem key={quiz._id} quiz={quiz} showActions={true}/>
         ))}
       </div>
     </Fragment>

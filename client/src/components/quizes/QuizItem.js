@@ -28,6 +28,7 @@ const QuizItem = ({
     upload_at,
   },
   showActions,
+  showQuestions,
 }) => (
   <div className='post bg-white p-1 my-1'>
     <div>
@@ -38,51 +39,42 @@ const QuizItem = ({
     </div>
 
     <div>
-      <p className='my-1'>{title}</p>
+      <div className='text-5xl text-white font-bold mx-auto max-w-6xl flex items-center justify-center'>
+        <span className=' text-transparent bg-gradient-to-r bg-clip-text from-blue-500 to-green-500'>
+          {title}
+        </span>
+      </div>
       <p className='my-1'>{category}</p>
       <p className='my-1'>{difficulty}</p>
       <p className='post-date'>
         Feito no dia <Moment format='DD/MM/YYYY'>{upload_at}</Moment>
       </p>
 
-      <Fragment>
-        <div className='container2'>
-          <h2 className='text-2xl  m-2'>PERGUNTA BLABLABLAL</h2>
-
-          <div className='col-md-6'>
-            <div className='btn-group mb-2 mb-md-0 btn-block'>
-              <button type='button' className='btn btn-outline-primary'>
-                Outline Button es pergunta pode ser muito muito grande
-              </button>
-              <button type='button' className='btn btn-outline-primary'>
+      {showQuestions && (
+        <Fragment>
+          <div className='container3'>
+            <div className=' bg-pink-400 text-white p-10 rounded-lg shadow-md'>
+              <h2 className='text-2xl  m-2'>PERGUNTA BLABLABLAL</h2>
+            </div>
+            <div className='grid grid-cols-2 gap-6 mt-6'>
+              <button
+                type='button'
+                className='bg-white p-4 text-purple-800 font-semibold rounded shadow mb-4 hover:bg-black-100 focus:outline-none'
+              >
                 Outline Button Outline ButtonOutline ButtonOutline ButtonOutline
-                ButtonOutline Button
+                ButtonOutline Button Outline Button Outline ButtonOutline
+                ButtonOutline ButtonOutline ButtonOutline Button
+              </button>
+              <button
+                type='button'
+                className='bg-white p-4 text-purple-800 font-semibold rounded shadow mb-4'
+              >
+                Outline
               </button>
             </div>
           </div>
-        </div>
-        <div className='grid cols-2 gap-6 mt-4'>
-          <button
-            type='button'
-            className='bg-white p-4 text-purple-800 font-semibold rounded shadow mb-4'
-          >
-            Outline Button Outline ButtonOutline ButtonOutline ButtonOutline
-            ButtonOutline Button
-          </button>
-          <button type='button' className='bg-white p-4'>
-            Outline Button Outline ButtonOutline ButtonOutline ButtonOutline
-            ButtonOutline Button
-          </button>
-          <button type='button' className='bg-white p-4'>
-            Outline Button Outline ButtonOutline ButtonOutline ButtonOutline
-            ButtonOutline Button
-          </button>
-          <button type='button' className='bg-white p-4'>
-            Outline Button Outline ButtonOutline ButtonOutline ButtonOutline
-            ButtonOutline Button
-          </button>
-        </div>
-      </Fragment>
+        </Fragment>
+      )}
 
       {showActions && (
         <Fragment>
@@ -126,6 +118,7 @@ const QuizItem = ({
 );
 
 QuizItem.defaultProps = { showActions: true };
+QuizItem.defaultProps = { showQuestions: false };
 
 QuizItem.propTypes = {
   quiz: PropTypes.object.isRequired,

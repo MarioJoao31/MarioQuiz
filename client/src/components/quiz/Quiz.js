@@ -18,7 +18,7 @@ const Quiz = ({ getQuiz, quiz: { quiz, loading }, match }) => {
       <Link to='/quizes' className='btn alert-primary'>
         Voltar
       </Link>
-      <PostItem quiz={quiz} showActions={false}/>
+      <PostItem quiz={quiz} showActions={false} showQuestions={true}/>
     </Fragment>
   );
 };

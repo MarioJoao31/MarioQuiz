@@ -33,12 +33,20 @@ const QuizForm = ({ addQuiz }) => {
         }}
       >
         <input
+          className=' border border-transparent border-2 focus:outline-none focus:ring-2 focus:ring-yellow-400 focus:border-transparent m-1'
           placeholder='Titulo do Quiz'
           type='text'
           value={title}
           onChange={(e) => setTitle(e.target.value)}
         ></input>
-        //TODO: FAZER ESTA MERDA METER O NOME ESCOLHIDO PELO O MENU NO menuWorld
+
+        <input
+          className='border border-blue rounded-md focus:outline-none focus:ring-2 focus:ring-yellow-400 focus:border-transparent m-1'
+          placeholder='Categoria do Quiz'
+          type='text'
+          value={category}
+          onChange={(e) => setCategory(e.target.value)}
+        ></input>
         <Menu vertical>
           <Dropdown item text={menuWord}>
             <Dropdown.Menu>
@@ -54,12 +62,6 @@ const QuizForm = ({ addQuiz }) => {
             </Dropdown.Menu>
           </Dropdown>
         </Menu>
-        <input
-          placeholder='Categoria do Quiz'
-          type='text'
-          value={category}
-          onChange={(e) => setCategory(e.target.value)}
-        ></input>
         <input type='submit' className='btn btn-dark my-1' value='Postar' />
       </form>
     </div>
