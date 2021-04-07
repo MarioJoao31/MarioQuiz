@@ -51,6 +51,8 @@ export const Navbar = ({ auth: { isAuthenticated, loading }, logout }) => {
           <i className='fas fa-code'></i> Tinder Quiz
         </Link>
       </h1>
+
+      
       {!loading && (
         <Fragment> {isAuthenticated ? authLinks : guestLinks} </Fragment>
       )}
