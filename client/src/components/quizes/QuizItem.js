@@ -5,9 +5,8 @@ import { connect } from "react-redux";
 
 import Moment from "react-moment";
 import { addLike, removeLike, deleteQuiz } from "../../actions/quiz";
-import Quiz from "../quiz/Quiz";
 
-//TODO: tenho de fazer aqui a merda das perguntas, tenho de arranjar maneira de ir buscar as perguntas e maneira de como fazer o resultado. Ja vi um tutorial.
+
 
 const QuizItem = ({
   addLike,

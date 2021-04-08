@@ -219,6 +219,7 @@ img {
 
 .btn:hover {
   opacity: 0.8;
+  color: #17a2b8;
 }
 
 .bg-light,
@@ -227,7 +228,8 @@ img {
 }
 
 .round-img {
-  border-radius: 50%;
+  border-radius: 30%;
+  margin-left: 50px;
 }
 
 .line {
@@ -259,7 +261,7 @@ img {
 
 .form input[type="text"],
 .form input[type="email"],
-.form input[type="password"], 
+.form input[type="password"],
 .form input[type="date"],
 .form textarea {
   display: block;
@@ -769,9 +771,7 @@ button {
   background-color: rgba(0, 0, 0, 0.1);
 }
 
-.box{
+.box {
   display: flex;
   align-items: stretch;
 }
-
-

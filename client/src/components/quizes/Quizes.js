@@ -1,4 +1,4 @@
-import React, { Fragment, useEffect } from "react";
+import React, { Fragment, useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import Spinner from "../layout/Spinner";
 import { getQuizes } from "../../actions/quiz";
@@ -6,7 +6,10 @@ import { connect } from "react-redux";
 import QuizItem from "./QuizItem";
 import QuizForm from "./QuizForm";
 
-const Quizes = ({ getQuizes, quiz: { quizes, loading } }) => {
+const Quizes = ({ getQuizes, quiz: { quizes, loading } }) => { 
+
+  const [showInput, setShowInput]=useState(false)
+
   useEffect(() => {
     getQuizes();
   }, [getQuizes]);
@@ -19,13 +22,16 @@ const Quizes = ({ getQuizes, quiz: { quizes, loading } }) => {
       <p className='lead'>
         <i className='fas fa-user'></i>Bem vindo ao Quizes
       </p>
-      <QuizForm showInput={true} />
+      <button onClick={(e) => setShowInput(!showInput) } className="btn btn-dark"> {showInput?("Não fazer quiz"):("Criar quiz")}</button>
+      <QuizForm showInput={showInput} />
       <div className='posts'>
         {quizes.map((quiz) => (
           <QuizItem key={quiz._id} quiz={quiz} showActions={true} />
         ))}
       </div>
     </Fragment>
+
+    
   );
 };
 
