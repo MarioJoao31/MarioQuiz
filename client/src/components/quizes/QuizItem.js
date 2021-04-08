@@ -96,10 +96,7 @@ const QuizItem = ({
           </button>
 
           <Link to={`/quizes/${_id}`} className='btn btn-primary'>
-            Fazer Quiz{" "}
-            {comments.length > 0 && (
-              <span className='comment-count'>{comments.length} </span>
-            )}
+            Fazer Quiz
           </Link>
 
           {!auth.loading && user === auth.user._id && (

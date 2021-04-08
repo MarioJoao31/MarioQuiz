@@ -1,7 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, Fragment } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import { Dropdown, Menu, Container } from "semantic-ui-react";
 
 import { addQuiz } from "../../actions/quiz";
 
@@ -15,58 +14,75 @@ document.head.appendChild(styleLink);
 
 /* FIM DE MENUUUU DE CATEGORIA */
 
-const QuizForm = ({ addQuiz }) => {
+const QuizForm = ({ addQuiz, showInput }) => {
   const [title, setTitle] = useState("");
   const [difficulty, setDifficulty] = useState("");
   const [category, setCategory] = useState("");
-  const menuWord = "Dificuldade";
 
   return (
-    <div>
-      <form
-        onSubmit={(e) => {
-          e.preventDefault();
-          addQuiz({ title, difficulty, category });
-          setTitle("");
-          setDifficulty("");
-          setCategory("");
-        }}
-      >
-        <input
-          className=' border border-transparent border-2 focus:outline-none focus:ring-2 focus:ring-yellow-400 focus:border-transparent m-1'
-          placeholder='Titulo do Quiz'
-          type='text'
-          value={title}
-          onChange={(e) => setTitle(e.target.value)}
-        ></input>
+    <Fragment>
+      {showInput && (
+        <div className='mb-4 md:flex md:flex-wrap space-between justify-center'>
+          <form
+            id='submeter'
+            onSubmit={(e) => {
+              e.preventDefault();
+              addQuiz({ title, difficulty, category });
+              setTitle("");
+              setDifficulty("");
+              setCategory("");
+            }}
+            className='mb-4 md:flex md:flex-wrap md:justify-between'
+          >
+            <div className="box"> 
+              <div className='form__group'>
+                <input
+                  className=' form__input '
+                  placeholder='Titulo do Quiz'
+                  type='text'
+                  value={title}
+                  onChange={(e) => setTitle(e.target.value)}
+                ></input>
+                <label for='name' className='form__label'>
+                  Titulo do quiz
+                </label>
+              </div>
+              <div className='form__group'>
+                <input
+                  className=' form__input '
+                  placeholder='Categoria do Quiz'
+                  type='text'
+                  value={category}
+                  onChange={(e) => setCategory(e.target.value)}
+                ></input>
+                <label for='name' className='form__label'>
+                  Categoria do quiz
+                </label>
+              </div>
 
-        <input
-          className='border border-blue rounded-md focus:outline-none focus:ring-2 focus:ring-yellow-400 focus:border-transparent m-1'
-          placeholder='Categoria do Quiz'
-          type='text'
-          value={category}
-          onChange={(e) => setCategory(e.target.value)}
-        ></input>
-        <Menu vertical>
-          <Dropdown item text={menuWord}>
-            <Dropdown.Menu>
-              <Dropdown.Item onClick={() => setDifficulty("Fácil")}>
-                Fácil
-              </Dropdown.Item>
-              <Dropdown.Item onClick={() => setDifficulty("Médio")}>
-                Médio
-              </Dropdown.Item>
-              <Dropdown.Item onClick={() => setDifficulty("Díficil")}>
-                Díficil
-              </Dropdown.Item>
-            </Dropdown.Menu>
-          </Dropdown>
-        </Menu>
-        <input type='submit' className='btn btn-dark my-1' value='Postar' />
-      </form>
-    </div>
+              <div class='relative inline-block  text-gray-700'>
+                <select
+                  class=' h-10 pl-3 pr-6 text-base placeholder-gray-600 border rounded-lg appearance-none focus:shadow-outline'
+                  placeholder='Regular input'
+                  value={difficulty}
+                  onChange={(e) => setDifficulty(e.target.value)}
+                  className=' border bg-white rounded px-2 py-2 outline-none text-gray-700'
+                >
+                  <option value='Fácil'> Dificuldade-Fácil </option>
+                  <option value='Médio'>Dificuldade-Médio </option>
+                  <option value='Díficil'>Dificuldade-Díficil </option>
+                </select>
+              </div>
+              </div>
+            <input type='submit' className='btnsexy' value='Postar' />
+          </form>
+        </div>
+      )}
+    </Fragment>
   );
 };
+
+QuizForm.defaultProps = { showInput: false };
 
 QuizForm.propTypes = {
   addQuiz: PropTypes.func.isRequired,

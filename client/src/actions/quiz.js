@@ -1,5 +1,5 @@
 import api from "../utils/api";
-import { setAlert } from "./alert";
+import { setAlert } from "./alert.js";
 
 import {
   QUIZ_ERROR,
