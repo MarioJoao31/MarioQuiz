@@ -6,8 +6,6 @@ import { connect } from "react-redux";
 import Moment from "react-moment";
 import { addLike, removeLike, deleteQuiz } from "../../actions/quiz";
 
-
-
 const QuizItem = ({
   addLike,
   removeLike,
@@ -32,7 +30,7 @@ const QuizItem = ({
   <div className='post bg-white p-1 my-1'>
     <div>
       <Link to={`/profile/${user}`}>
-        <img className='round-img' src={avatar} alt='' />
+        <img className='round-img2' src={avatar} alt='' />
         <h4>{name}</h4>
       </Link>
     </div>
@@ -51,26 +49,25 @@ const QuizItem = ({
 
       {showQuestions && (
         <Fragment>
-          <div className='container3'>
-            <div className=' bg-pink-400 text-white p-10 rounded-lg shadow-md'>
-              <h2 className='text-2xl  m-2'>PERGUNTA BLABLABLAL</h2>
-            </div>
-            <div className='grid grid-cols-2 gap-6 mt-6'>
-              <button
-                type='button'
-                className='bg-white p-4 text-purple-800 font-semibold rounded shadow mb-4 hover:bg-black-100 focus:outline-none'
-              >
-                Outline Button Outline ButtonOutline ButtonOutline ButtonOutline
-                ButtonOutline Button Outline Button Outline ButtonOutline
-                ButtonOutline ButtonOutline ButtonOutline Button
-              </button>
-              <button
-                type='button'
-                className='bg-white p-4 text-purple-800 font-semibold rounded shadow mb-4'
-              >
-                Outline
-              </button>
-            </div>
+          <div id='quizzie'>
+            <h1>What Type Of Thing Are You?</h1>
+            <ul class='quiz-step step1 current'>
+              <li class='question'>
+                <div class='question-wrap'>
+                  <h2>Question #1: Are you more...</h2>
+                </div>
+              </li>
+              <li class='quiz-answer low-value' data-quizIndex='2'>
+                <div class='answer-wrap'>
+                  <p class='answer-text'>This Thing</p>
+                </div>
+              </li>
+              <li class='quiz-answer high-value' data-quizIndex='4'>
+                <div class='answer-wrap'>
+                  <p class='answer-text'>That Thing</p>
+                </div>
+              </li>
+            </ul>
           </div>
         </Fragment>
       )}

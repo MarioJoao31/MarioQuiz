@@ -229,6 +229,10 @@ img {
 
 .round-img {
   border-radius: 30%;
+  
+}
+.round-img2 {
+  border-radius: 30%;
   margin-left: 50px;
 }
 
@@ -761,17 +765,82 @@ button {
   z-index: 99;
 }
 
-/*hide the items when the select box is closed:*/
-.select-hide {
+/* Fazer QUiz  css  */
+
+.h1panda {
+  font-family: "Satisfy", "cursive";
+  font-size: 2.5em;
+}
+
+.h2panda {
+  font-family: "Pathway Gothic One", "sans-serif";
+  font-size: 2em;
+}
+
+
+
+#quizzie {
+  padding: 5% 0;
+  /* Individual Steps/Sections */
+  /* Content */
+}
+#quizzie ul {
+  list-style: none;
+  display: block;
+  width: auto;
+  margin: 2% 2%;
+  padding: 2%;
+  overflow: auto;
   display: none;
+  /* Step Questions and Answer Options */
 }
-
-.select-items div:hover,
-.same-as-selected {
-  background-color: rgba(0, 0, 0, 0.1);
+#quizzie ul.current {
+  display: block;
 }
-
-.box {
-  display: flex;
-  align-items: stretch;
+#quizzie ul li {
+  display: inline-block;
+  width: 49%;
+  margin-right: 2%;
+  overflow: auto;
+  text-align: center;
+}
+#quizzie ul li.quiz-answer {
+  cursor: pointer;
+}
+#quizzie ul li.question,
+#quizzie ul li.results-inner {
+  display: block;
+  float: none;
+  width: 100%;
+  text-align: center;
+  margin: 0;
+  margin-bottom: 2%;
+}
+#quizzie ul li.results-inner {
+  padding: 5% 2%;
+}
+#quizzie ul li.results-inner img {
+  width: 250px;
+}
+#quizzie ul li:last-child {
+  margin-right: 0;
+}
+#quizzie .question-wrap,
+#quizzie .answer-wrap {
+  display: block;
+  padding: 1%;
+  margin: 1em 10%;
+  -moz-border-radius: 10px;
+  -webkit-border-radius: 10px;
+  border-radius: 10px;
+}
+#quizzie .answer-wrap {
+  background: Turquoise;
+  -moz-transition: background-color 0.5s ease;
+  -o-transition: background-color 0.5s ease;
+  -webkit-transition: background-color 0.5s ease;
+  transition: background-color 0.5s ease;
+}
+#quizzie .answer-wrap:hover {
+  background: DarkTurquoise;
 }
