@@ -5,6 +5,7 @@ import { connect } from "react-redux";
 
 import Moment from "react-moment";
 import { addLike, removeLike, deleteQuiz } from "../../actions/quiz";
+import QuizAnswer from './QuizAnswer';
 
 const QuizItem = ({
   addLike,
@@ -19,7 +20,6 @@ const QuizItem = ({
     title,
     category,
     difficulty,
-    question_possibility: { correct_answer, incorrect_answer },
     likes,
     comments,
     upload_at,
@@ -36,40 +36,21 @@ const QuizItem = ({
     </div>
 
     <div>
-      <div className='text-5xl text-white font-bold mx-auto max-w-6xl flex items-center justify-center'>
-        <span className=' text-transparent bg-gradient-to-r bg-clip-text from-blue-500 to-green-500'>
-          {title}
-        </span>
+      <div className='titulo'>Título: {title}</div>
+      <div className='p-1'>
+        <p className='ml'>
+          <b>Categoria</b>: {category}
+        </p>
+        <p className='ml'>
+          <b>Grau de dificuldade:</b> {difficulty}
+        </p>
       </div>
-      <p className='my-1'>{category}</p>
-      <p className='my-1'>{difficulty}</p>
       <p className='post-date'>
         Feito no dia <Moment format='DD/MM/YYYY'>{upload_at}</Moment>
       </p>
 
       {showQuestions && (
-        <Fragment>
-          <div id='quizzie'>
-            <h1>What Type Of Thing Are You?</h1>
-            <ul class='quiz-step step1 current'>
-              <li class='question'>
-                <div class='question-wrap'>
-                  <h2>Question #1: Are you more...</h2>
-                </div>
-              </li>
-              <li class='quiz-answer low-value' data-quizIndex='2'>
-                <div class='answer-wrap'>
-                  <p class='answer-text'>This Thing</p>
-                </div>
-              </li>
-              <li class='quiz-answer high-value' data-quizIndex='4'>
-                <div class='answer-wrap'>
-                  <p class='answer-text'>That Thing</p>
-                </div>
-              </li>
-            </ul>
-          </div>
-        </Fragment>
+        <QuizAnswer/>
       )}
 
       {showActions && (

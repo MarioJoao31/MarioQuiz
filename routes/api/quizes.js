@@ -259,6 +259,7 @@ router.post("/question/:id", [auth], async (req, res) => {
     }
 
     const newQuestion = {
+      title_question: req.body.title_question,
       correct_answer: req.body.correct_answer,
       incorrect_answer: req.body.incorrect_answer,
     };
@@ -275,7 +276,7 @@ router.post("/question/:id", [auth], async (req, res) => {
 });
 
 //@rout Delete api/quizes/question/:id/:question_id
-//@desc elimina comentario
+//@desc elimina pergunta
 //@access private
 
 router.delete("/question/:id/:question_id", auth, async (req, res) => {

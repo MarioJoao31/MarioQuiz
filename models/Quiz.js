@@ -27,12 +27,15 @@ const QuizSchema = new Schema({
 
   question_possibility: [
     {
+      title_question: {
+        type: String,
+      },
       correct_answer: {
         type: String,
       },
-      incorrect_answer: {
+      incorrect_answer: [{
         type: String,
-      },
+      }],
     },
   ],
 

@@ -152,7 +152,7 @@ export const addComment = (postId, formData) => async (dispatch) => {
 // REMOVE comentario de post
 export const deleteComment = (postId, commentId) => async (dispatch) => {
   try {
-    await api.delete(`/posts/${postId}/comment/${commentId}`);
+    await api.delete(`/posts/${postId}/${commentId}`);
 
     dispatch({
       type: REMOVE_COMMENT,

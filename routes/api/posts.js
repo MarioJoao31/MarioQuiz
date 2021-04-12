@@ -191,7 +191,7 @@ router.post(
   }
 );
 
-//@rout Delete api/posts/Comment/:id/:comment_id
+//@rout Delete api/posts/comment/:id/:comment_id
 //@desc elimina comentario
 //@access private
 router.delete("/:id/:comment_id", auth, async (req, res) => {
