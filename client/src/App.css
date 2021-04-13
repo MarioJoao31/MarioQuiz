@@ -348,7 +348,6 @@ button {
 
 /* Landing Page */
 .landing {
-  
   background: url("img/QUIZ.jpg");
   margin: auto;
   bottom: 0;
@@ -360,7 +359,7 @@ button {
   height: 100vh;
 }
 
-.landing-inner { 
+.landing-inner {
   color: #fff;
   height: 100%;
   width: 80%;
@@ -608,7 +607,8 @@ button {
 }
 
 .body {
-  background: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/38816/image-from-rawpixel-id-2210775-jpeg.jpg") center center no-repeat;
+  background: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/38816/image-from-rawpixel-id-2210775-jpeg.jpg")
+    center center no-repeat;
   background-size: cover;
   width: 100vw;
   height: 100vh;
@@ -670,10 +670,98 @@ inputSexy:-webkit-autofill,
 inputSexy:-webkit-autofill:hover,
 inputSexy:-webkit-autofill:focus {
   border-bottom: 5px solid #95a4ff;
-  -webkit-text-fill-color: #2A293E;
+  -webkit-text-fill-color: #2a293e;
   box-shadow: unset;
   -webkit-box-shadow: 0 0 0px 1000px #f8f4e5 inset;
   transition: background-color 5000s ease-in-out 0s;
 }
-/*radio button para o form do quiz*/
 
+/*Quiz Answer*/
+.app {
+  background-color: #252d4a;
+  width: 450px;
+  min-height: 200px;
+  height: min-content;
+  border-radius: 15px;
+  padding: 20px;
+  box-shadow: 10px 10px 42px 0px rgba(0, 0, 0, 0.75);
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.score-section {
+  display: flex;
+  font-size: 24px;
+  align-items: center;
+}
+
+/* QUESTION/TIMER/LEFT SECTION */
+.question-section {
+  width: 100%;
+  position: relative;
+}
+
+.question-count {
+  margin-bottom: 20px;
+}
+
+.question-count span {
+  font-size: 28px;
+}
+
+.question-text {
+  margin-bottom: 12px;
+}
+
+.timer-text {
+  background: rgb(230, 153, 12);
+  padding: 15px;
+  margin-top: 20px;
+  margin-right: 20px;
+  border: 5px solid rgb(255, 189, 67);
+  border-radius: 15px;
+  text-align: center;
+}
+
+/* ANSWERS/RIGHT SECTION */
+.answer-section {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.buttonAnswer {
+  width: 100%;
+  font-size: 16px;
+  color: #ffffff;
+  background-color: #252d4a;
+  border-radius: 15px;
+  margin-bottom: 10px;
+  display: flex;
+  padding: 5px;
+  justify-content: flex-start;
+  align-items: center;
+  border: 2px solid #234668;
+  cursor: pointer;
+}
+
+.correct {
+  background-color: #2f922f;
+}
+
+.incorrect {
+  background-color: #ff3333;
+}
+
+buttonAnswer:hover {
+  background-color: #555e7d;
+}
+
+buttonAnswer:focus {
+  outline: 0px;
+}
+
+buttonAnswer svgAnswer {
+  margin-right: 5px;
+}

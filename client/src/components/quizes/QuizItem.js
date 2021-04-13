@@ -5,7 +5,7 @@ import { connect } from "react-redux";
 
 import Moment from "react-moment";
 import { addLike, removeLike, deleteQuiz } from "../../actions/quiz";
-import QuizAnswer from './QuizAnswer';
+import QuizAnswer from "./QuizAnswer";
 
 const QuizItem = ({
   addLike,
@@ -27,8 +27,6 @@ const QuizItem = ({
   showActions,
   showQuestions,
 }) => (
-
-
   <div className='post bg-white p-1 my-1'>
     <div>
       <Link to={`/profile/${user}`}>
@@ -50,12 +48,6 @@ const QuizItem = ({
       <p className='post-date'>
         Feito no dia <Moment format='DD/MM/YYYY'>{upload_at}</Moment>
       </p>
-
-      {showQuestions && (
-        
-          <QuizAnswer key={_id} />
-        
-      )}
 
       {showActions && (
         <Fragment>
@@ -92,8 +84,12 @@ const QuizItem = ({
         </Fragment>
       )}
     </div>
+    {showQuestions && (
+      <Fragment>
+        <QuizAnswer key={_id} />
+      </Fragment>
+    )}
   </div>
-
 );
 
 QuizItem.defaultProps = { showActions: true };

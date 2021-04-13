@@ -7,37 +7,66 @@ import Spinner from "../layout/Spinner";
 const QuizAnswer = ({ quiz: { quiz, loading } }, props) => {
   //TODO: Variaveis para o quiz funcionar e randomizar as respostas
 
-  const [iQuestion, setiQuestion] = useState(0);
+  const [increLength, setincreLength] = useState(1);
+  const [currentQuestion, setCurrentQuestion] = useState(0);
+  const [showScore, setShowScore] = useState(false);
+  const [score, setScore] = useState(0);
 
-  const [allAnswers, setallAnswers] = useState(
-    quiz.question_possibility[iQuestion].answers
+  const [QuestionLength, setQuestionLength] = useState(
+    quiz.question_possibility
   );
+
+  let rincre = QuestionLength.length - increLength;
+
+  const [Questions, setQuestions] = useState(
+    quiz.question_possibility[currentQuestion].title_question
+  );
+  const [allAnswers, setallAnswers] = useState([
+    quiz.question_possibility[currentQuestion].answers,
+  ]);
+  const [correctAnswer, setcorretAnswer] = useState(
+    quiz.question_possibility[currentQuestion].correct_answer
+  );
+
+  // Separação
+
+  const handleAnswerOptionClick = (isCorrect) => {
+    if (isCorrect === correctAnswer[currentQuestion]) {
+      setScore(score + 1);
+    }
+
+    const nextQuestion = currentQuestion + 1;
+    if (nextQuestion < allAnswers.length) {
+      setCurrentQuestion(nextQuestion);
+    } else {
+      setShowScore(true);
+    }
+  };
 
   return loading ? (
     <Spinner />
   ) : (
     <Fragment>
-      <div id='quizzie'>
-        <ul className='quiz-step step1 current'>
-          <li className='question'>
-            <div className='question-wrap'>
-              <h2>{quiz.question_possibility[iQuestion].title_question}</h2>
-            </div>
-          </li>
-          {allAnswers.map((answer) => (
-            <li className='quiz-answer high-value' data-quizindex='4' key={answer}>
-              <div className='answer-wrap'>
-                <p className='answer-text' >{answer}</p>
-              </div>
-            </li>
-          ))}
-        </ul>
+      <div className='question-section'>
+        <div className='question-count'>
+          <span>Question {currentQuestion + 1}</span>/{QuestionLength.length}
+        </div>
+        <div className='question-text'>{Questions[currentQuestion]}</div>
+      </div>
+      <div className='answer-section'>
+        {allAnswers[currentQuestion].map((answerOption) => (
+          <button
+            className='buttonAnswer'
+            onClick={() => handleAnswerOptionClick(answerOption)}
+            key={answerOption}
+          >
+            {answerOption}
+          </button>
+        ))}
       </div>
     </Fragment>
   );
 };
-
-//QuizAnswer.defaultProps = { iQuestion: 0 };
 
 QuizAnswer.propTypes = {
   quiz: PropTypes.object.isRequired,
