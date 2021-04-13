@@ -6,9 +6,9 @@ import { connect } from "react-redux";
 import QuizItem from "./QuizItem";
 import QuizForm from "./QuizForm";
 
-const Quizes = ({ getQuizes, quiz: { quizes, loading } }) => { 
 
-  const [showInput, setShowInput]=useState(false)
+const Quizes = ({ getQuizes, quiz: { quizes, loading } }) => {
+  const [showInput, setShowInput] = useState(false);
 
   useEffect(() => {
     getQuizes();
@@ -22,16 +22,21 @@ const Quizes = ({ getQuizes, quiz: { quizes, loading } }) => {
       <p className='lead'>
         <i className='fas fa-user'></i>Bem vindo ao Quizes
       </p>
-      <button onClick={(e) => setShowInput(!showInput) } className="btn btn-dark"> {showInput?("Não fazer quiz"):("Criar quiz")}</button>
+      <button
+        onClick={(e) => setShowInput(!showInput)}
+        className='btn btn-dark'
+      >
+        {" "}
+        {showInput ? "Não fazer quiz" : "Criar quiz"}
+      </button>
       <QuizForm showInput={showInput} />
       <div className='posts'>
         {quizes.map((quiz) => (
           <QuizItem key={quiz._id} quiz={quiz} showActions={true} />
         ))}
       </div>
+      
     </Fragment>
-
-    
   );
 };
 

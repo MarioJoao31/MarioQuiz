@@ -1,35 +1,52 @@
-import React, { Fragment } from 'react'
-import PropTypes from 'prop-types'
+import React, { Fragment, useState, useEffect } from "react";
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
 
-const QuizAnswer = ({ quiz:{quiz}}) => {
-    return (
-        <Fragment>
-          <div id='quizzie'>
-            <h1>What Type Of Thing Are You?</h1>
-            <ul class='quiz-step step1 current'>
-              <li class='question'>
-                <div class='question-wrap'>
-                  <h2>{title_question}</h2>
-                </div>
-              </li>
-              <li class='quiz-answer low-value' data-quizIndex='2'>
-                <div class='answer-wrap'>
-                  <p class='answer-text'>{correct_answer}</p>
-                </div>
-              </li>
-              <li class='quiz-answer high-value' data-quizIndex='4'>
-                <div class='answer-wrap'>
-                  <p class='answer-text'>{incorrect_answer}</p>
-                </div>
-              </li>
-            </ul>
-          </div>
-        </Fragment>
-    )
-}
+import Spinner from "../layout/Spinner";
+
+const QuizAnswer = ({ quiz: { quiz, loading } }, props) => {
+  //TODO: Variaveis para o quiz funcionar e randomizar as respostas
+
+  const [iQuestion, setiQuestion] = useState(0);
+
+  const [allAnswers, setallAnswers] = useState(
+    quiz.question_possibility[iQuestion].answers
+  );
+
+  return loading ? (
+    <Spinner />
+  ) : (
+    <Fragment>
+      <div id='quizzie'>
+        <ul className='quiz-step step1 current'>
+          <li className='question'>
+            <div className='question-wrap'>
+              <h2>{quiz.question_possibility[iQuestion].title_question}</h2>
+            </div>
+          </li>
+          {allAnswers.map((answer) => (
+            <li className='quiz-answer high-value' data-quizindex='4' key={answer}>
+              <div className='answer-wrap'>
+                <p className='answer-text' >{answer}</p>
+              </div>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </Fragment>
+  );
+};
+
+//QuizAnswer.defaultProps = { iQuestion: 0 };
 
 QuizAnswer.propTypes = {
+  quiz: PropTypes.object.isRequired,
+  auth: PropTypes.object.isRequired,
+};
 
-}
+const mapStateToProps = (state) => ({
+  auth: state.auth,
+  quiz: state.quiz,
+});
 
-export default QuizAnswer
+export default connect(mapStateToProps)(QuizAnswer);

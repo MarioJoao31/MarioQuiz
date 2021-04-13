@@ -1,4 +1,4 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
@@ -27,6 +27,8 @@ const QuizItem = ({
   showActions,
   showQuestions,
 }) => (
+
+
   <div className='post bg-white p-1 my-1'>
     <div>
       <Link to={`/profile/${user}`}>
@@ -37,7 +39,7 @@ const QuizItem = ({
 
     <div>
       <div className='titulo'>Título: {title}</div>
-      <div className='p-1'>
+      <div className=''>
         <p className='ml'>
           <b>Categoria</b>: {category}
         </p>
@@ -50,7 +52,9 @@ const QuizItem = ({
       </p>
 
       {showQuestions && (
-        <QuizAnswer/>
+        
+          <QuizAnswer key={_id} />
+        
       )}
 
       {showActions && (
@@ -89,6 +93,7 @@ const QuizItem = ({
       )}
     </div>
   </div>
+
 );
 
 QuizItem.defaultProps = { showActions: true };

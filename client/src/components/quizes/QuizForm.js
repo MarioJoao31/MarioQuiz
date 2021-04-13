@@ -22,7 +22,7 @@ const QuizForm = ({ addQuiz, showInput }) => {
   return (
     <Fragment>
       {showInput && (
-        <div className='mb-4 md:flex md:flex-wrap space-between justify-center'>
+        <div className='contact-us'>
           <form
             id='submeter'
             onSubmit={(e) => {
@@ -32,49 +32,108 @@ const QuizForm = ({ addQuiz, showInput }) => {
               setDifficulty("");
               setCategory("");
             }}
-            className='mb-4 md:flex md:flex-wrap md:justify-between'
           >
-            <div className="box"> 
-              <div className='form__group'>
-                <input
-                  className=' form__input '
-                  placeholder='Titulo do Quiz'
-                  type='text'
-                  value={title}
-                  onChange={(e) => setTitle(e.target.value)}
-                ></input>
-                <label for='name' className='form__label'>
-                  Titulo do quiz
-                </label>
-              </div>
-              <div className='form__group'>
-                <input
-                  className=' form__input '
-                  placeholder='Categoria do Quiz'
-                  type='text'
-                  value={category}
-                  onChange={(e) => setCategory(e.target.value)}
-                ></input>
-                <label for='name' className='form__label'>
-                  Categoria do quiz
-                </label>
-              </div>
+            <input
+              className='inputSexy'
+              placeholder='Titulo do Quiz'
+              required=''
+              type='text'
+              value={title}
+              onChange={(e) => setTitle(e.target.value)}
+            />
+            <input
+              className='inputSexy'
+              name='customerEmail'
+              placeholder='Categoria do Quiz'
+              type='text'
+              value={category}
+              onChange={(e) => setCategory(e.target.value)}
+            />
+            <div id='fancy-radio'>
+              <input
+                type='radio'
+                name='facil'
+                id='1'
+                class='pull-left'
+                value={difficulty}
+                onChange={(e) => setDifficulty("Facil")}
+              />
+              <label class='radio questions' for='questions'>
+                Facil
+              </label>
 
-              <div class='relative inline-block  text-gray-700'>
-                <select
-                  class=' h-10 pl-3 pr-6 text-base placeholder-gray-600 border rounded-lg appearance-none focus:shadow-outline'
-                  placeholder='Regular input'
-                  value={difficulty}
-                  onChange={(e) => setDifficulty(e.target.value)}
-                  className=' border bg-white rounded px-2 py-2 outline-none text-gray-700'
-                >
-                  <option value='Fácil'> Dificuldade-Fácil </option>
-                  <option value='Médio'>Dificuldade-Médio </option>
-                  <option value='Díficil'>Dificuldade-Díficil </option>
-                </select>
-              </div>
-              </div>
-            <input type='submit' className='btnsexy' value='Postar' />
+              <input
+                type='radio'
+                name='medio'
+                id='2'
+                class='pull-left'
+                value={difficulty}
+                onChange={(e) => setDifficulty("Medio")}
+              />
+              <label class='radio photo' for='photo'>
+                Medio
+              </label>
+
+              <input
+                type='radio'
+                name='dificl'
+                id='3'
+                class='pull-left'
+                value={difficulty}
+                onChange={(e) => setDifficulty("Dificil")}
+              />
+              <label class='radio photo' for='photo'>
+                Dificil
+              </label>
+            </div>
+            
+
+            
+            <div class='field'>
+              <label class='label'>Favourite JS framework</label>
+              <ul class='options'>
+                <li class='option'>
+                  <input
+                    class='option-input'
+                    id='option-0'
+                    name='option'
+                    type='radio'
+                    value='0'
+                  />
+                  <label class='option-label' for='option-0'>
+                    React
+                  </label>
+                </li>
+                <li class='option'>
+                  <input
+                    class='option-input'
+                    id='option-1'
+                    name='option'
+                    type='radio'
+                    value='1'
+                  />
+                  <label class='option-label' for='option-1'>
+                    Vue
+                  </label>
+                </li>
+                <li class='option'>
+                  <input
+                    class='option-input'
+                    id='option-2'
+                    name='option'
+                    type='radio'
+                    value='2'
+                  />
+                  <label class='option-label' for='option-2'>
+                    Angular
+                  </label>
+                </li>
+              </ul>
+            </div>
+
+            <button type='buttonSexy' type='submit' value='Postar'>
+              Criar
+            </button>
           </form>
         </div>
       )}

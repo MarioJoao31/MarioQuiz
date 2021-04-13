@@ -33,9 +33,11 @@ const QuizSchema = new Schema({
       correct_answer: {
         type: String,
       },
-      incorrect_answer: [{
-        type: String,
-      }],
+      answers: [
+        {
+          type: String,
+        },
+      ],
     },
   ],
 

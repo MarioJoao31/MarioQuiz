@@ -255,13 +255,13 @@ router.post("/question/:id", [auth], async (req, res) => {
     const quiz = await Quiz.findById(req.params.id);
 
     if (!quiz) {
-      return res.status(401).json({ msg: "nao foi encontrado o quiz" });
+      return res.status(401).json({ msg: "Não foi encontrado o quiz" });
     }
 
     const newQuestion = {
       title_question: req.body.title_question,
       correct_answer: req.body.correct_answer,
-      incorrect_answer: req.body.incorrect_answer,
+      answers: req.body.answers,
     };
 
     quiz.question_possibility.unshift(newQuestion);

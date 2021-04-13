@@ -601,337 +601,79 @@ button {
 }
 
 /*  CSS DO IMPUT DE QUIZES */
-
-.form__label {
-  font-family: "Roboto", sans-serif;
-  font-size: 1.2rem;
-  margin-left: 2rem;
-  margin-top: 0.7rem;
-  display: block;
-  transition: all 0.3s;
-  transform: translateY(0rem);
-}
-
-.form__input {
-  font-family: "Roboto", sans-serif;
-  color: #333;
-  font-size: 1.2rem;
-  margin: 0 auto;
-  padding: 1.5rem 2rem;
-  border-radius: 0.2rem;
-  background-color: rgb(255, 255, 255);
-  border: #facc25 1px;
-  width: 90%;
-  display: block;
-  border-bottom: 0.3rem solid transparent;
-  transition: all 0.3s;
-}
-
-.form__input:placeholder-shown + .form__label {
-  opacity: 0;
-  visibility: hidden;
-  -webkit-transform: translateY(-4rem);
-  transform: translateY(-4rem);
-}
-
-/* BUTAO SEXY DO INPUT*/
-.btnsexy {
-  color: #101832;
-  cursor: pointer;
-  display: inline-block;
-  letter-spacing: 0.075em;
-  padding: 0.8em 1em;
-  margin: auto 2em;
-  position: relative;
-  align-self: center;
-  text-transform: uppercase;
-  border: 3px #00bcdd solid;
-  border-image: linear-gradient(45deg, #00bcdd 0%, #ff00ff 100%);
-  border-image-slice: 1 1 0 0;
-  z-index: 1;
-  box-shadow: -0.5em 0.5em rgba(16, 24, 50, 0);
-  transform-origin: left bottom;
-  -webkit-transition: all 200ms ease-in-out;
-  -moz-transition: all 200ms ease-in-out;
-  -o-transition: all 200ms ease-in-out;
-  transition: all 200ms ease-in-out;
-}
-.btnsexy:before,
-.btnsexy:after {
-  border: 3px #00bcdd solid;
-  content: "";
-  display: block;
-  position: absolute;
-  z-index: -1;
-}
-.btnsexy:before {
-  border-image: linear-gradient(45deg, #00bcdd 0%, #0097dd 100%);
-  border-image-slice: 1 1 0 1;
-  left: -0.59em;
-  top: 0.15em;
-  width: 0.31em;
-  height: 100%;
-  transform: skewY(-45deg);
-}
-.btnsexy:after {
-  border-image: linear-gradient(45deg, #00bcdd 0%, #ff00ff 100%);
-  border-image-slice: 1 1 1 0;
-  bottom: -0.61em;
-  right: 0.16em;
-  width: 100%;
-  height: 0.31em;
-  transform: skewX(-45deg);
-}
-.btnsexy:hover {
-  background-color: white;
-  background-size: 90%;
-  transform: translate(0.5em, -0.5em);
-  box-shadow: -1em 1em 0.15em rgba(16, 24, 50, 0.1);
-}
-.btnsexy:hover:before {
-  background-image: url("data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4gPHN2ZyB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGRlZnM+PGxpbmVhckdyYWRpZW50IGlkPSJncmFkIiBncmFkaWVudFVuaXRzPSJvYmplY3RCb3VuZGluZ0JveCIgeDE9IjAuMCIgeTE9IjEuMCIgeDI9IjEuMCIgeTI9IjAuMCI+PHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iIzAwYmNkZCIvPjxzdG9wIG9mZnNldD0iMTAwJSIgc3RvcC1jb2xvcj0iIzAwOTdkZCIvPjwvbGluZWFyR3JhZGllbnQ+PC9kZWZzPjxyZWN0IHg9IjAiIHk9IjAiIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbGw9InVybCgjZ3JhZCkiIC8+PC9zdmc+IA==");
-  background-size: 100%;
-  background-image: -moz-linear-gradient(45deg, #00bcdd 0%, #0097dd 100%);
-  background-image: -webkit-linear-gradient(45deg, #00bcdd 0%, #0097dd 100%);
-  background-image: linear-gradient(45deg, #00bcdd 0%, #0097dd 100%);
-  height: calc(100% - 0.13em);
-  border-image-slice: 1;
-}
-.btnsexy:hover:after {
-  background-image: url("data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4gPHN2ZyB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGRlZnM+PGxpbmVhckdyYWRpZW50IGlkPSJncmFkIiBncmFkaWVudFVuaXRzPSJvYmplY3RCb3VuZGluZ0JveCIgeDE9IjAuMCIgeTE9IjEuMCIgeDI9IjEuMCIgeTI9IjAuMCI+PHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iIzAwYmNkZCIvPjxzdG9wIG9mZnNldD0iMTAwJSIgc3RvcC1jb2xvcj0iI2ZmMDBmZiIvPjwvbGluZWFyR3JhZGllbnQ+PC9kZWZzPjxyZWN0IHg9IjAiIHk9IjAiIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbGw9InVybCgjZ3JhZCkiIC8+PC9zdmc+IA==");
-  background-size: 100%;
-  background-image: -moz-linear-gradient(45deg, #00bcdd 0%, #ff00ff 100%);
-  background-image: -webkit-linear-gradient(45deg, #00bcdd 0%, #ff00ff 100%);
-  background-image: linear-gradient(45deg, #00bcdd 0%, #ff00ff 100%);
-  width: calc(100% - 0.13em);
-  border-image-slice: 1;
-}
-
-/* select*/
-
-.custom-select {
-  position: relative;
-  font-family: Arial;
-}
-
-.custom-select select {
-  display: flex; /*hide original SELECT element:*/
-}
-
-.select-selected {
-  background-color: DodgerBlue;
-}
-
-/*style the arrow inside the select element:*/
-.select-selected:after {
-  position: absolute;
-  content: "";
-  top: 14px;
-  right: 10px;
-  width: 0;
-  height: 0;
-  border: 6px solid transparent;
-  border-color: #fff transparent transparent transparent;
-}
-
-/*point the arrow upwards when the select box is open (active):*/
-.select-selected.select-arrow-active:after {
-  border-color: transparent transparent #fff transparent;
-  top: 7px;
-}
-
-/*style the items (options), including the selected item:*/
-.select-items div,
-.select-selected {
-  color: #ffffff;
-  padding: 8px 16px;
-  border: 1px solid transparent;
-  border-color: transparent transparent rgba(0, 0, 0, 0.1) transparent;
-  cursor: pointer;
-  user-select: none;
-}
-
-/*style items (options):*/
-.select-items {
-  position: absolute;
-  background-color: DodgerBlue;
-  top: 100%;
-  left: 0;
-  right: 0;
-  z-index: 99;
-}
-
-/* Fazer QUiz  css  */
-
-.h1panda {
-  font-family: "Satisfy", "cursive";
-  font-size: 2.5em;
-}
-
-.h2panda {
-  font-family: "Pathway Gothic One", "sans-serif";
-  font-size: 2em;
-}
-
-#quizzie {
-  padding: 5% 0;
-  /* Individual Steps/Sections */
-  /* Content */
-}
-#quizzie ul {
-  list-style: none;
-  display: block;
-  width: auto;
-  margin: 2% 2%;
-  padding: 2%;
-  overflow: auto;
-  display: none;
-  /* Step Questions and Answer Options */
-}
-#quizzie ul.current {
-  display: block;
-}
-#quizzie ul li {
-  display: inline-block;
-  width: 49%;
-  margin-right: 2%;
-  overflow: auto;
-  text-align: center;
-}
-#quizzie ul li.quiz-answer {
-  cursor: pointer;
-}
-#quizzie ul li.question,
-#quizzie ul li.results-inner {
-  display: block;
-  float: none;
-  width: 100%;
-  text-align: center;
+@import url("https://fonts.googleapis.com/css?family=Fjalla+One&display=swap");
+* {
   margin: 0;
-  margin-bottom: 2%;
-}
-#quizzie ul li.results-inner {
-  padding: 5% 2%;
-}
-#quizzie ul li.results-inner img {
-  width: 250px;
-}
-#quizzie ul li:last-child {
-  margin-right: 0;
-}
-#quizzie .question-wrap,
-#quizzie .answer-wrap {
-  display: block;
-  padding: 1%;
-  margin: 1em 10%;
-  -moz-border-radius: 10px;
-  -webkit-border-radius: 10px;
-  border-radius: 10px;
-}
-#quizzie .answer-wrap {
-  background: Turquoise;
-  -moz-transition: background-color 0.5s ease;
-  -o-transition: background-color 0.5s ease;
-  -webkit-transition: background-color 0.5s ease;
-  transition: background-color 0.5s ease;
-}
-#quizzie .answer-wrap:hover {
-  background: DarkTurquoise;
+  padding: 0;
 }
 
-/* loading / Spinner */
-.loading {
-  text-transform: uppercase;
-  font-family: "Cabin Condensed", sans-serif;
-  font-weight: bold;
-  font-size: 100pt;
-  text-align: center;
-  height: 120px;
-  line-height: 110px;
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 100px;
-  bottom: 0px;
-  display: block;
+.body {
+  background: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/38816/image-from-rawpixel-id-2210775-jpeg.jpg") center center no-repeat;
+  background-size: cover;
+  width: 100vw;
+  height: 100vh;
+  display: grid;
+  align-items: center;
+  justify-items: center;
 }
 
-.loading-2 {
-  top: 300px;
-  width: 473px;
-  height: 97px;
-  font-size: 0;
-  background: rgba(255, 255, 255, 0.06);
+.contact-us {
+  background: #f8f4e5;
+  padding: 50px 100px;
+  border: 2px solid black;
+  box-shadow: 15px 15px 1px #ffa580, 15px 15px 1px 2px black;
+}
+
+.inputSexy {
+  display: block;
+  width: 100%;
+  font-size: 14pt;
+  line-height: 28pt;
+  font-family: "Fjalla One";
+  margin-bottom: 28pt;
+  border: none;
+  border-bottom: 5px solid black;
+  background: #f8f4e5;
+  min-width: 250px;
+  padding-left: 5px;
+  outline: none;
+  color: black;
+}
+
+.inputSexy:focus {
+  border-bottom: 5px solid #ffa580;
+}
+
+.buttonSexy {
+  display: block;
   margin: 0 auto;
+  line-height: 28pt;
+  padding: 0 20px;
+  background: #ffa580;
+  letter-spacing: 2px;
+  transition: 0.2s all ease-in-out;
+  outline: none;
+  border: 1px solid black;
+  box-shadow: 3px 3px 1px #95a4ff, 3px 3px 1px 1px black;
 }
-
-.ff {
-  position: absolute;
-  font-size: 12pt;
-  top: -20px;
+buttonSexy:hover {
+  background: black;
   color: white;
-  line-height: 12pt;
+  border: 1px solid black;
 }
 
-.loading-2-text {
-  background-image: url("https://cdn.discordapp.com/attachments/585113714353504278/829743135886278676/unknown.png");
-  width: 473px;
-  height: 97px;
-  display: inline-block;
+::selection {
+  background: #ffc8ff;
 }
 
-@keyframes wave-animation {
-  0% {
-    background-position: 0 bottom;
-  }
-  100% {
-    background-position: 200px bottom;
-  }
+inputSexy:-webkit-autofill,
+inputSexy:-webkit-autofill:hover,
+inputSexy:-webkit-autofill:focus {
+  border-bottom: 5px solid #95a4ff;
+  -webkit-text-fill-color: #2A293E;
+  box-shadow: unset;
+  -webkit-box-shadow: 0 0 0px 1000px #f8f4e5 inset;
+  transition: background-color 5000s ease-in-out 0s;
 }
-@keyframes loading-animation {
-  0% {
-    background-size: 200px 0px;
-  }
-  100% {
-    background-size: 200px 200px;
-  }
-}
-.wave {
-  background-image: url("https://cdn.discordapp.com/attachments/585113714353504278/829743135886278676/unknown.png");
-  -moz-background-clip: text;
-  -o-background-clip: text;
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-  text-shadow: 0px 0px rgba(255, 255, 255, 0.06);
-  animation: wave-animation 1s infinite linear,
-    loading-animation 10s infinite linear alternate;
-  background-size: 200px 100px;
-  background-repeat: repeat-x;
-  opacity: 1;
-}
+/*radio button para o form do quiz*/
 
-.wave-2 {
-  -moz-background-clip: initial;
-  -o-background-clip: initial;
-  -webkit-background-clip: initial;
-  background-clip: initial;
-  display: inline-block;
-}
-
-.titulo {
-  text-align: left;
-  font-size: larger;
-  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
-    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
-  font-weight: bold;
-  color: #17a2b8;
-  text-transform: uppercase;
-}
-
-.ml {
-  margin: 0.7rem 0;
-  padding-right: 15px;
-  margin-bottom: 30px;
-  display: inline;
-}

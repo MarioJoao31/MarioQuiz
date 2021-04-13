@@ -1,4 +1,4 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useState, useEffect } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Navbar from "./components/layout/Navbar";
 import Landing from "./components/layout/Landing";
@@ -35,10 +35,11 @@ const App = () => {
     setAuthToken(localStorage.token);
   }
   store.dispatch(loadUser());
+  //QuizAnswer Variaveis
+ 
 
   return (
     <Provider store={store}>
-      
       <Router>
         <Fragment>
           <Navbar />
