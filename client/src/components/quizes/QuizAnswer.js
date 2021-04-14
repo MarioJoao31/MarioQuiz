@@ -18,9 +18,7 @@ const QuizAnswer = ({ quiz: { quiz, loading } }, props) => {
 
   let rincre = QuestionLength.length - increLength;
 
-  const [Questions, setQuestions] = useState(
-    quiz.question_possibility[currentQuestion].title_question
-  );
+ 
   const [allAnswers, setallAnswers] = useState([
     quiz.question_possibility[currentQuestion].answers,
   ]);
@@ -28,41 +26,56 @@ const QuizAnswer = ({ quiz: { quiz, loading } }, props) => {
     quiz.question_possibility[currentQuestion].correct_answer
   );
 
+  
   // Separação
 
   const handleAnswerOptionClick = (isCorrect) => {
-    if (isCorrect === correctAnswer[currentQuestion]) {
+    if (isCorrect === quiz.question_possibility[currentQuestion].correct_answer) {
       setScore(score + 1);
     }
 
-    const nextQuestion = currentQuestion + 1;
-    if (nextQuestion < allAnswers.length) {
+    let nextQuestion = currentQuestion + 1;
+    if (currentQuestion < allAnswers.length) {
+      
       setCurrentQuestion(nextQuestion);
     } else {
       setShowScore(true);
     }
   };
 
+
   return loading ? (
     <Spinner />
   ) : (
     <Fragment>
-      <div className='question-section'>
-        <div className='question-count'>
-          <span>Question {currentQuestion + 1}</span>/{QuestionLength.length}
-        </div>
-        <div className='question-text'>{Questions[currentQuestion]}</div>
-      </div>
-      <div className='answer-section'>
-        {allAnswers[currentQuestion].map((answerOption) => (
-          <button
-            className='buttonAnswer'
-            onClick={() => handleAnswerOptionClick(answerOption)}
-            key={answerOption}
-          >
-            {answerOption}
-          </button>
-        ))}
+      <div className='app'>
+        {showScore ? (
+          <div className='score-section'>
+            Fizeste {score} de {QuestionLength.length} Pontos
+          </div>
+        ) : (
+          <>
+            <div className='question-section'>
+              <div className='question-count'>
+                <span>Question {currentQuestion + 1}</span>/
+                {QuestionLength.length}
+              </div>
+              
+              <div className='question-text'>{quiz.question_possibility[currentQuestion].title_question}</div>
+            </div>
+            <div className='answer-section'>
+              {quiz.question_possibility[currentQuestion].answers.map((answerOption) => (
+                <button
+                  className='buttonAnswer'
+                  onClick={() => handleAnswerOptionClick(answerOption)}
+                  key={answerOption}
+                >
+                  {answerOption}
+                </button>
+              ))}
+            </div>
+          </>
+        )}
       </div>
     </Fragment>
   );

@@ -1,3 +1,6 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;1,100&display=swap');
+@import url("https://fonts.googleapis.com/css?family=Fjalla+One&display=swap");
+
 :root {
   --primary-color: #17a2b8;
   --dark-color: #343a40;
@@ -252,8 +255,23 @@ img {
 }
 
 /* Forms */
+
+.selecteditprof{
+  width: 19%;
+  height: 38px;
+  padding: 8px 12px;
+  background-color: #fff;
+  border: 1px solid #DDD;
+  border-radius: 4px;
+  -webkit-box-shadow: inset 0 1px 1px rgb(0 0 0 / 8%);
+  box-shadow: inset 0 1px 1px rgb(0 0 0 / 8%);
+  -webkit-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+  transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+}
+
 .form .form-group {
   margin: 1.2rem 0;
+  
 }
 
 .form .form-text {
@@ -600,7 +618,7 @@ button {
 }
 
 /*  CSS DO IMPUT DE QUIZES */
-@import url("https://fonts.googleapis.com/css?family=Fjalla+One&display=swap");
+
 * {
   margin: 0;
   padding: 0;
@@ -677,10 +695,12 @@ inputSexy:-webkit-autofill:focus {
 }
 
 /*Quiz Answer*/
+
+
 .app {
   background-color: #252d4a;
-  width: 450px;
-  min-height: 200px;
+  width: 400px;
+  min-height: 400px;
   height: min-content;
   border-radius: 15px;
   padding: 20px;
@@ -693,24 +713,35 @@ inputSexy:-webkit-autofill:focus {
   display: flex;
   font-size: 24px;
   align-items: center;
+  color: whitesmoke;
+  font-family: "Roboto",Arial, Helvetica, sans-serif;
 }
 
 /* QUESTION/TIMER/LEFT SECTION */
 .question-section {
   width: 100%;
   position: relative;
+  color: whitesmoke;
+  font-family: "Roboto",Arial, Helvetica, sans-serif;
 }
 
 .question-count {
   margin-bottom: 20px;
+  color: whitesmoke;
+  font-family: "Roboto",Arial, Helvetica, sans-serif;
+
 }
 
 .question-count span {
   font-size: 28px;
+  font-family: "Roboto",Arial, Helvetica, sans-serif;
+
 }
 
 .question-text {
   margin-bottom: 12px;
+  font-family: "Roboto",Arial, Helvetica, sans-serif;
+
 }
 
 .timer-text {

@@ -2,6 +2,9 @@ import React, { Fragment, useState, useEffect } from "react";
 import { Link, withRouter } from "react-router-dom";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
+
+
+import Spinner from "../layout/Spinner";
 import { createProfile, getCurrentProfile } from "../../actions/profile";
 
 const EditProfile = ({
@@ -63,15 +66,17 @@ const EditProfile = ({
     createProfile(formData, history, true);
   };
 
-  return (
+  return loading ? (
+    <Spinner />
+  ) : (
     <Fragment>
       <h1 className='large text-primary'>Edita o teu Perfil</h1>
       <p className='lead'>
         <i className='fas fa-user'></i> Fala sobre ti e as tuas habilidades!
       </p>
-      <small>* = Campos Obrigatorios</small>
+      
       <form className='form' onSubmit={onSubmit}>
-        <div className='form-group'>
+        <div className='selecteditprof'>
           <select name='status' value={status} onChange={onChange}>
             <option value='0'>* Seleciona o teu estatuto</option>
             <option value='Professor'>Professor</option>
@@ -79,7 +84,7 @@ const EditProfile = ({
             <option value='Animal'>Animal</option>
             <option value='GenderLess'>GenderLess</option>
           </select>
-          <small className='form-text'>Em que ano estas?</small>
+          
         </div>
         <div className='form-group'>
           <input

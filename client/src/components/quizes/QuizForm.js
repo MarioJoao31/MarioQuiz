@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 
 import { addQuiz } from "../../actions/quiz";
 
+
 /* MENUUUU DE CATEGORIA */
 
 const styleLink = document.createElement("link");
@@ -19,7 +20,7 @@ const QuizForm = ({ addQuiz, showInput }) => {
   const [difficulty, setDifficulty] = useState("");
   const [category, setCategory] = useState("");
 
-  return (
+   return(
     <Fragment>
       {showInput && (
         <div className='contact-us'>

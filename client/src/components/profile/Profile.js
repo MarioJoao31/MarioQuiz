@@ -17,7 +17,10 @@ const Profile = ({
     getProfileById(match.params.id);
   }, [getProfileById, match.params.id]);
 
-  return (
+  //TODO: FAZER MAIS UM BOTAO PARA ADICIONAR CUSTOM AVATAR, BASICAMENTE PASSA UM URL COM A IMAGEM E DEPOIS TROCA O URL PELO O URL DA DB
+  return loading ? (
+    <Spinner />
+  ) : (
     <Fragment>
       {profile === null || loading ? (
         <Spinner />
