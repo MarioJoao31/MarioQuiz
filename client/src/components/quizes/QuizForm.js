@@ -2,8 +2,8 @@ import React, { useState, Fragment } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 
-import { addQuiz } from "../../actions/quiz";
-
+import { addQuiz, addQuizQuestionsAnswers } from "../../actions/quiz";
+import { ADD_QUIZ_QUESTIONSANSWER } from "../../actions/types";
 
 /* MENUUUU DE CATEGORIA */
 
@@ -15,124 +15,134 @@ document.head.appendChild(styleLink);
 
 /* FIM DE MENUUUU DE CATEGORIA */
 
-const QuizForm = ({ addQuiz, showInput }) => {
+const QuizForm = ({ addQuiz,addQuizQuestionsAnswers, showInput }) => {
   const [title, setTitle] = useState("");
   const [difficulty, setDifficulty] = useState("");
   const [category, setCategory] = useState("");
+  const [title_question, setTitle_question] = useState("");
+  const [correct_answer, setCorrect_answer] = useState("");
+  const [answers, setAnswers] = useState("");
+  const [addPergunta, setaddPergunta] = useState(false);
 
-   return(
+  const onSubmit = async (e) => {
+    e.preventDefault();
+    const id = await addQuiz({
+      title,
+      difficulty,
+      category,
+    });
+    await addQuizQuestionsAnswers(id, {
+      title_question,
+      correct_answer,
+      answers,
+    })
+    
+  };
+
+  return (
     <Fragment>
       {showInput && (
         <div className='contact-us'>
-          <form
-            id='submeter'
-            onSubmit={(e) => {
-              e.preventDefault();
-              addQuiz({ title, difficulty, category });
-              setTitle("");
-              setDifficulty("");
-              setCategory("");
-            }}
-          >
+          <form id='submeter' onSubmit={(e) => onSubmit(e)}>
             <input
               className='inputSexy'
               placeholder='Titulo do Quiz'
-              required=''
               type='text'
               value={title}
               onChange={(e) => setTitle(e.target.value)}
             />
             <input
               className='inputSexy'
-              name='customerEmail'
               placeholder='Categoria do Quiz'
               type='text'
               value={category}
               onChange={(e) => setCategory(e.target.value)}
             />
-            <div id='fancy-radio'>
-              <input
-                type='radio'
-                name='facil'
-                id='1'
-                class='pull-left'
-                value={difficulty}
-                onChange={(e) => setDifficulty("Facil")}
-              />
-              <label class='radio questions' for='questions'>
-                Facil
-              </label>
 
-              <input
-                type='radio'
-                name='medio'
-                id='2'
-                class='pull-left'
-                value={difficulty}
-                onChange={(e) => setDifficulty("Medio")}
-              />
-              <label class='radio photo' for='photo'>
-                Medio
-              </label>
-
-              <input
-                type='radio'
-                name='dificl'
-                id='3'
-                class='pull-left'
-                value={difficulty}
-                onChange={(e) => setDifficulty("Dificil")}
-              />
-              <label class='radio photo' for='photo'>
-                Dificil
-              </label>
-            </div>
-            
-
-            
-            <div class='field'>
-              <label class='label'>Favourite JS framework</label>
-              <ul class='options'>
-                <li class='option'>
+            <div className='field'>
+              <ul className='options-grid'>
+                <li className='option'>
                   <input
-                    class='option-input'
-                    id='option-0'
+                    className='option-input'
+                    id='0'
                     name='option'
                     type='radio'
-                    value='0'
+                    value={difficulty}
+                    onChange={(e) => setDifficulty("Fácil")}
                   />
-                  <label class='option-label' for='option-0'>
-                    React
+                  <label className='option-label' htmlFor='0'>
+                    Fácil
                   </label>
                 </li>
-                <li class='option'>
+                <li className='option'>
                   <input
-                    class='option-input'
-                    id='option-1'
+                    className='option-input'
+                    id='1'
                     name='option'
                     type='radio'
-                    value='1'
+                    value={difficulty}
+                    onChange={(e) => setDifficulty("Médio")}
                   />
-                  <label class='option-label' for='option-1'>
-                    Vue
+                  <label className='option-label' htmlFor='1'>
+                    Médio
                   </label>
                 </li>
-                <li class='option'>
+                <li className='option'>
                   <input
-                    class='option-input'
-                    id='option-2'
+                    className='option-input'
+                    id='2'
                     name='option'
                     type='radio'
-                    value='2'
+                    value={difficulty}
+                    onChange={(e) => setDifficulty("Difícil")}
                   />
-                  <label class='option-label' for='option-2'>
-                    Angular
+                  <label className='option-label' htmlFor='2'>
+                    Difícil
                   </label>
                 </li>
               </ul>
             </div>
+            <br />
+            <span
+              className='buttonSexy'
+              onClick={() => setaddPergunta(!addPergunta)}
+            >
+              Adicionar Pergunta com respostas
+            </span>
 
-            <button type='buttonSexy' type='submit' value='Postar'>
+            <br />
+
+            {addPergunta && (
+              <Fragment>
+                <input
+                  className='inputSexy'
+                  placeholder='Pergunta'
+                  required=''
+                  type='text'
+                  value={title_question}
+                  onChange={(e) => setTitle_question(e.target.value)}
+                ></input>
+
+                <input
+                  className='inputSexy'
+                  placeholder='Resposta'
+                  required=''
+                  type='text'
+                  value={correct_answer}
+                  onChange={(e) => setCorrect_answer(e.target.value)}
+                ></input>
+                <input
+                  className='inputSexy'
+                  placeholder='Resposta'
+                  required=''
+                  type='text'
+                  value={answers}
+                  onChange={(e) => setAnswers(e.target.value)}
+                ></input>
+              </Fragment>
+            )}
+
+            <button className='buttonSexy' type='submit' value='Postar'>
               Criar
             </button>
           </form>
@@ -146,6 +156,7 @@ QuizForm.defaultProps = { showInput: false };
 
 QuizForm.propTypes = {
   addQuiz: PropTypes.func.isRequired,
+  addQuizQuestionsAnswers: PropTypes.func.isRequired,
 };
 
-export default connect(null, { addQuiz })(QuizForm);
+export default connect(null, { addQuiz, addQuizQuestionsAnswers })(QuizForm);

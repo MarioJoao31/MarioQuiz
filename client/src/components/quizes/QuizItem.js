@@ -1,4 +1,4 @@
-import React, { Fragment, useEffect, useState } from "react";
+import React, { Fragment } from "react";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
@@ -6,6 +6,10 @@ import { connect } from "react-redux";
 import Moment from "react-moment";
 import { addLike, removeLike, deleteQuiz } from "../../actions/quiz";
 import QuizAnswer from "./QuizAnswer";
+
+
+//const likeslength= likes.length 
+
 
 const QuizItem = ({
   addLike,
@@ -58,7 +62,7 @@ const QuizItem = ({
             className='btn btn-light'
           >
             <i className='fas fa-thumbs-up' />{" "}
-            <span>{likes.length > 0 && <span>{likes.length}</span>}</span>
+            <span>{likes && likes.length > 0 && <span>{likes.length}</span>}</span>
           </button>
 
           <button

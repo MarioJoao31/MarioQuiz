@@ -30,6 +30,7 @@ const Quizes = ({ getQuizes, quiz: { quizes, loading } }) => {
         {showInput ? "Não fazer quiz" : "Criar quiz"}
       </button>
       <QuizForm showInput={showInput} />
+      <br/>
       <div className='posts'>
         {quizes.map((quiz) => (
           <QuizItem key={quiz._id} quiz={quiz} showActions={true} />

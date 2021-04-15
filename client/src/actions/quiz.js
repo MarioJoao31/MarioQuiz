@@ -8,6 +8,8 @@ import {
   UPDATE_LIKES,
   DELETE_QUIZ,
   ADD_QUIZ,
+  ADD_QUIZ_QUESTIONSANSWER,
+  REMOVE_QUIZ_QUESTIONSANSWER,
 } from "./types";
 
 // GET Quizes
@@ -34,7 +36,7 @@ export const addLike = (id) => async (dispatch) => {
 
     dispatch({
       type: UPDATE_LIKES,
-      payload: { id, likes: res.data },
+      payload:  {id, likes: res.data} ,
     });
   } catch (err) {
     dispatch({
@@ -51,7 +53,7 @@ export const removeLike = (id) => async (dispatch) => {
 
     dispatch({
       type: UPDATE_LIKES,
-      payload: { id, likes: res.data },
+      payload:  {id, likes: res.data} ,
     });
   } catch (err) {
     dispatch({
@@ -97,6 +99,8 @@ export const addQuiz = (formData) => async (dispatch) => {
     });
 
     dispatch(setAlert("Quiz Adicionado", "success"));
+
+    return res.data._id
   } catch (err) {
     dispatch(setAlert("Preenche os espaços todos!!", "danger"));
     dispatch({
@@ -117,6 +121,33 @@ export const getQuiz = id => async (dispatch) => {
     });
   } catch (err) {
     console.log(err);
+    dispatch({
+      type: QUIZ_ERROR,
+      payload: { msg: err.response.statusText, status: err.response.status },
+    });
+  }
+};
+
+// POST ADICIONA PERGUNTAS AO QUIZ 
+
+export const addQuizQuestionsAnswers = (idQuestion, formData) => async (dispatch) => {
+  const config = {
+    headers: {
+      "Content-Type": "application/json",
+    },
+  };
+
+  try {
+    const res = await api.post(`/quizes/question/${idQuestion}`, formData, config);
+
+    dispatch({
+      type: ADD_QUIZ_QUESTIONSANSWER,
+      payload: res.data,
+    });
+
+    dispatch(setAlert("Quiz Adicionado", "success"));
+  } catch (err) {
+    dispatch(setAlert("Preenche os espaços todos!!", "danger"));
     dispatch({
       type: QUIZ_ERROR,
       payload: { msg: err.response.statusText, status: err.response.status },

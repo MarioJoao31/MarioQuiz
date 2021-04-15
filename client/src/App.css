@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;1,100&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;1,100&display=swap");
 @import url("https://fonts.googleapis.com/css?family=Fjalla+One&display=swap");
 
 :root {
@@ -256,22 +256,22 @@ img {
 
 /* Forms */
 
-.selecteditprof{
+.selecteditprof {
   width: 19%;
   height: 38px;
   padding: 8px 12px;
   background-color: #fff;
-  border: 1px solid #DDD;
+  border: 1px solid #ddd;
   border-radius: 4px;
   -webkit-box-shadow: inset 0 1px 1px rgb(0 0 0 / 8%);
   box-shadow: inset 0 1px 1px rgb(0 0 0 / 8%);
-  -webkit-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
-  transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+  -webkit-transition: border-color ease-in-out 0.15s,
+    box-shadow ease-in-out 0.15s;
+  transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
 }
 
 .form .form-group {
   margin: 1.2rem 0;
-  
 }
 
 .form .form-text {
@@ -674,28 +674,17 @@ button {
   border: 1px solid black;
   box-shadow: 3px 3px 1px #95a4ff, 3px 3px 1px 1px black;
 }
-buttonSexy:hover {
+
+.buttonSexy:hover {
   background: black;
   color: white;
   border: 1px solid black;
 }
 
-::selection {
-  background: #ffc8ff;
-}
 
-inputSexy:-webkit-autofill,
-inputSexy:-webkit-autofill:hover,
-inputSexy:-webkit-autofill:focus {
-  border-bottom: 5px solid #95a4ff;
-  -webkit-text-fill-color: #2a293e;
-  box-shadow: unset;
-  -webkit-box-shadow: 0 0 0px 1000px #f8f4e5 inset;
-  transition: background-color 5000s ease-in-out 0s;
-}
+
 
 /*Quiz Answer*/
-
 
 .app {
   background-color: #252d4a;
@@ -714,7 +703,7 @@ inputSexy:-webkit-autofill:focus {
   font-size: 24px;
   align-items: center;
   color: whitesmoke;
-  font-family: "Roboto",Arial, Helvetica, sans-serif;
+  font-family: "Roboto", Arial, Helvetica, sans-serif;
 }
 
 /* QUESTION/TIMER/LEFT SECTION */
@@ -722,26 +711,23 @@ inputSexy:-webkit-autofill:focus {
   width: 100%;
   position: relative;
   color: whitesmoke;
-  font-family: "Roboto",Arial, Helvetica, sans-serif;
+  font-family: "Roboto", Arial, Helvetica, sans-serif;
 }
 
 .question-count {
   margin-bottom: 20px;
   color: whitesmoke;
-  font-family: "Roboto",Arial, Helvetica, sans-serif;
-
+  font-family: "Roboto", Arial, Helvetica, sans-serif;
 }
 
 .question-count span {
   font-size: 28px;
-  font-family: "Roboto",Arial, Helvetica, sans-serif;
-
+  font-family: "Roboto", Arial, Helvetica, sans-serif;
 }
 
 .question-text {
   margin-bottom: 12px;
-  font-family: "Roboto",Arial, Helvetica, sans-serif;
-
+  font-family: "Roboto", Arial, Helvetica, sans-serif;
 }
 
 .timer-text {
@@ -795,4 +781,9 @@ buttonAnswer:focus {
 
 buttonAnswer svgAnswer {
   margin-right: 5px;
+}
+
+.options-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
 }
