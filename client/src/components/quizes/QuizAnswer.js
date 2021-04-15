@@ -16,12 +16,11 @@ const QuizAnswer = ({ quiz: { quiz, loading } }, props) => {
     quiz.question_possibility
   );
 
-  let rincre = QuestionLength.length - increLength;
-
+  
  
-  const [allAnswers, setallAnswers] = useState([
+  const [allAnswers, setallAnswers] = useState(
     quiz.question_possibility[currentQuestion].answers,
-  ]);
+  );
   const [correctAnswer, setcorretAnswer] = useState(
     quiz.question_possibility[currentQuestion].correct_answer
   );
@@ -42,6 +41,8 @@ const QuizAnswer = ({ quiz: { quiz, loading } }, props) => {
       setShowScore(true);
     }
   };
+
+  console.log(currentQuestion);
 
 
   return loading ? (
