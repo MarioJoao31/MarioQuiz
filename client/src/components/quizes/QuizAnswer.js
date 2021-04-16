@@ -4,49 +4,32 @@ import { connect } from "react-redux";
 
 import Spinner from "../layout/Spinner";
 
-const QuizAnswer = ({ quiz: { quiz, loading } }, props) => {
-  //TODO: Variaveis para o quiz funcionar e randomizar as respostas
+const QuizAnswer = ({ quiz: { quiz, loading } }) => {
+  //TODO: Estou a fazer a logica da pagina de novo 
 
-  
-  const [increLength, setincreLength] = useState(1);
-  const [currentQuestion, setCurrentQuestion] = useState(0);
-  const [showScore, setShowScore] = useState(false);
-  const [score, setScore] = useState(0);
-  const [startQuiz, setstartQuiz] = useState(false);
+  const[startQuiz, setStartQuiz] = useState(false);
+  const[showScore, setShowScore] = useState(false);
+  const[score, setScore] = useState(0);
+  const[incre,setIncre]= useState(0);
+  const[respostas, setRespostas] = useState(quiz.question_possibility[incre].answers);
+  const[respostaCorreta, setRespostaCorreta]= useState(quiz.question_possibility[incre].correct_answer)
+  console.log(respostas);
+  console.log("antes de clicar:"+incre)
 
-  const [QuestionLength, setQuestionLength] = useState(
-    quiz.question_possibility
-  );
-
-  
- 
-  const [allAnswers, setallAnswers] = useState(
-    quiz.question_possibility[currentQuestion].answers,
-  );
-  const [correctAnswer, setcorretAnswer] = useState(
-    quiz.question_possibility[currentQuestion].correct_answer
-  );
-
-  
-  // Separação
-
-  const handleAnswerOptionClick = (isCorrect) => {
-    if (isCorrect === quiz.question_possibility[currentQuestion].correct_answer) {
+  const handleNextQuestion = (respostaCorreta) => {
+    //ver se a pergunta esta correta 
+    if (respostaCorreta === quiz.question_possibility[incre].answers){
       setScore(score + 1);
     }
-
-    
-    if (currentQuestion < allAnswers.length) {
-      let respostas = quiz.question_possibility[currentQuestion].answers
-      setCurrentQuestion(currentQuestion + 1);
-      console.log(respostas);
-      return respostas;
-    } else {
+    if(incre < respostas.length){
+    //incrementador para passar a proxima pergunta
+    setIncre(incre + 1);
+    }else{
       setShowScore(true);
     }
-  };
-
-  console.log(allAnswers.map((fuck)=>(console.log(fuck))));
+    console.log("incrementador depois de carregar:"+incre)
+  }
+  
 
   return loading ? (
     <Spinner />
@@ -56,37 +39,36 @@ const QuizAnswer = ({ quiz: { quiz, loading } }, props) => {
     {startQuiz ? (<div>
       {showScore ? (
           <div className='score-section'>
-            Fizeste {score} de {QuestionLength.length} Pontos
+            Fizeste  Pontos
           </div>
         ) : (
           <>
             <div className='question-section'>
               <div className='question-count'>
-                <span>Question {currentQuestion }</span>/
-                {QuestionLength.length}
+                <span>Question </span>/
+              
               </div>
               
-              <div className='question-text'>{quiz.question_possibility[currentQuestion].title_question}
+              <div className='question-text'>Titulo:
               </div>
             </div>
             <div className='answer-section'>
-              
-              {
-              allAnswers.map((answerOption) => (
+              {respostas.map((resposta)=> (
                 <button
-                  className='buttonAnswer'
-                  onClick={() => handleAnswerOptionClick(answerOption)}
-                  key={answerOption}
-                >
-                  {answerOption}
-                </button>
+                className='buttonAnswer'
+                onClick={()=> handleNextQuestion(resposta)}
+                key={resposta}
+              >
+                {resposta}
+              </button>
               ))}
+              
               
             </div>
           </>
         )}
     </div>): (<div>
-      <button className='buttonAnswer' onClick={() => setstartQuiz(true) }> start Quiz </button>
+      <button className='buttonAnswer' onClick={() => setStartQuiz(true) }> start Quiz </button>
     </div>)}
         
       </div>
