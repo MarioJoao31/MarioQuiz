@@ -7,10 +7,12 @@ import Spinner from "../layout/Spinner";
 const QuizAnswer = ({ quiz: { quiz, loading } }, props) => {
   //TODO: Variaveis para o quiz funcionar e randomizar as respostas
 
+  
   const [increLength, setincreLength] = useState(1);
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [showScore, setShowScore] = useState(false);
   const [score, setScore] = useState(0);
+  const [startQuiz, setstartQuiz] = useState(false);
 
   const [QuestionLength, setQuestionLength] = useState(
     quiz.question_possibility
@@ -33,24 +35,26 @@ const QuizAnswer = ({ quiz: { quiz, loading } }, props) => {
       setScore(score + 1);
     }
 
-    let nextQuestion = currentQuestion + 1;
+    
     if (currentQuestion < allAnswers.length) {
-      
-      setCurrentQuestion(nextQuestion);
+      let respostas = quiz.question_possibility[currentQuestion].answers
+      setCurrentQuestion(currentQuestion + 1);
+      console.log(respostas);
+      return respostas;
     } else {
       setShowScore(true);
     }
   };
 
-  console.log(currentQuestion);
-
+  console.log(allAnswers.map((fuck)=>(console.log(fuck))));
 
   return loading ? (
     <Spinner />
   ) : (
-    <Fragment>
       <div className='app'>
-        {showScore ? (
+    
+    {startQuiz ? (<div>
+      {showScore ? (
           <div className='score-section'>
             Fizeste {score} de {QuestionLength.length} Pontos
           </div>
@@ -58,14 +62,17 @@ const QuizAnswer = ({ quiz: { quiz, loading } }, props) => {
           <>
             <div className='question-section'>
               <div className='question-count'>
-                <span>Question {currentQuestion + 1}</span>/
+                <span>Question {currentQuestion }</span>/
                 {QuestionLength.length}
               </div>
               
-              <div className='question-text'>{quiz.question_possibility[currentQuestion].title_question}</div>
+              <div className='question-text'>{quiz.question_possibility[currentQuestion].title_question}
+              </div>
             </div>
             <div className='answer-section'>
-              {quiz.question_possibility[currentQuestion].answers.map((answerOption) => (
+              
+              {
+              allAnswers.map((answerOption) => (
                 <button
                   className='buttonAnswer'
                   onClick={() => handleAnswerOptionClick(answerOption)}
@@ -74,12 +81,20 @@ const QuizAnswer = ({ quiz: { quiz, loading } }, props) => {
                   {answerOption}
                 </button>
               ))}
+              
             </div>
           </>
         )}
+    </div>): (<div>
+      <button className='buttonAnswer' onClick={() => setstartQuiz(true) }> start Quiz </button>
+    </div>)}
+        
       </div>
-    </Fragment>
+    
+    
   );
+
+
 };
 
 QuizAnswer.propTypes = {
@@ -92,4 +107,4 @@ const mapStateToProps = (state) => ({
   quiz: state.quiz,
 });
 
-export default connect(mapStateToProps)(QuizAnswer);
+export default connect(mapStateToProps, {})(QuizAnswer);
