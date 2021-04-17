@@ -4,7 +4,6 @@ import { connect } from "react-redux";
 
 import { addQuiz, addQuizQuestionsAnswers } from "../../actions/quiz";
 
-
 /* MENUUUU DE CATEGORIA */
 
 const styleLink = document.createElement("link");
@@ -14,9 +13,9 @@ styleLink.href =
 document.head.appendChild(styleLink);
 
 /* FIM DE MENUUUU DE CATEGORIA */
-//TODO:quiz esta feito 
+//TODO:quiz esta feito
 
-const QuizForm = ({ addQuiz,addQuizQuestionsAnswers, showInput }) => {
+const QuizForm = ({ addQuiz, addQuizQuestionsAnswers, showInput }) => {
   const [title, setTitle] = useState("");
   const [difficulty, setDifficulty] = useState("");
   const [category, setCategory] = useState("");
@@ -36,68 +35,67 @@ const QuizForm = ({ addQuiz,addQuizQuestionsAnswers, showInput }) => {
       title_question,
       correct_answer,
       answers,
-    })
-    
+    });
   };
 
   return (
     <Fragment>
       {showInput && (
-        <div className='contact-us'>
-          <form id='submeter' onSubmit={(e) => onSubmit(e)}>
+        <div className="contact-us">
+          <form id="submeter" onSubmit={(e) => onSubmit(e)}>
             <input
-              className='inputSexy'
-              placeholder='Titulo do Quiz'
-              type='text'
+              className="inputSexy"
+              placeholder="Titulo do Quiz"
+              type="text"
               value={title}
               onChange={(e) => setTitle(e.target.value)}
             />
             <input
-              className='inputSexy'
-              placeholder='Categoria do Quiz'
-              type='text'
+              className="inputSexy"
+              placeholder="Categoria do Quiz"
+              type="text"
               value={category}
               onChange={(e) => setCategory(e.target.value)}
             />
 
-            <div className='field'>
-              <ul className='options-grid'>
-                <li className='option'>
+            <div className="field">
+              <ul className="options-grid">
+                <li className="option">
                   <input
-                    className='option-input'
-                    id='0'
-                    name='option'
-                    type='radio'
+                    className="option-input"
+                    id="0"
+                    name="option"
+                    type="radio"
                     value={difficulty}
                     onChange={(e) => setDifficulty("Fácil")}
                   />
-                  <label className='option-label' htmlFor='0'>
+                  <label className="option-label" htmlFor="0">
                     Fácil
                   </label>
                 </li>
-                <li className='option'>
+                <li className="option">
                   <input
-                    className='option-input'
-                    id='1'
-                    name='option'
-                    type='radio'
+                    className="option-input"
+                    id="1"
+                    name="option"
+                    type="radio"
                     value={difficulty}
                     onChange={(e) => setDifficulty("Médio")}
                   />
-                  <label className='option-label' htmlFor='1'>
+                  <label className="option-label" htmlFor="1">
                     Médio
                   </label>
                 </li>
-                <li className='option'>
+                <li className="option">
                   <input
-                    className='option-input'
-                    id='2'
-                    name='option'
-                    type='radio'
+                    className="option-input"
+                    id="2"
+                    name="option"
+                    type="radio"
                     value={difficulty}
                     onChange={(e) => setDifficulty("Difícil")}
                   />
-                  <label className='option-label' htmlFor='2'>
+                  <label className="option-label" htmlFor="2">
                     Difícil
                   </label>
                 </li>
@@ -105,7 +103,7 @@ const QuizForm = ({ addQuiz,addQuizQuestionsAnswers, showInput }) => {
             </div>
             <br />
             <span
-              className='buttonSexy'
+              className="buttonSexy"
               onClick={() => setaddPergunta(!addPergunta)}
             >
               Adicionar Pergunta com respostas
@@ -116,35 +114,34 @@ const QuizForm = ({ addQuiz,addQuizQuestionsAnswers, showInput }) => {
             {addPergunta && (
               <Fragment>
                 <input
-                  className='inputSexy'
-                  placeholder='Pergunta'
-                  required=''
-                  type='text'
+                  className="inputSexy"
+                  placeholder="Pergunta"
+                  required=""
+                  type="text"
                   value={title_question}
                   onChange={(e) => setTitle_question(e.target.value)}
                 ></input>
 
                 <input
-                  className='inputSexy'
-                  placeholder='resposta correta'
-                  required=''
-                  type='text'
+                  className="inputSexy"
+                  placeholder="resposta correta"
+                  required=""
+                  type="text"
                   value={correct_answer}
                   onChange={(e) => setCorrect_answer(e.target.value)}
                 ></input>
                 <input
-                  className='inputSexy'
-                  placeholder='Resposta'
-                  required=''
-                  type='text'
+                  className="inputSexy"
+                  placeholder="Resposta"
+                  required=""
+                  type="text"
                   value={answers}
                   onChange={(e) => setAnswers(e.target.value)}
                 ></input>
-                
               </Fragment>
             )}
 
-            <button className='buttonSexy' type='submit' value='Postar'>
+            <button className="buttonSexy" type="submit" value="Postar">
               Criar
             </button>
           </form>

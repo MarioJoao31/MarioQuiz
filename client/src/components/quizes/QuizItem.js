@@ -1,14 +1,15 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useState } from "react";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
+
 
 import Moment from "react-moment";
 import { addLike, removeLike, deleteQuiz } from "../../actions/quiz";
 import QuizAnswer from "./QuizAnswer";
 
 
-//const likeslength= likes.length 
+//const likeslength= likes.length
 
 
 const QuizItem = ({
@@ -25,82 +26,81 @@ const QuizItem = ({
     category,
     difficulty,
     likes,
-    comments,
+    question_possibility,
     upload_at,
   },
   showActions,
   showQuestions,
 }) => (
-  
-  
-    <div className="bg-white rounded-lg shadow-xl">
-      <div className=''>
-        <div>
-    <div className="round-img">
-      <Link to={`/profile/${user}`}>
-        <img className='round-img2' src={avatar} alt='' />
-        <h4>{name}</h4>
-      </Link>
-    </div>
-
-    <div>
-      <div className='titulo'>Título: {title}</div>
-      <div className=''>
-        <p className='ml'>
-          <b>Categoria</b>: {category}
-        </p>
-        <p className='ml'>
-          <b>Grau de dificuldade:</b> {difficulty}
-        </p>
-      </div>
-      <p className='post-date'>
-        Feito no dia <Moment format='DD/MM/YYYY'>{upload_at}</Moment>
-      </p>
-      </div>
-
-      {showActions && (
-        <Fragment>
-          <button
-            onClick={() => addLike(_id)}
-            type='button'
-            className='btn btn-light'
-          >
-            <i className='fas fa-thumbs-up' />{" "}
-            <span>{likes && likes.length > 0 && <span>{likes.length}</span>}</span>
-          </button>
-
-          <button
-            onClick={() => removeLike(_id)}
-            type='button'
-            className='btn btn-light'
-          >
-            <i className='fas fa-thumbs-down' />
-          </button>
-
-          <Link to={`/quizes/${_id}`} className='btn btn-primary'>
-            Fazer Quiz
+<div className="bg-gray-100  rounded overflow-hidden shadow">
+    <div className="">
+      <div>
+        <div className=" ">
+          <Link to={`/profile/${user}`}>
+            <img className="round-img2" src={avatar} alt="" />
+            <h4 className="">{name}</h4>
           </Link>
+        </div>
 
-          {!auth.loading && user === auth.user._id && (
+        <div>
+          <div className="font-bold">Título: {title}</div>
+
+          <p className="ml">
+            <b>Categoria</b>: {category} / {difficulty}
+          </p>
+
+          <p className="post-date">
+            Feito no dia <Moment format="DD/MM/YYYY">{upload_at}</Moment>
+          </p>
+        </div>
+
+        {showActions && (
+          <Fragment>
             <button
-              onClick={(e) => deleteQuiz(_id)}
-              type='button'
-              className='btn btn-danger'
+              onClick={() => addLike(_id)}
+              type="button"
+              className="btn btn-light"
             >
-              <i className='fas fa-times'></i>
+              <i className="fas fa-thumbs-up" />{" "}
+              <span>
+                {likes && likes.length > 0 && <span>{likes.length}</span>}
+              </span>
             </button>
-          )}
+
+            <button
+              onClick={() => removeLike(_id)}
+              type="button"
+              className="btn btn-light"
+            >
+              <i className="fas fa-thumbs-down" />
+            </button>
+
+            <Link to={`/quizes/${_id}`} className="btn btn-primary">
+              Fazer Quiz
+            </Link>
+
+            {!auth.loading && user === auth.user._id && (
+              <button
+                onClick={(e) => deleteQuiz(_id)}
+                type="button"
+                className="btn btn-danger"
+              >
+                <i className="fas fa-times"></i>
+              </button>
+            )}
+          </Fragment>
+        )}
+      </div>
+      {showQuestions && (
+        <Fragment>
+          <QuizAnswer key={_id} />
         </Fragment>
       )}
     </div>
-    {showQuestions && (
-      <Fragment>
-        <QuizAnswer key={_id} />
-      </Fragment>
-    )}
-    </div>
   </div>
+
 );
+
 
 QuizItem.defaultProps = { showActions: true };
 QuizItem.defaultProps = { showQuestions: false };
