@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 
 import { addQuiz, addQuizQuestionsAnswers } from "../../actions/quiz";
-import { ADD_QUIZ_QUESTIONSANSWER } from "../../actions/types";
+
 
 /* MENUUUU DE CATEGORIA */
 
@@ -14,7 +14,7 @@ styleLink.href =
 document.head.appendChild(styleLink);
 
 /* FIM DE MENUUUU DE CATEGORIA */
-//TODO:criar variavel para poder incrementar mais que uma answer e depois juntar todas as answers numa variavel e enviar para o setAnswer
+//TODO:quiz esta feito 
 
 const QuizForm = ({ addQuiz,addQuizQuestionsAnswers, showInput }) => {
   const [title, setTitle] = useState("");
@@ -140,14 +140,7 @@ const QuizForm = ({ addQuiz,addQuizQuestionsAnswers, showInput }) => {
                   value={answers}
                   onChange={(e) => setAnswers(e.target.value)}
                 ></input>
-                <input
-                  className='inputSexy'
-                  placeholder='Resposta'
-                  required=''
-                  type='text'
-                  value={answers}
-                  onChange={(e) => setAnswers(e.target.value)}
-                ></input>
+                
               </Fragment>
             )}
 

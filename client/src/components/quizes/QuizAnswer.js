@@ -1,4 +1,4 @@
-import React, { Fragment, useState, useEffect } from "react";
+import React, { Fragment, useState } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 
@@ -14,7 +14,7 @@ const QuizAnswer = ({ quiz: { quiz, loading } }) => {
   const[respostas, setRespostas] = useState(quiz.question_possibility[incre]);
   const[respostaCorreta, setRespostaCorreta]= useState(quiz.question_possibility[incre].correct_answer)
   const [tamanhoDasRespostas, setTamanhoDasRespostas]= useState(quiz.question_possibility.length)
-
+  const [tituloPergunta, setTituloPergunta] = useState(quiz.question_possibility[incre].title_question)
     
   
   
@@ -49,7 +49,7 @@ const QuizAnswer = ({ quiz: { quiz, loading } }) => {
                 <span>Pergunta {incre +1} / {tamanhoDasRespostas} </span>
               </div>
               
-              <div className='question-text'>Titulo:
+              <div className='question-text'>Pergunta: {tituloPergunta}
               </div>
             </div>
             <div className='answer-section'>
