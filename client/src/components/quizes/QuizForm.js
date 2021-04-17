@@ -1,7 +1,9 @@
 import React, { useState, Fragment } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
+import { produce } from "immer";
 
+import { getQuizes } from "../../actions/quiz";
 import { addQuiz, addQuizQuestionsAnswers } from "../../actions/quiz";
 
 /* MENUUUU DE CATEGORIA */
@@ -13,9 +15,14 @@ styleLink.href =
 document.head.appendChild(styleLink);
 
 /* FIM DE MENUUUU DE CATEGORIA */
-//TODO:quiz esta feito
+//TODO:Adicionar .map() para adicionar que uma resposta, e adicionar
 
-const QuizForm = ({ addQuiz, addQuizQuestionsAnswers, showInput }) => {
+const QuizForm = ({
+  addQuiz,
+  addQuizQuestionsAnswers,
+  showInput,
+  quiz: { quizes, name },
+}) => {
   const [title, setTitle] = useState("");
   const [difficulty, setDifficulty] = useState("");
   const [category, setCategory] = useState("");
@@ -38,6 +45,8 @@ const QuizForm = ({ addQuiz, addQuizQuestionsAnswers, showInput }) => {
     });
   };
 
+  const [introduzir, setintroduzir] = useState(quizes);
+  console.log(introduzir);
   return (
     <Fragment>
       {showInput && (
@@ -109,6 +118,26 @@ const QuizForm = ({ addQuiz, addQuizQuestionsAnswers, showInput }) => {
               Adicionar Pergunta com respostas
             </span>
 
+            {quizes.question_possibility.answers.map((p, index) => {
+              //TODO:  incrementar perguntas e respostas - trello
+              return (
+                <Fragment>
+                  <div key={p._id}></div>
+                  <input
+                    onChange={(e) => {
+                      const titulo = e.target.value;
+                      setintroduzir((titulo) =>
+                        produce(titulo, (v) => {
+                          v[index].titulo = titulo;
+                        })
+                      );
+                    }}
+                    value={p.titulo}
+                    placeholder="titulo"
+                  />
+                </Fragment>
+              );
+            })}
             <br />
 
             {addPergunta && (
@@ -156,6 +185,13 @@ QuizForm.defaultProps = { showInput: false };
 QuizForm.propTypes = {
   addQuiz: PropTypes.func.isRequired,
   addQuizQuestionsAnswers: PropTypes.func.isRequired,
+  quiz: PropTypes.object.isRequired,
 };
 
-export default connect(null, { addQuiz, addQuizQuestionsAnswers })(QuizForm);
+const mapStateToProps = (state) => ({
+  quiz: state.quiz,
+});
+
+export default connect(mapStateToProps, { addQuiz, addQuizQuestionsAnswers })(
+  QuizForm
+);

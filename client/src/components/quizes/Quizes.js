@@ -1,10 +1,11 @@
 import React, { Fragment, useEffect, useState } from "react";
 import PropTypes from "prop-types";
-import Spinner from "../layout/Spinner";
-import { getQuizes } from "../../actions/quiz";
 import { connect } from "react-redux";
+
+import Spinner from "../layout/Spinner";
 import QuizItem from "./QuizItem";
 import QuizForm from "./QuizForm";
+import { getQuizes } from "../../actions/quiz";
 
 
 const Quizes = ({ getQuizes, quiz: { quizes, loading } }) => {
