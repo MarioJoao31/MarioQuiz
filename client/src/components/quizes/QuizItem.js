@@ -33,8 +33,8 @@ const QuizItem = ({
 }) => (
   
   
-    <div className="card-single card-body my-1">
-      <div className='dash-cards '>
+    <div className="bg-white rounded-lg shadow-xl">
+      <div className=''>
         <div>
     <div className="round-img">
       <Link to={`/profile/${user}`}>

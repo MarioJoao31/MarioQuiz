@@ -31,10 +31,12 @@ const Quizes = ({ getQuizes, quiz: { quizes, loading } }) => {
       </button>
       <QuizForm showInput={showInput} />
       <br/>
-      <div className='posts'>
+      <div className='flex-1 max-w-4xl mx-auto p-10'>
+        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 md:gap-8"> 
         {quizes.map((quiz) => (
           <QuizItem key={quiz._id} quiz={quiz} showActions={true} />
         ))}
+        </div>
       </div>
       
     </Fragment>
