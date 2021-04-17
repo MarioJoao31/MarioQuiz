@@ -32,8 +32,11 @@ const QuizItem = ({
   showQuestions,
 }) => (
   
-  <div className='post bg-white p-1 my-1'>
-    <div>
+  
+    <div className="card-single card-body my-1">
+      <div className='dash-cards '>
+        <div>
+    <div className="round-img">
       <Link to={`/profile/${user}`}>
         <img className='round-img2' src={avatar} alt='' />
         <h4>{name}</h4>
@@ -53,6 +56,7 @@ const QuizItem = ({
       <p className='post-date'>
         Feito no dia <Moment format='DD/MM/YYYY'>{upload_at}</Moment>
       </p>
+      </div>
 
       {showActions && (
         <Fragment>
@@ -94,6 +98,7 @@ const QuizItem = ({
         <QuizAnswer key={_id} />
       </Fragment>
     )}
+    </div>
   </div>
 );
 

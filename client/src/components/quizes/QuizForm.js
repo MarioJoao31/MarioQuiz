@@ -14,6 +14,7 @@ styleLink.href =
 document.head.appendChild(styleLink);
 
 /* FIM DE MENUUUU DE CATEGORIA */
+//TODO:criar variavel para poder incrementar mais que uma answer e depois juntar todas as answers numa variavel e enviar para o setAnswer
 
 const QuizForm = ({ addQuiz,addQuizQuestionsAnswers, showInput }) => {
   const [title, setTitle] = useState("");
@@ -125,11 +126,19 @@ const QuizForm = ({ addQuiz,addQuizQuestionsAnswers, showInput }) => {
 
                 <input
                   className='inputSexy'
-                  placeholder='Resposta'
+                  placeholder='resposta correta'
                   required=''
                   type='text'
                   value={correct_answer}
                   onChange={(e) => setCorrect_answer(e.target.value)}
+                ></input>
+                <input
+                  className='inputSexy'
+                  placeholder='Resposta'
+                  required=''
+                  type='text'
+                  value={answers}
+                  onChange={(e) => setAnswers(e.target.value)}
                 ></input>
                 <input
                   className='inputSexy'

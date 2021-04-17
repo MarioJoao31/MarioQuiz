@@ -11,11 +11,13 @@ const QuizAnswer = ({ quiz: { quiz, loading } }) => {
   const[showScore, setShowScore] = useState(false);
   const[score, setScore] = useState(0);
   const[incre,setIncre]= useState(0);
-  const[respostas, setRespostas] = useState(quiz.question_possibility[incre].answers);
+  const[respostas, setRespostas] = useState(quiz.question_possibility[incre]);
   const[respostaCorreta, setRespostaCorreta]= useState(quiz.question_possibility[incre].correct_answer)
-  console.log(respostas);
-  console.log("antes de clicar:"+incre)
+  const [tamanhoDasRespostas, setTamanhoDasRespostas]= useState(quiz.question_possibility.length)
 
+    
+  
+  
   const handleNextQuestion = (respostaCorreta) => {
     //ver se a pergunta esta correta 
     if (respostaCorreta === quiz.question_possibility[incre].answers){
@@ -27,10 +29,9 @@ const QuizAnswer = ({ quiz: { quiz, loading } }) => {
     }else{
       setShowScore(true);
     }
-    console.log("incrementador depois de carregar:"+incre)
+    
   }
   
-
   return loading ? (
     <Spinner />
   ) : (
@@ -39,27 +40,26 @@ const QuizAnswer = ({ quiz: { quiz, loading } }) => {
     {startQuiz ? (<div>
       {showScore ? (
           <div className='score-section'>
-            Fizeste  Pontos
+            Fizeste {score} Pontos
           </div>
         ) : (
           <>
             <div className='question-section'>
               <div className='question-count'>
-                <span>Question </span>/
-              
+                <span>Pergunta {incre +1} / {tamanhoDasRespostas} </span>
               </div>
               
               <div className='question-text'>Titulo:
               </div>
             </div>
             <div className='answer-section'>
-              {respostas.map((resposta)=> (
+              {respostas.answers.map((_id)=> (
                 <button
                 className='buttonAnswer'
-                onClick={()=> handleNextQuestion(resposta)}
-                key={resposta}
+                onClick={()=> handleNextQuestion(_id)}
+                key={_id}
               >
-                {resposta}
+                {_id}
               </button>
               ))}
               
@@ -68,7 +68,7 @@ const QuizAnswer = ({ quiz: { quiz, loading } }) => {
           </>
         )}
     </div>): (<div>
-      <button className='buttonAnswer' onClick={() => setStartQuiz(true) }> start Quiz </button>
+      <button className='buttonAnswer' onClick={() => setStartQuiz(true)}> start Quiz </button>
     </div>)}
         
       </div>
