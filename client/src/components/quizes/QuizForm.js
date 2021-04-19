@@ -26,9 +26,7 @@ const QuizForm = ({
   const [title, setTitle] = useState("");
   const [difficulty, setDifficulty] = useState("");
   const [category, setCategory] = useState("");
-  const [title_question, setTitle_question] = useState("");
   const [correct_answer, setCorrect_answer] = useState("");
-  const [answers, setAnswers] = useState("");
   const [addPergunta, setaddPergunta] = useState(false);
 
   const onSubmit = async (e) => {
@@ -41,12 +39,18 @@ const QuizForm = ({
     await addQuizQuestionsAnswers(id, {
       title_question,
       correct_answer,
-      answers,
+      introduzirAnswers,
     });
   };
 
-  const [introduzir, setintroduzir] = useState(quizes);
-  console.log(introduzir);
+  const [introduzirtitulo, setintroduzirtitulo] = useState(quizes);
+  const [introduzirAnswers, setintroduzirAnswers] = useState([]);
+  const [title_question, setTitle_question] = useState("");
+
+  //TODO: incrementar perguntas e respostas - trello
+
+  console.log(introduzirtitulo[0].question_possibility[0]);
+  
   return (
     <Fragment>
       {showInput && (
@@ -66,7 +70,6 @@ const QuizForm = ({
               value={category}
               onChange={(e) => setCategory(e.target.value)}
             />
-
             <div className="field">
               <ul className="options-grid">
                 <li className="option">
@@ -117,29 +120,7 @@ const QuizForm = ({
             >
               Adicionar Pergunta com respostas
             </span>
-
-            {quizes.question_possibility.answers.map((p, index) => {
-              //TODO:  incrementar perguntas e respostas - trello
-              return (
-                <Fragment>
-                  <div key={p._id}></div>
-                  <input
-                    onChange={(e) => {
-                      const titulo = e.target.value;
-                      setintroduzir((titulo) =>
-                        produce(titulo, (v) => {
-                          v[index].titulo = titulo;
-                        })
-                      );
-                    }}
-                    value={p.titulo}
-                    placeholder="titulo"
-                  />
-                </Fragment>
-              );
-            })}
             <br />
-
             {addPergunta && (
               <Fragment>
                 <input
@@ -164,12 +145,11 @@ const QuizForm = ({
                   placeholder="Resposta"
                   required=""
                   type="text"
-                  value={answers}
-                  onChange={(e) => setAnswers(e.target.value)}
+                  value={introduzirAnswers}
+                  onChange={(e) => setintroduzirAnswers(e.target.value)}
                 ></input>
               </Fragment>
             )}
-
             <button className="buttonSexy" type="submit" value="Postar">
               Criar
             </button>
