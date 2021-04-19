@@ -61,11 +61,11 @@ const QuizForm = ({
   const handleChangeInput = (index, event) => {
     const values = [...inputFields];
     values[index][event.target.name] = event.target.value;
-    setAnswers(answers.push(values[index].answers));
+    setAnswers(values[index].answers);
     setTitle_question(values[index].title_question);
     setCorrect_answer(values[index].correct_answer);
     setInputFields(values);
-
+    
     
   };
   const handleSubmit = (e) => {
@@ -89,7 +89,7 @@ const QuizForm = ({
 
   console.log(answers, title_question, correct_answer);
 
-  //TODO: incrementar perguntas e respostas - trello
+  //TODO: tenho de arranjar uma paneira de inserir um array na db porque so esta a passar um objeto e eu queria passar mais que um 
 
   return (
     <Fragment>
