@@ -21,12 +21,11 @@ const QuizForm = ({
   addQuiz,
   addQuizQuestionsAnswers,
   showInput,
-  quiz: { quizes, name },
+  quiz: { quizes },
 }) => {
   const [title, setTitle] = useState("");
   const [difficulty, setDifficulty] = useState("");
   const [category, setCategory] = useState("");
-  const [correct_answer, setCorrect_answer] = useState("");
   const [addPergunta, setaddPergunta] = useState(false);
 
   const onSubmit = async (e) => {
@@ -37,25 +36,66 @@ const QuizForm = ({
       category,
     });
     await addQuizQuestionsAnswers(id, {
-      title_question,
-      correct_answer,
-      introduzirAnswers,
+      todasAnswers,
+      todasTitle_question,
+      todasCorrect_answer,
     });
   };
 
-  const [introduzirtitulo, setintroduzirtitulo] = useState(quizes);
-  const [introduzirAnswers, setintroduzirAnswers] = useState([]);
+  // INPUT FIELDS PARA ESTA MERDA FICAR BEM SEPARADO
+  const [todasAnswers,setTodasAnswers]= useState([])
+  const [todasTitle_question,setTodasTitle_question]= useState([])
+  const [todasCorrect_answer,setTodasCorrect_answer]= useState([])
   const [title_question, setTitle_question] = useState("");
+  const [answers, setAnswers] = useState("");
+  const [correct_answer, setCorrect_answer] = useState("");
+
+  const [inputFields, setInputFields] = useState([
+    { answers: "", title_question: "", correct_answer: "" },
+  ]);
+
+  // setTodasAnswers(todasAnswers.push(answers[index]));
+  // setTodasTitle_question(todasTitle_question.push(title_question[index]));
+  // setTodasCorrect_answer(todasCorrect_answer.push(correct_answer[index]));
+  
+  const handleChangeInput = (index, event) => {
+    const values = [...inputFields];
+    values[index][event.target.name] = event.target.value;
+    setAnswers(answers.push(values[index].answers));
+    setTitle_question(values[index].title_question);
+    setCorrect_answer(values[index].correct_answer);
+    setInputFields(values);
+
+    
+  };
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log("InputFields", inputFields);
+  };
+
+
+  const handleAddFields = () => {
+    setInputFields([
+      ...inputFields,
+      { answers: "", title_question: "", correct_answer: "" },
+    ]);
+  };
+
+  const handleRemoveFields = (index) => {
+    const values = [...inputFields];
+    values.splice(index, 1);
+    setInputFields(values);
+  };
+
+  console.log(answers, title_question, correct_answer);
 
   //TODO: incrementar perguntas e respostas - trello
 
-  console.log(introduzirtitulo[0].question_possibility[0]);
-  
   return (
     <Fragment>
       {showInput && (
         <div className="contact-us">
-          <form id="submeter" onSubmit={(e) => onSubmit(e)}>
+          <form id="submeter" type="submit" onSubmit={(e) => onSubmit(e)}>
             <input
               className="inputSexy"
               placeholder="Titulo do Quiz"
@@ -121,38 +161,70 @@ const QuizForm = ({
               Adicionar Pergunta com respostas
             </span>
             <br />
-            {addPergunta && (
-              <Fragment>
-                <input
-                  className="inputSexy"
-                  placeholder="Pergunta"
-                  required=""
-                  type="text"
-                  value={title_question}
-                  onChange={(e) => setTitle_question(e.target.value)}
-                ></input>
 
-                <input
-                  className="inputSexy"
-                  placeholder="resposta correta"
-                  required=""
-                  type="text"
-                  value={correct_answer}
-                  onChange={(e) => setCorrect_answer(e.target.value)}
-                ></input>
-                <input
-                  className="inputSexy"
-                  placeholder="Resposta"
-                  required=""
-                  type="text"
-                  value={introduzirAnswers}
-                  onChange={(e) => setintroduzirAnswers(e.target.value)}
-                ></input>
-              </Fragment>
-            )}
             <button className="buttonSexy" type="submit" value="Postar">
-              Criar
+              Criar Quiz
             </button>
+            <br />
+          </form>
+
+          <form onSubmit={handleSubmit} >
+            TESTE
+            {inputFields.map((inputField, index) => (
+              <div key={index}>
+                <input
+                  className="inputSexy"
+                  name="title_question"
+                  placeholder="Titulo"
+                  value={inputField.title_question}
+                  onChange={(event) => handleChangeInput(index, event)}
+                ></input>
+                <input
+                  className="inputSexy"
+                  name="answers"
+                  placeholder="resposta"
+                  value={inputField.answers}
+                  onChange={(event) => handleChangeInput(index, event)}
+                />
+                <input
+                  className="inputSexy"
+                  name="correct_answer"
+                  placeholder="resposta correta "
+                  value={inputField.correct_answer}
+                  onChange={(event) => handleChangeInput(index, event)}
+                />
+
+                <button onClick={() => handleAddFields()} >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="h-10 w-10 "
+                    viewBox="0 0 20 20"
+                    fill="currentColor"
+                  >
+                    <path
+                      fillRule="evenodd"
+                      d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z"
+                      clipRule="evenodd"
+                    />
+                  </svg>
+                </button>
+                <button onClick={() => handleRemoveFields(index)}>
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="h-10 w-10"
+                    viewBox="0 0 20 20"
+                    fill="currentColor"
+                  >
+                    <path
+                      fillRule="evenodd"
+                      d="M3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z"
+                      clipRule="evenodd"
+                    />
+                  </svg>
+                </button>
+                
+              </div>
+            ))}
           </form>
         </div>
       )}
