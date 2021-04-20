@@ -40,7 +40,7 @@ const QuizForm = ({
       todasTitle_question,
       todasCorrect_answer,
     });
-  };
+  };  
 
   // INPUT FIELDS PARA ESTA MERDA FICAR BEM SEPARADO
   const [todasAnswers,setTodasAnswers]= useState([])
@@ -54,9 +54,7 @@ const QuizForm = ({
     { answers: "", title_question: "", correct_answer: "" },
   ]);
 
-  // setTodasAnswers(todasAnswers.push(answers[index]));
-  // setTodasTitle_question(todasTitle_question.push(title_question[index]));
-  // setTodasCorrect_answer(todasCorrect_answer.push(correct_answer[index]));
+  
   
   const handleChangeInput = (index, event) => {
     const values = [...inputFields];

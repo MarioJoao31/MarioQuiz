@@ -15,9 +15,10 @@ const Quiz = ({ getQuiz, quiz: { quiz, loading }, match }) => {
     <Spinner />
   ) : (
     <Fragment>
-      <Link to='/quizes' className='btn alert-primary'>
+      <Link to='/quizes' className='btn alert-primary my-1'>
         Voltar
       </Link>
+      <br />
       <PostItem quiz={quiz} showActions={false} showQuestions={true}/>
     </Fragment>
   );

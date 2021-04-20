@@ -37,7 +37,7 @@ const QuizItem = ({
       <div>
         <div className=" ">
           <Link to={`/profile/${user}`}>
-            <img className="round-img2" src={avatar} alt="" />
+            <img className="round-img2 w-20" src={avatar} alt="" />
             <h4 className="">{name}</h4>
           </Link>
         </div>

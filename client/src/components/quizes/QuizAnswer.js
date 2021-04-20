@@ -11,29 +11,37 @@ const QuizAnswer = ({ quiz: { quiz, loading } }) => {
   const [showScore, setShowScore] = useState(false);
   const [score, setScore] = useState(0);
   const [incre, setIncre] = useState(0);
-  const [respostas, setRespostas] = useState(quiz.question_possibility[incre]);
-  const [respostaCorreta, setRespostaCorreta] = useState(
-    quiz.question_possibility[incre].correct_answer
-  );
-  const [tamanhoDasRespostas, setTamanhoDasRespostas] = useState(
-    quiz.question_possibility.length
-  );
+  
+  
   const [tituloPergunta, setTituloPergunta] = useState(
     quiz.question_possibility[incre].title_question
   );
+  console.log(tituloPergunta)
 
-  const handleNextQuestion = (respostaCorreta) => {
+
+
+  const handleNextQuestion = (respostaclicada) => {
+    
     //ver se a pergunta esta correta
-    if (respostaCorreta === quiz.question_possibility[incre].answers) {
+    if (respostaclicada === quiz.question_possibility[incre].correct_answer) {
       setScore(score + 1);
+      
     }
-    if (incre < respostas.length) {
-      //incrementador para passar a proxima pergunta
+
+    
+
+    const tam = quiz.question_possibility.length - 1;
+    
+    //incrementador para passar a proxima pergunta se for maior mostra o score
+    if (!(incre === tam)) {
+      
       setIncre(incre + 1);
     } else {
       setShowScore(true);
     }
   };
+
+  
 
   return loading ? (
     <Spinner />
@@ -46,21 +54,23 @@ const QuizAnswer = ({ quiz: { quiz, loading } }) => {
           ) : (
             <>
               <div className="question-section">
+              
                 <div className="question-count">
                   <span>
-                    Pergunta {incre + 1} / {tamanhoDasRespostas}{" "}
+                    Pergunta {incre + 1} / {}
                   </span>
                 </div>
 
                 <div className="question-text">Pergunta: {tituloPergunta}</div>
               </div>
               <div className="answer-section">
-                {respostas.answers.map((_id) => (
+                {quiz.question_possibility[incre].answers.map((_id) => (
                   <button
                     className="buttonAnswer"
                     onClick={() => handleNextQuestion(_id)}
                     key={_id}
                   >
+                    
                     {_id}
                   </button>
                 ))}
