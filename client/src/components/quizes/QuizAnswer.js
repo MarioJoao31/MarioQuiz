@@ -11,12 +11,6 @@ const QuizAnswer = ({ quiz: { quiz, loading } }) => {
   const [showScore, setShowScore] = useState(false);
   const [score, setScore] = useState(0);
   const [incre, setIncre] = useState(0);
-  
-  
-  const [tituloPergunta, setTituloPergunta] = useState(
-    quiz.question_possibility[incre].title_question
-  );
-  console.log(tituloPergunta)
 
 
 
@@ -57,11 +51,11 @@ const QuizAnswer = ({ quiz: { quiz, loading } }) => {
               
                 <div className="question-count">
                   <span>
-                    Pergunta {incre + 1} / {}
+                    Pergunta {incre + 1} / {quiz.question_possibility.length}
                   </span>
                 </div>
 
-                <div className="question-text">Pergunta: {tituloPergunta}</div>
+                <div className="question-text">Pergunta: {quiz.question_possibility[incre].title_question}</div>
               </div>
               <div className="answer-section">
                 {quiz.question_possibility[incre].answers.map((_id) => (
