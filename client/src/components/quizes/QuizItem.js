@@ -46,7 +46,7 @@ const QuizItem = ({
           <div className="font-bold">Título: {title}</div>
 
           <p className="ml">
-            <b>Categoria</b>: {category} / {difficulty}
+            <b>Categoria / Dificuldade</b>: {category} / {difficulty}
           </p>
 
           <p className="post-date">

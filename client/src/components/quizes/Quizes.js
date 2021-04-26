@@ -11,6 +11,7 @@ import { getQuizes } from "../../actions/quiz";
 const Quizes = ({ getQuizes, quiz: { quizes, loading } }) => {
   const [showInput, setShowInput] = useState(false);
 
+
   useEffect(() => {
     getQuizes();
   }, [getQuizes]);
