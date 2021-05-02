@@ -2,85 +2,152 @@ import React, { useState, Fragment } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 
-import { Field, FieldArray, FieldProps, Form, Formik, getIn } from "formik";
+import { Field, Formik, useField, Form } from "formik";
 import * as Yup from "yup";
 import { addQuizQuestionsAnswers } from "../../actions/quiz";
 
-const QuizPR = (id, addQuizQuestionsAnswers) => {
-
-    
-    <Formik initialValues={{
-        title_question : "",
-        correct_answer: "",
-        answers: ""
-
-    }}
-    validationSchema={Yup.Object({
-        title_question: Yup.string()
-        .min(5, "Tem de ter mais de 5 caracteres ")
-        .max(150,"Não pode ultrapaçar do 150 caracteres")
-        .required("Required"),
-        correct_answer: Yup.Object()
-        .min(1, "No minimo tem de ter 1 caractere")
-        .max(150,"So pode ter no maximo 150 caracteres")
-        .required('Required'),
-        answers: Yup.Object()
-        .min(1, "No minimo tem de ter 1 caractere")
-        .max(150,"So pode ter no maximo 150 caracteres")
-        .required('Required')
-    })}
-    >
-        
-    </Formik>
-
-  
+const CustomTextInput = ({ label, ...props }) => {
+  const [field, meta] = useField(props);
 
   return (
-    <Fragment>
-      <form onSubmit={handleSubmit(onSubmit)} onReset={reset}>
-            <div className="card m-3">
-                <h5 className="card-header">React Dynamic Form Example with React Hook Form</h5>
-                <div className="card-body border-bottom">
-                    <div className="form-row">
-                        <div className="form-group">
-                            <label>Number of Tickets</label>
-                            <select name="numberOfTickets" ref={register} >
-                                {['',1,2,3,4,5,6,7,8,9,10].map(i => 
-                                    <option key={i} value={i}>{i}</option>
-                                )}
-                            </select>
-                            
-                        </div>
-                    </div>
-                </div>
-                {ticketNumbers().map(i => (
-                    <div key={i} className="list-group list-group-flush">
-                        <div className="list-group-item">
-                            <h5 className="card-title">Ticket {i + 1}</h5>
-                            <div className="form-row">
-                                <div className="form-group col-6">
-                                    <label>Name</label>
-                                    <input name={`tickets[${i}]name`} ref={register} type="text" className={`form-control ${errors.tickets?.[i]?.name ? 'is-invalid' : '' }`} />
-                                    <div className="invalid-feedback">{errors.tickets?.[i]?.name?.message}</div>
-                                </div>
-                                <div className="form-group col-6">
-                                    <label>Email</label>
-                                    <input name={`tickets[${i}]email`} ref={register} type="text" className={`form-control ${errors.tickets?.[i]?.email ? 'is-invalid' : '' }`} />
-                                    <div className="invalid-feedback">{errors.tickets?.[i]?.email?.message}</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                ))}
-                <div className="card-footer text-center border-top-0">
-                    <button type="submit" className="btn btn-primary mr-1">
-                        Buy Tickets
-                    </button>
-                    <button className="btn btn-secondary mr-1" type="reset">Reset</button>
-                </div>
-            </div>
-        </form>
-    </Fragment>
+    <>
+      <label htmlFor={props.id || props.title_question}>{label}</label>
+      <input className="text-input" {...field} {...props} />
+      {meta.touched && meta.error ? (
+        <div className="error"> {meta.error}</div>
+      ) : null}
+    </>
+  );
+};
+
+const QuizPR = ({id, addQuizQuestionsAnswers}) => {
+  return (
+    <Formik
+      initialValues={{
+        title_question: "",
+        correct_answer: "",
+        answer1: "",
+        answer2: "",
+        answer3: "",
+        answer4: "",
+      }}
+      validationSchema={Yup.object({
+        title_question: Yup.string()
+          .min(5, "Tem de ter mais de 5 caracteres ")
+          .max(150, "Não pode ultrapaçar do 150 caracteres")
+          .required("Required"),
+        correct_answer: Yup.string()
+          .min(1, "No minimo tem de ter 1 caractere")
+          .max(150, "So pode ter no maximo 150 caracteres")
+          .required("Required"),
+        answer1: Yup.string()
+          .min(1, "No minimo tem de ter 1 caractere")
+          .max(150, "So pode ter no maximo 150 caracteres")
+          .required("Required"),
+          answer2: Yup.string()
+          .min(1, "No minimo tem de ter 1 caractere")
+          .max(150, "So pode ter no maximo 150 caracteres")
+          .required("Required"),
+          answer3: Yup.string()
+          .min(1, "No minimo tem de ter 1 caractere")
+          .max(150, "So pode ter no maximo 150 caracteres")
+          .required("Required"),
+          answer4: Yup.string()
+          .min(1, "No minimo tem de ter 1 caractere")
+          .max(150, "So pode ter no maximo 150 caracteres")
+          .required("Required"),
+      })}
+      onSubmit={async (values, { setSubmitting, resetForm }) => {
+        setTimeout(() => {
+          alert(JSON.stringify("Adicionado no Quiz com sucesso!", null, 2));
+
+          resetForm();
+          setSubmitting(false);
+        }, 1000);
+
+        // tentativa de adicionar o correct no answers
+
+        /*
+        <CustomTextInput
+            label="correct_answer"
+            name="correct_answer"
+            type="text"
+            placeholder="MOM"
+          />
+          */
+
+        const title_question = values.title_question;
+         const correct_answer = values.correct_answer;
+        const answers = [] ;
+        answers.push(correct_answer,values.answer1 ,values.answer2 , values.answer3 , values.answer4)
+        Object.assign({}, answers);
+        console.log(title_question, correct_answer, answers );
+
+        await addQuizQuestionsAnswers(id, {
+          title_question,
+          correct_answer,
+          answers,
+        });
+      }}
+    >
+      {(props) => (
+        <Form>
+          <br/>
+          <h1>Insere agora as tuas perguntas </h1>
+          <CustomTextInput
+            label="title_question"
+            name="title_question"
+            type="text"
+            placeholder="Pergunta"
+          />
+          
+          
+          <CustomTextInput
+            label="answer1"
+            name="answer1"
+            type="text"
+            placeholder="Resposta1"
+          />
+          <label>
+              <Field type="radio" name="picked" value={props.answer1} />
+              Resposta Correta
+            </label>
+          <CustomTextInput
+            label="answer2"
+            name="answer2"
+            type="text"
+            placeholder="Resposta2"
+          />
+          <label>
+              <Field type="radio" name="picked" value={props.answer2} />
+              Resposta Correta
+            </label>
+          <CustomTextInput
+            label="answer3"
+            name="answer3"
+            type="text"
+            placeholder="Resposta3"
+          />
+          <label>
+              <Field type="radio" name="picked" value={props.answer3} />
+              Resposta Correta
+            </label>
+          <CustomTextInput
+            label="answer4"
+            name="answer4"
+            type="text"
+            placeholder="Resposta4"
+          />
+          <label>
+              <Field type="radio" name="picked" value={props.answer4} />
+              Resposta Correta
+            </label>
+          <button type="submit">
+            {props.isSubmitting ? "loading..." : "Submit"}{" "}
+          </button>
+        </Form>
+      )}
+    </Formik>
   );
 };
 

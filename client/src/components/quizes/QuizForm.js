@@ -34,7 +34,8 @@ const QuizForm = ({
   const [_id, set_Id] = useState("");
   const [showAnswers, setShowAnswers] = useState(false);
 
-  const onSubmit = async (data) => {
+  const onSubmit = async (data,event) => {
+    event.preventDefault();
     const title1 = data.title;
     const category1 = data.category;
     const body = JSON.stringify({
