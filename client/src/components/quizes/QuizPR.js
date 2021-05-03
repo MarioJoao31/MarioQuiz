@@ -30,6 +30,7 @@ const QuizPR = ({id, addQuizQuestionsAnswers}) => {
         answer2: "",
         answer3: "",
         answer4: "",
+        picked: ""
       }}
       validationSchema={Yup.object({
         title_question: Yup.string()
@@ -39,7 +40,7 @@ const QuizPR = ({id, addQuizQuestionsAnswers}) => {
         correct_answer: Yup.string()
           .min(1, "No minimo tem de ter 1 caractere")
           .max(150, "So pode ter no maximo 150 caracteres")
-          .required("Required"),
+          ,
         answer1: Yup.string()
           .min(1, "No minimo tem de ter 1 caractere")
           .max(150, "So pode ter no maximo 150 caracteres")
@@ -65,9 +66,11 @@ const QuizPR = ({id, addQuizQuestionsAnswers}) => {
           setSubmitting(false);
         }, 1000);
 
-        // tentativa de adicionar o correct no answers
 
-        /*
+        
+
+        // tentativa de adicionar o correct no answers
+         /*
         <CustomTextInput
             label="correct_answer"
             name="correct_answer"
@@ -76,10 +79,29 @@ const QuizPR = ({id, addQuizQuestionsAnswers}) => {
           />
           */
 
+
+
+         
+
+        //atribui os valores para as variaveis usando a libraria formik
         const title_question = values.title_question;
-         const correct_answer = values.correct_answer;
-        const answers = [] ;
+         const correct_answer = values.answer1;
+        const answers = [];
+        
+       //passar valor atraves do radio group button 
+       
+
+       if(values.picked === "resposta1"){
+         values.correct_answer= values.answer1
+       }
+       if(values.picked === "resposta2"){
+         values.correct_answer= values.answer2
+       }
+  
+
+        //insere as opções no array de respostas 
         answers.push(correct_answer,values.answer1 ,values.answer2 , values.answer3 , values.answer4)
+        //transforma o array num objecto
         Object.assign({}, answers);
         console.log(title_question, correct_answer, answers );
 
@@ -87,7 +109,9 @@ const QuizPR = ({id, addQuizQuestionsAnswers}) => {
           title_question,
           correct_answer,
           answers,
-        });
+        }); 
+
+        
       }}
     >
       {(props) => (
@@ -100,49 +124,58 @@ const QuizPR = ({id, addQuizQuestionsAnswers}) => {
             type="text"
             placeholder="Pergunta"
           />
-          
+
+
           
           <CustomTextInput
-            label="answer1"
+            label="Resposta-1"
             name="answer1"
             type="text"
             placeholder="Resposta1"
           />
           <label>
-              <Field type="radio" name="picked" value={props.answer1} />
+              <Field type="radio" name="picked" value="resposta1"/>
               Resposta Correta
             </label>
+
           <CustomTextInput
-            label="answer2"
+            label="Resposta-2"
             name="answer2"
             type="text"
             placeholder="Resposta2"
           />
           <label>
-              <Field type="radio" name="picked" value={props.answer2} />
+              <Field type="radio" name="picked" value="resposta2" />
               Resposta Correta
             </label>
+
           <CustomTextInput
-            label="answer3"
+            label="Resposta-3"
             name="answer3"
             type="text"
             placeholder="Resposta3"
           />
           <label>
-              <Field type="radio" name="picked" value={props.answer3} />
+              <Field type="radio" name="picked" value="resposta3" />
               Resposta Correta
             </label>
+
           <CustomTextInput
-            label="answer4"
+            label="Resposta-4"
             name="answer4"
             type="text"
             placeholder="Resposta4"
           />
           <label>
-              <Field type="radio" name="picked" value={props.answer4} />
+              <Field type="radio" name="picked" value="resposta4" />
               Resposta Correta
             </label>
-          <button type="submit">
+
+             <br/>
+
+          <button
+          className="buttonSexy"
+          type="submit">
             {props.isSubmitting ? "loading..." : "Submit"}{" "}
           </button>
         </Form>
