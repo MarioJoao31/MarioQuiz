@@ -10,7 +10,6 @@
 }
 
 * {
-  
   margin: 0;
   padding: 0;
 }
@@ -18,8 +17,8 @@
 body {
   font-family: "Raleway", sans-serif;
   font-size: 1rem;
-  
-  height: 100vh; 
+
+  height: 100vh;
   background-image: url("./img/qwer.png");
   background-position: center;
   background-size: cover;
@@ -238,10 +237,7 @@ img {
   border-radius: 30%;
   width: 30%;
   margin-right: 50px;
-  
 }
-
-
 
 .line {
   height: 1px;
@@ -649,7 +645,7 @@ button {
 
 .inputSexy {
   display: block;
-  width: 100%;
+  width: 400px;
   font-size: 14pt;
   line-height: 28pt;
   font-family: "Fjalla One";
@@ -685,9 +681,6 @@ button {
   color: white;
   border: 1px solid black;
 }
-
-
-
 
 /*Quiz Answer*/
 
@@ -793,7 +786,7 @@ buttonAnswer svgAnswer {
   grid-template-columns: repeat(3, 1fr);
 }
 
-h4{
+h4 {
   text-align: left;
 }
 
@@ -810,10 +803,10 @@ h4{
   grid-column-gap: 3rem;
 }
 
-.card-single {  
+.card-single {
   background: rgb(229, 227, 227);
   border-radius: 7px;
-  box-shadow: 2px 2px 2px rgba(0,0,0,0.2);
+  box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.2);
 }
 
 .card-body {

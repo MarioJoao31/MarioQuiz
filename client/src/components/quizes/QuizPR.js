@@ -36,7 +36,7 @@ const QuizPR = ({id, addQuizQuestionsAnswers}) => {
         title_question: Yup.string()
           .min(5, "Tem de ter mais de 5 caracteres ")
           .max(150, "Não pode ultrapaçar do 150 caracteres")
-          .required("Required"),
+          .required("Falta o titulo!"),
         correct_answer: Yup.string()
           .min(1, "No minimo tem de ter 1 caractere")
           .max(150, "So pode ter no maximo 150 caracteres")
@@ -44,19 +44,19 @@ const QuizPR = ({id, addQuizQuestionsAnswers}) => {
         answer1: Yup.string()
           .min(1, "No minimo tem de ter 1 caractere")
           .max(150, "So pode ter no maximo 150 caracteres")
-          .required("Required"),
+          .required("Falta a resposta numero 1!"),
           answer2: Yup.string()
           .min(1, "No minimo tem de ter 1 caractere")
           .max(150, "So pode ter no maximo 150 caracteres")
-          .required("Required"),
+          .required("Falta a resposta numero 2"),
           answer3: Yup.string()
           .min(1, "No minimo tem de ter 1 caractere")
           .max(150, "So pode ter no maximo 150 caracteres")
-          .required("Required"),
+          .required("Falta a resposta numero 3"),
           answer4: Yup.string()
           .min(1, "No minimo tem de ter 1 caractere")
           .max(150, "So pode ter no maximo 150 caracteres")
-          .required("Required"),
+          .required("Falta a resposta numero 4"),
       })}
       onSubmit={async (values, { setSubmitting, resetForm }) => {
         setTimeout(() => {
@@ -65,23 +65,7 @@ const QuizPR = ({id, addQuizQuestionsAnswers}) => {
           resetForm();
           setSubmitting(false);
         }, 1000);
-
-
-        
-
-        // tentativa de adicionar o correct no answers
-         /*
-        <CustomTextInput
-            label="correct_answer"
-            name="correct_answer"
-            type="text"
-            placeholder="MOM"
-          />
-          */
-
-
-
-         
+   
 
         //atribui os valores para as variaveis usando a libraria formik
         const title_question = values.title_question;
@@ -90,13 +74,18 @@ const QuizPR = ({id, addQuizQuestionsAnswers}) => {
         
        //passar valor atraves do radio group button 
        
-
        if(values.picked === "resposta1"){
          values.correct_answer= values.answer1
        }
        if(values.picked === "resposta2"){
          values.correct_answer= values.answer2
        }
+       if(values.picked === "resposta3"){
+        values.correct_answer= values.answer3
+      }
+      if(values.picked === "resposta4"){
+        values.correct_answer= values.answer4
+      }
   
 
         //insere as opções no array de respostas 
@@ -119,15 +108,17 @@ const QuizPR = ({id, addQuizQuestionsAnswers}) => {
           <br/>
           <h1>Insere agora as tuas perguntas </h1>
           <CustomTextInput
-            label="title_question"
+          className="inputSexy"
+            label="Titulo da pergunta"
             name="title_question"
             type="text"
             placeholder="Pergunta"
           />
 
 
-          
+          <div >
           <CustomTextInput
+          className="inputSexy"
             label="Resposta-1"
             name="answer1"
             type="text"
@@ -137,8 +128,10 @@ const QuizPR = ({id, addQuizQuestionsAnswers}) => {
               <Field type="radio" name="picked" value="resposta1"/>
               Resposta Correta
             </label>
+            </div>
 
           <CustomTextInput
+          className="inputSexy"
             label="Resposta-2"
             name="answer2"
             type="text"
@@ -150,6 +143,7 @@ const QuizPR = ({id, addQuizQuestionsAnswers}) => {
             </label>
 
           <CustomTextInput
+          className="inputSexy"
             label="Resposta-3"
             name="answer3"
             type="text"
@@ -161,6 +155,7 @@ const QuizPR = ({id, addQuizQuestionsAnswers}) => {
             </label>
 
           <CustomTextInput
+          className="inputSexy"
             label="Resposta-4"
             name="answer4"
             type="text"
