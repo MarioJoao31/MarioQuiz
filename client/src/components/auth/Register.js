@@ -36,16 +36,16 @@ const Register = ({ setAlert, register, isAuthenticated }) => {
    
   return (
     <>
-      <h1 className='large text-primary'>Sign Up</h1>
+      <h1 className='large text-primary'>Regista-te</h1>
       <p className='lead'>
-        <i className='fas fa-user'></i> Create Your Account
+        <i className='fas fa-user'></i> Cria a tua conta
       </p>
 
       <form className='form' onSubmit={(e) => onSubmit(e)}>
         <div className='form-group'>
           <input
             type='text'
-            placeholder='Name'
+            placeholder='Nome'
             name='name'
             value={name}
             onChange={(e) => onChange(e)}
@@ -54,14 +54,13 @@ const Register = ({ setAlert, register, isAuthenticated }) => {
         <div className='form-group'>
           <input
             type='email'
-            placeholder='Email Address'
+            placeholder='Endereço de email'
             name='email'
             value={email}
             onChange={(e) => onChange(e)}
           />
           <small className='form-text'>
-            This site uses Gravatar so if you want a profile image, use a
-            Gravatar email
+            Este site usa Gravatar, se tiveres conta não te preocupes, a tua foto de perfil aparece automaticamente 
           </small>
         </div>
         <div className='form-group'>
@@ -76,7 +75,7 @@ const Register = ({ setAlert, register, isAuthenticated }) => {
         <div className='form-group'>
           <input
             type='password'
-            placeholder='Confirm Password'
+            placeholder='Confirmar Password'
             name='password2'
             value={password2}
             onChange={(e) => onChange(e)}

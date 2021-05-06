@@ -32,7 +32,7 @@ const QuizForm = ({
   });
   const [difficulty, setDifficulty] = useState("");
   const [_id, set_Id] = useState("");
-  const [showAnswers, setShowAnswers] = useState(false);
+  const [showAnswers, setShowAnswers] = useState(true);
 
   const onSubmit = async (data,event) => {
     event.preventDefault();

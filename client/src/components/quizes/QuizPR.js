@@ -115,10 +115,9 @@ const QuizPR = ({id, addQuizQuestionsAnswers}) => {
             placeholder="Pergunta"
           />
 
-
-          <div >
+          <div className="flex flex-wrap -mx-3 mb-6">
           <CustomTextInput
-          className="inputSexy"
+          className="inputSexy "
             label="Resposta-1"
             name="answer1"
             type="text"

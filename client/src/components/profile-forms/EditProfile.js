@@ -130,7 +130,7 @@ const EditProfile = ({
           />
           <small className='form-text'>
             Por favor user virgulas para separar as vossas habilidades
-            (Futebol,matematica,historia...)
+            (Futebol ,matemática ,história...)
           </small>
         </div>
 
@@ -150,9 +150,9 @@ const EditProfile = ({
             type='button'
             className='btn btn-light'
           >
-            Add Social Network Links
+            Adiciona as tuas redes socias
           </button>
-          <span>Optional</span>
+          <span>Opcional</span>
         </div>
 
         {displaySocialInputs && (
@@ -205,7 +205,7 @@ const EditProfile = ({
 
         <input type='submit' className='btn btn-primary my-1' />
         <Link className='btn btn-light my-1' to='/dashboard'>
-          Go Back
+          Voltar atrás
         </Link>
       </form>
     </Fragment>

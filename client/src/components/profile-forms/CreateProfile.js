@@ -45,10 +45,9 @@ const CreateProfile = ({ createProfile, history }) => {
 
   return (
     <Fragment>
-      <h1 className='large text-primary'>Create Your Profile</h1>
+      <h1 className='large text-primary'>Cria o teu perfil </h1>
       <p className='lead'>
-        <i className='fas fa-user'></i> Let's get some information to make your
-        profile stand out
+        <i className='fas fa-user'></i> Escreve sobre ti e sobre o que gostas
       </p>
       <small>* = Campos Obrigatorios</small>
       <form className='form' onSubmit={onSubmit}>
@@ -93,7 +92,7 @@ const CreateProfile = ({ createProfile, history }) => {
             onChange={(e) => onChange(e)}
           />
           <small className='form-text'>
-            Cidade ou Freguesia (eg. Boston, MA)
+            Cidade ou Freguesia (ex: Braga, )
           </small>
         </div>
         <div className='form-group'>
@@ -106,7 +105,7 @@ const CreateProfile = ({ createProfile, history }) => {
           />
           <small className='form-text'>
             Por favor user virgulas para separar as vossas habilidades
-            (Futebol,matematica,historia...)
+            (Futebol ,matemática ,história...)
           </small>
         </div>
 
@@ -117,7 +116,7 @@ const CreateProfile = ({ createProfile, history }) => {
             value={bio}
             onChange={onChange}
           />
-          <small className='form-text'>Tell us a little about yourself</small>
+          <small className='form-text'>Fala algo sobre ti!</small>
         </div>
 
         <div className='my-2'>
@@ -126,9 +125,9 @@ const CreateProfile = ({ createProfile, history }) => {
             type='button'
             className='btn btn-light'
           >
-            Add Social Network Links
+            Adiciona as tuas redes socias
           </button>
-          <span>Optional</span>
+          <span>Opcional</span>
         </div>
 
         {displaySocialInputs && (
@@ -181,7 +180,7 @@ const CreateProfile = ({ createProfile, history }) => {
 
         <input type='submit' className='btn btn-primary my-1' />
         <Link className='btn btn-light my-1' to='/dashboard'>
-          Go Back
+          voltar atrás
         </Link>
       </form>
     </Fragment>
