@@ -54,6 +54,25 @@ router.get("/", auth, async (req, res) => {
   }
 });
 
+//@rout Get api/posts/top
+//@desc Busca todas as salas
+//@access private
+//TODO:Tenho que fazer aqui um Aggregation with User Preference Data or data model
+
+router.get("/top", auth, async (req, res) => {
+  try {
+    const posts = await Post.aggregate([
+      { $set: { numberOfLikes: { $size: "$likes" } } },
+      { $sort: { numberOfLikes: -1 } },
+      { $limit: 3 }
+    ]);
+    res.json(posts);
+  } catch (err) {
+    console.error(err.message);
+    res.status(501).send("Server error2");
+  }
+});
+
 //@rout Get api/posts/:id
 //@desc Busca a sala por id
 //@access private

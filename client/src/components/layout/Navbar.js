@@ -8,26 +8,33 @@ export const Navbar = ({ auth: { isAuthenticated, loading }, logout }) => {
   const authLinks = (
     <ul>
       <li>
-        <Link to='/profiles'>Perfis</Link>
-      </li>
-      <li>
-        <Link to='/posts'>Perguntas</Link>
-      </li>
-      <li>
-        <Link to='/quizes'>Quizes</Link>
-      </li>
-      <li>
-        <Link to='/admin'>Admin</Link>
-      </li>
-      <li>
-        <Link to='/dashboard'>
-          <i className='fas fa-user' /> <span className='hide-sm'>Perfil</span>
+        <Link to="/profiles">
+          <i className="fas fa-users" /> Perfis
         </Link>
       </li>
       <li>
-        <a onClick={logout} href='/'>
-          <i className='fas fa-sign-out-alt' />{" "}
-          <span className='hide-sm'>Logout</span>
+        <Link to="/posts">
+          <i className="fas fa-question" /> Perguntas
+        </Link>
+      </li>
+      <li>
+        <Link to="/quizes">
+          <i className="fas fa-gamepad" /> Quizes
+        </Link>
+      </li>
+      <li>
+        <Link to="/admin">Admin</Link>
+      </li>
+      <li>
+        <Link to="/dashboard">
+          <i className="fas fa-home" />{" "}
+          <span className="hide-sm">Menu principal</span>
+        </Link>
+      </li>
+      <li>
+        <a onClick={logout} href="/">
+          <i className="fas fa-sign-out-alt" />{" "}
+          <span className="hide-sm">Logout</span>
         </a>
       </li>
     </ul>
@@ -36,22 +43,22 @@ export const Navbar = ({ auth: { isAuthenticated, loading }, logout }) => {
   const guestLinks = (
     <ul>
       <li>
-        <Link to='/profiles'>Perfis</Link>
+        <Link to="/profiles">Perfis</Link>
       </li>
       <li>
-        <Link to='/register'>Registar</Link>
+        <Link to="/register">Registar</Link>
       </li>
       <li>
-        <Link to='/login'>Login</Link>
+        <Link to="/login">Login</Link>
       </li>
     </ul>
   );
 
   return (
-    <nav className='navbar bg-dark'>
+    <nav className="navbar bg-dark">
       <h1>
-        <Link to='/'>
-          <i className='fas fa-code' /> TinderQuiz
+        <Link to="/">
+        <i class="fas fa-heartbeat"></i> TinderQuiz
         </Link>
       </h1>
       <Fragment>{isAuthenticated ? authLinks : guestLinks}</Fragment>

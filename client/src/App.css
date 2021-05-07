@@ -645,7 +645,7 @@ button {
 
 .inputSexy {
   display: block;
-  width: 900px;
+  width: 100%;
   font-size: 14pt;
   line-height: 28pt;
   font-family: "Fjalla One";

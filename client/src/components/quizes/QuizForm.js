@@ -1,7 +1,7 @@
 import React, { useState, Fragment } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import ReactDOM from "react-dom";
+
 import { useForm } from "react-hook-form";
 
 import { addQuiz } from "../../actions/quiz";
@@ -32,7 +32,7 @@ const QuizForm = ({
   });
   const [difficulty, setDifficulty] = useState("");
   const [_id, set_Id] = useState("");
-  const [showAnswers, setShowAnswers] = useState(true);
+  const [showAnswers, setShowAnswers] = useState(false);
 
   const onSubmit = async (data,event) => {
     event.preventDefault();

@@ -141,7 +141,7 @@ const EditProfile = ({
             value={bio}
             onChange={onChange}
           />
-          <small className='form-text'>Tell us a little about yourself</small>
+          <small className='form-text'>Fala sobre ti e sobre as tuas aventuras!</small>
         </div>
 
         <div className='my-2'>
