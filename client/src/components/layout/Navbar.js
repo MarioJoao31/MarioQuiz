@@ -58,7 +58,7 @@ export const Navbar = ({ auth: { isAuthenticated, loading }, logout }) => {
     <nav className="navbar bg-dark">
       <h1>
         <Link to="/">
-        <i class="fas fa-heartbeat"></i> TinderQuiz
+        <i className="fas fa-heartbeat"></i> TinderQuiz
         </Link>
       </h1>
       <Fragment>{isAuthenticated ? authLinks : guestLinks}</Fragment>

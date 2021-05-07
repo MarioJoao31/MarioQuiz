@@ -27,20 +27,20 @@ const Dashboard = ({
 
 
 
-      <a class="block rounded w-full lg:flex mb-10" href=".">
-             <div class="h-48 lg:w-48 flex-none bg-cover text-center overflow-hidden opacity-75" style={{backgroundImage: 'asd'}} >
+      <a className="block rounded w-full lg:flex mb-10" href=".">
+             <div className="h-48 lg:w-48 flex-none bg-cover text-center overflow-hidden opacity-75" style={{backgroundImage: 'asd'}} >
              </div>
-             <div class="bg-white rounded px-4 py-4 flex flex-col justify-between leading-normal shadow">
+             <div className="bg-white rounded px-4 py-4 flex flex-col justify-between leading-normal shadow">
                <div>
-                 <div class="mt-3 md:mt-0 text-gray-700 font-bold text-3xl mb-2">
+                 <div className="mt-3 md:mt-0 text-gray-700 font-bold text-3xl mb-2">
                    Aliquam venenatis nisl id purus rhoncus, in efficitur sem hendrerit.
                  </div>
                </div>
-               <div class="flex mt-3">
-                 <img alt="" src="https://randomuser.me/api/portraits/men/11.jpg" class="h-10 w-10 rounded-full mr-2 object-cover" />
+               <div className="flex mt-3">
+                 <img alt="" src="https://randomuser.me/api/portraits/men/11.jpg" className="h-10 w-10 rounded-full mr-2 object-cover" />
                  <div>
-                   <p class="font-semibold text-gray-700 text-sm capitalize"> eduard franz </p>
-                   <p class="text-gray-600 text-xs"> 14 Aug </p>
+                   <p className="font-semibold text-gray-700 text-sm capitalize"> eduard franz </p>
+                   <p className="text-gray-600 text-xs"> 14 Aug </p>
                  </div>
                </div>
              </div>
