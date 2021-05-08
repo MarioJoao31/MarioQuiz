@@ -13,7 +13,7 @@ const TopPosts = ({
   auth,
   post: { _id, text, name, avatar, user, likes, comments },
 }) => (
-  <a class="block rounded w-full lg:flex mb-10" >
+  <a class="block rounded w-full lg:flex mb-5 " >
     <div class="h-48 lg:w-19 flex-none bg-cover text-center overflow-hidden opacity-75" style={{avatar}} >
              </div>
   <div className="bg-white rounded px-4 py-4 flex flex-col justify-between leading-normal shadow">

@@ -335,16 +335,16 @@ button {
 
 /* Navbar */
 .navbar {
-  overflow: hidden;
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 0.7rem 2rem;
-  position: fixed;
+  position: relative;
   z-index: 1;
   width: 100%;
   top: 0;
-  opacity: 0.95;
+  border-bottom: solid 1px var(--primary-color);
+  opacity: 0.9;
 }
 
 .navbar ul {
@@ -368,13 +368,7 @@ button {
 /* Landing Page */
 .landing {
   background: url("img/QUIZ.jpg");
-  margin: auto;
-  bottom: 0;
-  overflow: hidden;
-  left: 0;
-  position: fixed;
-  right: 0;
-  background-size: cover;
+  position: relative;
   height: 100vh;
 }
 
