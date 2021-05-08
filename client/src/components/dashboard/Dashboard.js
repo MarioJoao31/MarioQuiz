@@ -37,6 +37,7 @@ const Dashboard = ({
 
 
       <h1>Top 3 perguntas com mais likes!</h1>
+      <br></br>
     <div className="grid grid-cols-3 gap-4">
       
       {posts.map((post) => (
@@ -45,7 +46,7 @@ const Dashboard = ({
         ))}
     </div>
 
-    
+
 
   
 
