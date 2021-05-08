@@ -35,13 +35,17 @@ const Dashboard = ({
         <i className='fas fa-user'> Bem vindo {user && user.name}</i>
       </p>
 
-    <div>
+
       <h1>Top 3 perguntas com mais likes!</h1>
+    <div className="grid grid-cols-3 gap-4">
+      
       {posts.map((post) => (
           <TopPosts key={post._id} post={post} />
           
         ))}
     </div>
+
+    
 
   
 
