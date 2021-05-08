@@ -167,3 +167,21 @@ export const deleteComment = (postId, commentId) => async (dispatch) => {
     });
   }
 };
+
+// GET TOP POSTS
+export const getTopPosts = () => async (dispatch) => {
+  try {
+    const res = await api.get("/posts/top");
+
+    dispatch({
+      type: GET_POSTS,
+      payload: res.data,
+    });
+  } catch (err) {
+    dispatch({
+      type: POST_ERROR,
+      payload: { msg: err.response.statusText, status: err.response.status },
+    });
+  }
+};
+

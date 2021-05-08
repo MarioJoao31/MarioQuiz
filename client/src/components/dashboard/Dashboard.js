@@ -3,15 +3,25 @@ import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import Spinner from "../layout/Spinner";
+
 import DashboardActions from "../dashboard/DashboardActions";
 import { getCurrentProfile, deleteAccount } from "../../actions/profile";
+import TopPosts from "./TopPosts"
+import { getTopPosts } from "../../actions/post";
 
 const Dashboard = ({
+  getTopPosts, 
+  post: { posts },
   getCurrentProfile,
   deleteAccount,
   auth: { user },
   profile: { profile, loading },
 }) => {
+
+  useEffect(() => {
+    getTopPosts();
+  }, [getTopPosts]);
+
   useEffect(() => {
     getCurrentProfile();
   }, [getCurrentProfile]);
@@ -25,30 +35,15 @@ const Dashboard = ({
         <i className='fas fa-user'> Bem vindo {user && user.name}</i>
       </p>
 
+    <div>
+      <h1>Top 3 perguntas com mais likes!</h1>
+      {posts.map((post) => (
+          <TopPosts key={post._id} post={post} />
+          
+        ))}
+    </div>
 
-
-      <a className="block rounded w-full lg:flex mb-10" href=".">
-             <div className="h-48 lg:w-48 flex-none bg-cover text-center overflow-hidden opacity-75" style={{backgroundImage: 'asd'}} >
-             </div>
-             <div className="bg-white rounded px-4 py-4 flex flex-col justify-between leading-normal shadow">
-               <div>
-                 <div className="mt-3 md:mt-0 text-gray-700 font-bold text-3xl mb-2">
-                   Aliquam venenatis nisl id purus rhoncus, in efficitur sem hendrerit.
-                 </div>
-               </div>
-               <div className="flex mt-3">
-                 <img alt="" src="https://randomuser.me/api/portraits/men/11.jpg" className="h-10 w-10 rounded-full mr-2 object-cover" />
-                 <div>
-                   <p className="font-semibold text-gray-700 text-sm capitalize"> eduard franz </p>
-                   <p className="text-gray-600 text-xs"> 14 Aug </p>
-                 </div>
-               </div>
-             </div>
-           </a>
-
-
-
-
+  
 
       {profile !== null ? (
         <Fragment>
@@ -73,6 +68,9 @@ const Dashboard = ({
 };
 
 Dashboard.propTypes = {
+  getTopPosts: PropTypes.func.isRequired,
+  post: PropTypes.object.isRequired,
+  
   getCurrentProfile: PropTypes.func.isRequired,
   deleteAccount: PropTypes.func.isRequired,
   auth: PropTypes.object.isRequired,
@@ -80,10 +78,11 @@ Dashboard.propTypes = {
 };
 
 const mapStateToProps = (state) => ({
+  post: state.post,
   auth: state.auth,
   profile: state.profile,
 });
 
-export default connect(mapStateToProps, { getCurrentProfile, deleteAccount })(
+export default connect(mapStateToProps, { getCurrentProfile, deleteAccount, getTopPosts })(
   Dashboard
 );

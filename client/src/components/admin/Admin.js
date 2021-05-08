@@ -17,7 +17,7 @@ const Admin = (props) => {
                     Total Revenue
                   </h5>
                   <h3 className='font-bold text-3xl'>
-                    $3249{" "}
+                    $3249
                     <span className='text-green-500'>
                       <i className='fas fa-caret-up'></i>
                     </span>
