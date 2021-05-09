@@ -55,7 +55,7 @@ export const Navbar = ({ auth: { isAuthenticated, loading }, logout }) => {
   );
 
   return (
-    <nav className="navbar bg-dark">
+    <nav className="navbar ">
       <h1>
         <Link to="/">
         <i className="fas fa-heartbeat"></i> TinderQuiz

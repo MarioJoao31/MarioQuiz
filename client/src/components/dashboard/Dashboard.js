@@ -31,20 +31,22 @@ const Dashboard = ({
   ) : (
     <Fragment>
       <h1 className='large text-primary'>Menu principal</h1>
-      <p className='lead'>
+      <p className  ='lead'>
         <i className='fas fa-user'> Bem vindo {user && user.name}</i>
       </p>
 
 
       <h1>Top 3 perguntas com mais likes!</h1>
-      <br></br>
-    <div className="grid grid-cols-3 gap-4">
+    <div className="flex flex-wrap -mx-2 overflow-hidden sm:-mx-1">
       
       {posts.map((post) => (
           <TopPosts key={post._id} post={post} />
           
         ))}
     </div>
+
+
+    <h1>Top 10 Quiz com mais Interações!</h1>
 
 
 
@@ -56,7 +58,7 @@ const Dashboard = ({
 
           <div className='my-2'>
             <button className='btn btn-danger' onClick={() => deleteAccount()}>
-              <i className='fas fa-user-minus' /> Delete My Account
+              <i className='fas fa-user-minus' /> Eliminar a minha conta
             </button>
           </div>
         </Fragment>

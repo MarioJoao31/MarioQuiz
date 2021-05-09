@@ -13,11 +13,12 @@ const TopPosts = ({
   auth,
   post: { _id, text, name, avatar, user, likes, comments },
 }) => (
-  <a class="block rounded w-full lg:flex mb-5 " >
-    <div class="h-48 lg:w-19 flex-none bg-cover text-center overflow-hidden opacity-75" style={{avatar}} >
+  <div className="block rounded my-2 px-2 w-full overflow-hidden sm:my-1 sm:px-1 sm:w-1/4 md:w-1/2 lg:w-1/3 xl:w-1/3 " >
+    
+    <div className="h-18 lg:w-19 flex-none bg-cover text-center overflow-hidden opacity-75" style={{avatar}} >
              </div>
   <div className="bg-white rounded px-4 py-4 flex flex-col justify-between leading-normal shadow">
-    <div class="flex mt-3">
+    <div className="flex mt-3">
       <Link to={`/profile/${user}`}>
         <img
           className="rh-10 w-10 rounded-full mr-2 object-cover"
@@ -25,7 +26,7 @@ const TopPosts = ({
           alt=""
         />
         <div>
-          <p class="font-semibold text-gray-700 text-sm capitalize">{name} </p>
+          <p className="font-semibold text-gray-700 text-sm capitalize">{name} </p>
         </div>
       </Link>
       
@@ -35,7 +36,7 @@ const TopPosts = ({
       <Link to={`/profile/${user}`}></Link>
     </div>
     <div>
-      <div class="mt-3 md:mt-0 text-gray-700 font-bold text-3xl mb-2">
+      <div className="mt-3 md:mt-0 text-gray-700 font-bold text-3xl mb-2">
         {text}
       </div>
 
@@ -77,7 +78,8 @@ const TopPosts = ({
       </Fragment>
     </div>
   </div>
-  </a>
+  </div>
+ 
 );
 
 TopPosts.propTypes = {
