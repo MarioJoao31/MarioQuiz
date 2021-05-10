@@ -29,6 +29,23 @@ export const getQuizes = () => async (dispatch) => {
   }
 };
 
+// GET TOP Quizes
+export const getTopQuizes = () => async (dispatch) => {
+  try {
+    const res = await api.get("/quizes/top");
+
+    dispatch({
+      type: GET_QUIZES,
+      payload: res.data,
+    });
+  } catch (err) {
+    dispatch({
+      type: QUIZ_ERROR,
+      payload: { msg: err.response.statusText, status: err.response.status },
+    });
+  }
+};
+
 // ADICIONA LIKE
 export const addLike = (id) => async (dispatch) => {
   try {

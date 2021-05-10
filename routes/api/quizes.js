@@ -62,6 +62,23 @@ router.get("/", auth, async (req, res) => {
   }
 });
 
+// @route    GET api/quizes/top
+// @desc     Get top 10 quizes
+// @access   public
+router.get("/top", auth, async (req, res) => {
+  try {
+    const quizes = await Quiz.aggregate([
+      { $set: { numberOfLikes: { $size: "$likes" } } },
+      { $sort: { numberOfLikes: -1 } },
+      { $limit: 4 }
+    ]);
+    res.json(quizes);
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send("Server Error");
+  }
+});
+
 // @route    GET api/quizes/:id
 // @desc     Get quizes by ID
 // @access   Private
@@ -310,5 +327,9 @@ router.delete("/question/:id/:question_id", auth, async (req, res) => {
     res.status(500).send("Server Error 123");
   }
 });
+
+
+
+
 
 module.exports = router;
