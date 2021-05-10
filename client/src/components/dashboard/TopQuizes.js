@@ -21,7 +21,7 @@ const TopQuizes = ({
     category,
     difficulty,
     likes,
-    question_possibility,
+    
     upload_at,
   },
   showActions,
@@ -66,22 +66,12 @@ const TopQuizes = ({
               <i className="fas fa-thumbs-down" />
             </button>
 
-            <a className="text-red-500 inline-flex items-center">
-        Learn More
-        <svg
-          fill="none"
-          stroke="currentColor"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          stroke-width="2"
-          className="w-4 h-4 ml-2"
-          viewBox="0 0 24 24"
-        >
-          
-        </svg>
+
+            <Link to={`/quizes/${_id}`} className="" >
+            <a className="text-red-500 inline-flex items-center btn btn-primary">
+        Fazer Quiz
       </a>
-            <Link to={`/quizes/${_id}`} className="btn btn-primary">
-              Fazer Quiz
+            
             </Link>
 
             {!auth.loading && user === auth.user._id && (
