@@ -49,12 +49,12 @@ const Dashboard = ({
         ))}
       </div>
 
-      <h1>Top 10 Quiz com mais Interações!</h1>
+      
 
       <section className="text-gray-600 body-font">
         <div className="container px-5 py-24 mx-auto">
           <div className="flex flex-col text-center w-full mb-20">
-            <h3 className="text-xs text-red-500 tracking-widest font-medium title-font ">
+            <h3 className=" text-red-500   title-font ">
               Atenção
             </h3>
             <h1 className="sm:text-3xl text-2xl font-medium title-font font-bold mb-4 text-gray-900">
@@ -67,13 +67,19 @@ const Dashboard = ({
           </div>
         </div>
 
-        <div className="container px-5 py-24 mx-auto">
-          <div className="flex flex-wrap">
+        
+        <h1>Top 4 Quizes com mais Interações!</h1>
+
+          <div className="">
+            <div className="flex flex-wrap -mx-2 overflow-hidden sm:-mx-1">
             {quizes.map((quiz) => (
               <TopQuizes key={quiz._id} quiz={quiz} showActions={true} />
             ))}
+            </div>
           </div>
-        </div>
+
+        
+       
       </section>
 
       {profile !== null ? (
