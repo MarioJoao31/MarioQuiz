@@ -44,7 +44,7 @@ const QuizAnswer = ({ quiz: { quiz, loading } }) => {
       {startQuiz ? (
         <div>
           {showScore ? (
-            <div className="score-section">Fizeste {score} Pontos</div>
+            <div className="score-section">Fizeste {score} Pontos de {incre}</div>
           ) : (
             <>
               <div className="question-section">
