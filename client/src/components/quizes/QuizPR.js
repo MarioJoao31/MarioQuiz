@@ -153,7 +153,7 @@ const QuizPR = ({ id, addQuizQuestionsAnswers }) => {
           <br />
 
           <button className="buttonSexy" type="submit">
-            {props.isSubmitting ? "loading..." : "Submit"}{" "}
+            {props.isSubmitting ? "loading..." : "Introduzir Pergunta"}{" "}
           </button>
         </Form>
       )}

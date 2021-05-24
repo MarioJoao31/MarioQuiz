@@ -11,7 +11,7 @@ const QuizAnswer = ({ quiz: { quiz, loading } }) => {
   const [showScore, setShowScore] = useState(false);
   const [score, setScore] = useState(0);
   const [incre, setIncre] = useState(0);
-
+  const [sizeQ,setSizeQ] = useState(0);
 
 
   const handleNextQuestion = (respostaclicada) => {
@@ -22,20 +22,18 @@ const QuizAnswer = ({ quiz: { quiz, loading } }) => {
       
     }
 
-    
-
     const tam = quiz.question_possibility.length - 1;
-    
     //incrementador para passar a proxima pergunta se for maior mostra o score
     if (!(incre === tam)) {
-      
+      setSizeQ(sizeQ + 1)
       setIncre(incre + 1);
     } else {
+      setSizeQ(sizeQ + 1);
       setShowScore(true);
-    }
+    }  
   };
 
-  
+ 
 
   return loading ? (
     <Spinner />
@@ -44,7 +42,7 @@ const QuizAnswer = ({ quiz: { quiz, loading } }) => {
       {startQuiz ? (
         <div>
           {showScore ? (
-            <div className="score-section">Fizeste {score} Pontos de {incre}</div>
+            <div className="score-section">Fizeste {score} Pontos de {sizeQ}</div>
           ) : (
             <>
               <div className="question-section">
@@ -58,7 +56,9 @@ const QuizAnswer = ({ quiz: { quiz, loading } }) => {
                 <div className="question-text">Pergunta: {quiz.question_possibility[incre].title_question}</div>
               </div>
               <div className="answer-section">
-                {quiz.question_possibility[incre].answers.map((_id) => (
+                { 
+                  
+                quiz.question_possibility[incre].answers.sort(() => Math.random() - 0.5).map((_id) => (
                   <button
                     className="buttonAnswer"
                     onClick={() => handleNextQuestion(_id)}
@@ -67,6 +67,7 @@ const QuizAnswer = ({ quiz: { quiz, loading } }) => {
                     
                     {_id}
                   </button>
+                  
                 ))}
               </div>
             </>
