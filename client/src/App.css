@@ -681,7 +681,7 @@ button {
 /*Quiz Answer*/
 
 .app {
-  background-color: #facc25;
+  background-color: #7cc8e8;
   margin-top: 5%;
   min-height: 80%;
   height: min-content;
@@ -746,24 +746,17 @@ button {
   width: 100%;
   font-size: 16px;
   color: #ffffff;
-  background-color: #17a2b8;
+  background-color: #7bc8e8;
   border-radius: 15px;
   margin-bottom: 10px;
   display: flex;
-  padding: 5px;
+  padding: 12px;
   justify-content: flex-start;
   align-items: center;
-  border: 2px solid #234668;
+  border: 2px solid #fff;
   cursor: pointer;
 }
 
-.correct {
-  background-color: #2f922f;
-}
-
-.incorrect {
-  background-color: #ff3333;
-}
 
 buttonAnswer:hover {
   background-color: #555e7d;
