@@ -1,6 +1,7 @@
 {
   "name": "marioquiz",
   "version": "1.0.0",
+  "homepage": ".",
   "description": "Para developers",
   "main": "server.js",
   "scripts": {
