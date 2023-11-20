@@ -1,0 +1,32 @@
+version: "3.9"
+
+services:
+  api:
+    container_name: newapi
+    restart: unless-stopped
+    image: marioquizapicompose
+    build:
+      context: api
+      dockerfile: Dockerfile
+    ports:
+      - 4000:4000
+    networks:
+      - shared-network
+
+  client:
+    container_name: newclient
+    restart: unless-stopped
+    image: marioquizclientcompose
+    build:
+      context: client
+      dockerfile: Dockerfile
+    ports:
+      - 3000:3000
+    networks:
+      - shared-network
+    depends_on:
+      - api
+
+networks:
+  shared-network:
+    driver: bridge
